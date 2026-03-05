@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0f0f1a;
+    --text: #e0e0ff;
+    --text-light: #a5b4fc;
+    --accent: #c084fc;
+    --accent-dark: #9f7aea;
+    --surface: rgba(30, 30, 60, 0.6);
+    --border: rgba(165, 180, 252, 0.18);
+    --transition: all 0.4s ease;
+}
+
+[data-theme="light"] {
+    --bg: #f8f9ff;
+    --text: #1e1b4b;
+    --text-light: #4f46e5;
+    --accent: #7c3aed;
+    --accent-dark: #6d28d9;
+    --surface: rgba(245, 245, 255, 0.75);
+    --border: rgba(99, 102, 241, 0.2);
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    color: var(--accent);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: var(--accent);
+    color: white;
+}
+
+.theme-toggle span {
+    position: absolute;
+    transition: all 0.4s ease;
+}
+
+.theme-toggle .sun {
+    opacity: 0;
+    transform: scale(0.7) rotate(90deg);
+}
+
+.theme-toggle .moon {
+    opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle .sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+[data-theme="light"] .theme-toggle .moon {
+    opacity: 0;
+    transform: scale(0.7) rotate(-90deg);
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 90;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+nav a {
+    margin-left: 2.2rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--accent);
+}
+
+/* Main layout */
+main {
+    padding: 7rem 5% 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+    padding: 4rem 5% 6rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+/* Circular profile image */
+.hero-profile {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 6px solid var(--accent);
+    box-shadow:
+        0 0 0 8px rgba(192, 132, 252, 0.25),
+        0 0 0 16px rgba(192, 132, 252, 0.10),
+        0 12px 40px rgba(0, 0, 0, 0.45);
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+}
+
+.hero-profile:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 0 10px rgba(192, 132, 252, 0.4),
+        0 0 0 20px rgba(192, 132, 252, 0.15),
+        0 16px 50px rgba(0, 0, 0, 0.55);
+}
+
+.section-with-profile {
+    flex: 1;
+    min-width: 280px;
+}
+
+.section-text h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    margin-bottom: 0.8rem;
+    color: var(--text);
+}
+
+.hero .tagline {
+    font-size: 1.15rem;
+    max-width: 560px;
+    opacity: 0.85;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* Mobile: stack profile on top, center text */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 5% 4rem;
+        gap: 2rem;
+    }
+
+    .hero-profile {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero .tagline {
+        font-size: 1rem;
+    }
+}
+
+/* Rest of styles remain unchanged */
+h2 {
+    font-size: 3.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--accent);
+    text-align: center;
+}
+
+.intro,
+.mission,
+.philosophy-section {
+    padding: 3rem;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    margin: 6rem 0;
+}
+
+/* About me images */
+.about-main-photo {
+    margin: 2.5rem 0;
+}
+
+.about-main-photo img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.about-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin: 3rem 0;
+}
+
+.about-photo-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.about-photo-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.photo-caption {
+    padding: 0.8rem;
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* Philosophy images */
+.philosophy-main-photo {
+    margin: 2rem 0;
+}
+
+.philosophy-img-main {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.philosophy-photos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.philosophy-photo-item {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.philosophy-img-side {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 4rem 0 2rem;
+    opacity: 0.6;
+    font-size: 0.95rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    main {
+        padding: 6rem 5% 3rem;
+    }
+
+    nav a {
+        margin-left: 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .philosophy-photos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .philosophy-img-side {
+        height: 200px;
+    }
+
+    .about-photos-grid {
+        gap: 1.5rem;
+    }
+}
