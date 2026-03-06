@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en" data-theme="dark">
 
 <head>
@@ -9,143 +9,301 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
+    <style>
+        /* Social circles */
+        .footer-social-bar {
+            width: 100%;
+            padding: 16px 12px 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.09);
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-social-bar .social-links {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #fff !important;
+            flex-shrink: 0;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+            border: none;
+        }
+
+        .social-btn span {
+            display: none;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px) scale(1.13);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            filter: brightness(1.15);
+        }
+
+        .social-fb {
+            background: #1877F2;
+        }
+
+        .social-ig {
+            background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #515bd4 100%);
+        }
+
+        .social-email {
+            background: #EA4335;
+        }
+
+        .social-tiktok {
+            background: #111;
+            outline: 1px solid #555;
+        }
+
+        .social-youtube {
+            background: #FF0000;
+        }
+
+        .social-x {
+            background: #14171A;
+            outline: 1px solid #555;
+        }
+
+        [data-theme="light"] .footer-social-bar {
+            border-top-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
 
-    <button class="theme-toggle" aria-label="Toggle theme">
-        <span class="sun">☀</span>
-        <span class="moon">🌙</span>
-    </button>
-
     <header>
         <div class="logo-container">
-            <div class="logo">My Portfolio</div>
+            <div class="logo">Digital Teaching</div>
         </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="Learning_task.html">Learning Task</a>
-            <a href="Lesson_plan.html">Lesson Plan</a>
-            <a href="contact.html">Contact</a>
+        <nav id="mainNav">
+            <a href="index.html" class="active">Home</a>
+            <a href="About Me.html">About Me</a>
+            <a href="ict_policies.html">ICT Policies &amp; Safety</a>
+            <a href="non_digital_tool.html">Non-Digital Tool</a>
+            <a href="digital_tool.html">Digital Tool</a>
+            <div class="nav-more-wrap" id="navMoreWrap">
+                <button class="nav-more-btn" id="navMoreBtn">More ▾</button>
+                <div class="nav-more-dropdown" id="navMoreDropdown">
+                    <a href="collaborative_task.html"><span class="nav-emoji">🤝</span>Collaborative Task</a>
+                    <a href="flexible_learning.html"><span class="nav-emoji">🔄</span>Flexible Learning</a>
+                    <a href="final_reflection.html"><span class="nav-emoji">🌟</span>Final Reflection</a>
+                </div>
+            </div>
         </nav>
+        <div class="header-right">
+            <div class="search-wrap">
+                <div class="search-input-box">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" id="siteSearch" placeholder="Search pages…" autocomplete="off"
+                        spellcheck="false">
+                </div>
+                <div class="search-dropdown" id="searchDropdown"></div>
+            </div>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="sun">☀</span>
+                <span class="moon">🌙</span>
+            </button>
+        </div>
     </header>
 
     <main>
 
-        <!-- Hero – profile pic on the left (only here) -->
-        <section class="hero">
-            <img src="pics/profile.jpg" alt="profile" class="hero-profile">
-            <div class="section-with-profile">
-                <div class="section-text">
-                    <h1>Jessa Paradiang</h1>
-                    <p class="tagline">
-                        Bachelor of Physical Education (BPED) Student
-                        Passionate about movement, health, and inspiring the next generation.
+        <section class="hero-split">
+            <div class="hero-content-wrapper">
+                <div class="hero-left">
+                    <div class="hero-banner">
+                        <span class="hero-banner-text">✦ My Digital Teaching Portfolio ✦</span>
+                    </div>
+
+                    <div class="hero-center">
+                        <h1 class="hero-name">Jessa Paradiang</h1>
+                        <p class="tagline">
+                            Bachelor of Physical Education · 2nd Year<br>
+                            PED 105 – Technology for Teaching and Learning 1
+                        </p>
+                        <p class="hero-instructor">Instructor: Ms. Michele Baguinat</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <img src="pics/h1.jpg" alt="Jessa Paradiang - Physical Education Enthusiast" class="hero-side-img">
+                    <!-- Use a nice portrait / teaching photo here – ideally vertical or square crop -->
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Welcome</h2>
+            <p>
+                This portfolio presents my journey, learning experiences, and achievements as a student taking Bachelor
+                of Physical Education (BPED). It showcases my growth, skills, and reflections as I prepare to become a
+                future Physical Education teacher. I hope this portfolio reflects my passion for teaching, physical
+                activity, and lifelong learning.
+            </p>
+        </section>
+
+        <!-- Mission — text left, photo right -->
+        <section class="mission">
+            <div class="mission-inner">
+                <div class="mission-text">
+                    <h2 style="text-align:left;">Mission</h2>
+                    <p>
+                        My mission as a future Physical Education teacher is to guide and inspire students to develop a
+                        healthy
+                        lifestyle, discipline, teamwork, and confidence through physical activities, sports, and dance.
+                        I aim to
+                        create a positive and supportive learning environment where every student can grow physically,
+                        mentally,
+                        and socially.
                     </p>
                 </div>
-            </div>
-        </section>
-
-        <!-- About me – no profile pic -->
-        <section class="intro">
-            <h2>About me</h2>
-
-            <p>
-                I move to inspire. I learn to lead.
-
-                I am currently a Bachelor of Physical Education 2nd year student who is passionate about movement,
-                wellness, and lifelong learning. As I continue my journey in the field of Physical Education, I am
-                developing not only my knowledge and skills but also my values as a future educator and leader. Each
-                lesson, training session, and experience helps shape me into someone who promotes both physical fitness
-                and character development.
-                As a student, I believe that learning is an active and continuous process. Physical Education is not
-                only about sports and physical activities it is about discipline, teamwork, perseverance, and building a
-                healthy lifestyle. I strive to give my best in every activity, whether inside the classroom, on the
-                field, or in community engagement. Through dedication and hard work, I aim to grow into a competent and
-                compassionate future teacher.My approach to learning is participative and growth oriented. I believe
-                that everyone has the potential to improve with the right mindset and consistent effort. As a BPED
-                student, I valued collaboration, respect, and sportsmanship. I am committed to developing my skills in
-                teaching strategies, dance, sports, fitness training, and classroom management so that I can effectively
-                guide my future students.
-
-                I see myself not just as a learner, but as a future mentor who will inspire others to value health,
-                movement, and holistic development. I want to become an educator who motivates students to discover
-                their strengths, overcome challenges, and build confidence through physical activity.
-                There is nothing more fulfilling than seeing progress—whether it is mastering a new skill, improving
-                endurance, or gaining confidence. My goal is to continue learning, improving, and preparing myself to
-                make a positive impact in the lives of my future students.
-
-                Education is not just about learning facts, but about shaping lives and building strong foundations for
-                the future.As you explore my journey as a BPED student, I hope you see not only my academic growth but
-                also my passion for becoming a futureready Physical Education teacher who inspires through movement and
-                leads with heart.
-            </p>
-
-            <div class="about-main-photo">
-                <img src="pics/pic3.jpg" alt="Students actively participating in PE class">
-            </div>
-
-            <div class="about-photos-grid">
-                <div class="about-photo-item">
-                    <img src="pics/pic4.jpg" alt="Group outdoor physical activity">
-                    <p class="photo-caption">Group activities building teamwork</p>
-                </div>
-                <div class="about-photo-item">
-                    <img src="pics/pic 2.jpg" alt="Students exercising together">
-                    <p class="photo-caption">Developing skills and confidence</p>
-                </div>
-                <div class="about-photo-item">
-                    <img src="pics/pic1.jpg" alt="PE class with teacher guidance">
-                    <p class="photo-caption">Guiding students toward growth</p>
+                <div class="mission-photo">
+                    <img src="pics/b2.png" alt="Mission photo">
                 </div>
             </div>
         </section>
 
-        <!-- Mission – no profile pic -->
-        <section class="mission">
-            <h2>Mission</h2>
-            <p>
-                My mission as a future Physical Education teacher is to guide and inspire students to develop a healthy
-                lifestyle, discipline, teamwork, and confidence through physical activities, sports, and dance. I aim to
-                create a positive and supportive learning environment where every student can grow physically, mentally,
-                and socially.
-            </p>
-        </section>
-
-        <!-- Philosophy – no profile pic -->
         <section class="philosophy-section">
             <h2>My philosophy in teaching</h2>
-
             <p>
                 I believe that teaching is not only about delivering knowledge but about inspiring growth, confidence,
                 and lifelong learning. As a future BPED teacher, I believe that every student has the potential to
-                succeed when given encouragement, guidance, and a positive environment.Physical Education is more than
-                movementit teaches discipline, teamwork, respect, and perseverance. My role as a teacher is to create a
+                succeed when given encouragement, guidance, and a positive environment. Physical Education is more than
+                movement — it teaches discipline, teamwork, respect, and perseverance. My role as a teacher is to create
+                a
                 safe, inclusive, and motivating space where students can develop not only their physical skills but also
-                their character.I believe that through passion, patience, and purpose, I can help shape students into
+                their character. I believe that through passion, patience, and purpose, I can help shape students into
                 healthy, confident, and responsible individuals ready to face life's challenges.
             </p>
-
             <div class="philosophy-photos-grid">
                 <div class="philosophy-photo-item">
                     <img src="pics/phi2.jpg" alt="Group sports activity" class="philosophy-img-side">
-                    <p class="photo-caption">Strength, Reselience, Confident  </p>
+                    <p class="photo-caption"></p>
                 </div>
                 <div class="philosophy-photo-item">
                     <img src="pics/phi1.jpg" alt="Student practicing motor skills" class="philosophy-img-side">
-                    <p class="photo-caption">Developing confidence through skill mastery</p>
+                    <p class="photo-caption"></p>
                 </div>
             </div>
+        </section>
+
+        <section>
+            <p>
+                Thank you for taking the time to visit my digital teaching portfolio. It reflects my goals, experiences,
+                and aspirations as a future educator. I hope it inspires learning, growth, and a love for education.
+            </p>
         </section>
 
     </main>
 
+    <script src="index.js"></script>
+    <script src="search.js"></script>
+
     <footer>
-        <p>© 2026 Jessa Paradiang — Made with care and dedication</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    Digital Teaching
+                </div>
+                <p class="footer-copyright">© 2026 Jessa Paradiang — Made with care and dedication</p>
+            </div>
+            <div class="contact-info">
+                <h4>Contact Me</h4>
+                <p>Email: <a href="https://paradiangjessa2005@gmail.com.google.com/">
+                        paradiangjessa2005@gmail.com</a>
+                </p>
+                <p>Phone: +63 9537467916</p>
+            </div>
+        </div>
+
+        <!-- Circle social icons at the bottom -->
+        <div class="footer-social-bar">
+            <div class="social-links">
+
+                <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="Facebook" class="social-btn social-fb">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+
+                </a>
+
+                <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="Instagram" class="social-btn social-ig">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+                    </svg>
+
+                </a>
+
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+
+                </a>
+
+                <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="TikTok" class="social-btn social-tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
+                    </svg>
+
+                </a>
+
+                <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="YouTube" class="social-btn social-youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
+                    </svg>
+
+                </a>
+
+                <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="X (Twitter)" class="social-btn social-x">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+
+                </a>
+
+            </div>
+        </div>
     </footer>
 
-    <script src="index.js"></script>
 </body>
 
 </html>
-
