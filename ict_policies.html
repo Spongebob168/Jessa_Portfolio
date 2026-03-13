@@ -10,7 +10,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,700&display=swap"
+        rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
 </head>
 
@@ -27,11 +29,11 @@
             <a href="non_digital_tool.html">Non-Digital Tool</a>
             <a href="digital_tool.html">Digital Tool</a>
             <div class="nav-more-wrap" id="navMoreWrap">
-                <button class="nav-more-btn" id="navMoreBtn">More ▾</button>
+                <button class="nav-more-btn" id="navMoreBtn">More &#9662;</button>
                 <div class="nav-more-dropdown" id="navMoreDropdown">
-                    <a href="collaborative_task.html"><span class="nav-emoji">🤝</span>Collaborative Task</a>
-                    <a href="flexible_learning.html"><span class="nav-emoji">🔄</span>Flexible Learning</a>
-                    <a href="final_reflection.html"><span class="nav-emoji">🌟</span>Final Reflection</a>
+                    <a href="collaborative_task.html"><span class="nav-emoji">&#x1F91D;</span>Collaborative Task</a>
+                    <a href="flexible_learning.html"><span class="nav-emoji">&#x1F504;</span>Flexible Learning</a>
+                    <a href="final_reflection.html"><span class="nav-emoji">&#x1F31F;</span>Final Reflection</a>
                 </div>
             </div>
         </nav>
@@ -43,14 +45,14 @@
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
-                    <input type="text" id="siteSearch" placeholder="Search pages…" autocomplete="off"
+                    <input type="text" id="siteSearch" placeholder="Search pages&hellip;" autocomplete="off"
                         spellcheck="false">
                 </div>
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
             <button class="theme-toggle" aria-label="Toggle theme">
-                <span class="sun">☀</span>
-                <span class="moon">🌙</span>
+                <span class="sun">&#9728;</span>
+                <span class="moon">&#127769;</span>
             </button>
             <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
                 <span class="ham-bar"></span>
@@ -63,46 +65,47 @@
     <main>
 
 
-        <!-- ⑤ MY INFOGRAPHIC SECTION -->
+
+
+
+        <!-- MY INFOGRAPHIC SECTION -->
         <div class="ict-infographic-section">
 
-            <!-- A. Banner Title -->
+            <!-- Banner -->
             <div class="ict-infographic-banner">
-                <div class="ict-infographic-banner-left">
-                    <span class="ict-infographic-badge">📊</span>
-                </div>
+                <div class="ict-infographic-banner-left">&#x1F4CA;</div>
                 <div class="ict-infographic-banner-center">
                     <h2 class="ict-infographic-title">My Infographic</h2>
-                    <p class="ict-infographic-subtitle">ICT Policies &amp; Online Safety — Visual Summary</p>
+                    <p class="ict-infographic-subtitle">ICT Policies &amp; Online Safety &mdash; Visual Summary</p>
                 </div>
                 <div class="ict-infographic-banner-right">
                     <span class="ict-infographic-tag">PED 105</span>
                 </div>
             </div>
 
-            <!-- B. Infographic Pictures (3 images — update src to your files) -->
+            <!-- Infographic Pictures -->
             <div class="ict-infographic-grid ict-infographic-grid-3">
                 <div class="ict-infographic-item" onclick="openLightbox(this)">
-                    <img src="pics/p3.jpg" alt="Infographic 1">
-                    <div class="ict-infographic-caption">📌 Infographic 1</div>
-                    <div class="img-zoom-hint">🔍 Click to view</div>
+                    <img src="pics/p1.jpg" alt="Infographic 1">
+                    <div class="ict-infographic-caption">&#x1F4CC; Infographic 1</div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
                 <div class="ict-infographic-item" onclick="openLightbox(this)">
                     <img src="pics/p2.jpg" alt="Infographic 2">
-                    <div class="ict-infographic-caption">📌 Infographic 2</div>
-                    <div class="img-zoom-hint">🔍 Click to view</div>
+                    <div class="ict-infographic-caption">&#x1F4CC; Infographic 2</div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
                 <div class="ict-infographic-item" onclick="openLightbox(this)">
-                    <img src="pics/p1.jpg" alt="Infographic 3">
-                    <div class="ict-infographic-caption">📌 Infographic 3</div>
-                    <div class="img-zoom-hint">🔍 Click to view</div>
+                    <img src="pics/p3.jpg" alt="Infographic 3">
+                    <div class="ict-infographic-caption">&#x1F4CC; Infographic 3</div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
             </div>
 
-            <!-- C. Reflection -->
+            <!-- Reflection -->
             <div class="ict-infographic-reflection">
                 <div class="ict-reflection-header">
-                    <span class="ict-reflection-icon">✍️</span>
+                    <span class="ict-reflection-icon">&#x270D;</span>
                     <h3 class="ict-reflection-title">Reflection: ICT Policies and Online Safety</h3>
                 </div>
                 <div class="ict-reflection-body">
@@ -122,472 +125,78 @@
                     </p>
                 </div>
                 <div class="ict-reflection-footer">
-                    <span class="ict-reflection-author">— Jessa Paradiang &nbsp;·&nbsp; BPED 2nd Year &nbsp;·&nbsp;
-                        PED 105</span>
+                    <span class="ict-reflection-author">&mdash; Jessa Paradiang &nbsp;&middot;&nbsp; BPED 2nd Year
+                        &nbsp;&middot;&nbsp; PED 105</span>
                 </div>
             </div>
 
-            <!-- D. Padlet Comments Proof -->
+            <!-- Padlet Comments -->
             <div class="ict-padlet-section">
                 <div class="ict-padlet-header">
-                    <span class="ict-padlet-icon">💬</span>
+                    <span class="ict-padlet-icon">&#x1F4AC;</span>
                     <div>
                         <h3 class="ict-padlet-title">Padlet Comments</h3>
-                        <p class="ict-padlet-desc">These are my comments to my classmate's work which serve as proof
-                            that I am active on the Padlet website.</p>
+                        <p class="ict-padlet-desc">These are my comments to my classmate&rsquo;s work which serve as
+                            proof that I am active on the Padlet website.</p>
                     </div>
                 </div>
                 <div class="ict-padlet-grid">
                     <div class="ict-padlet-item" onclick="openLightbox(this)">
                         <img src="pics/p4.jpg" alt="Padlet comment screenshot 1">
-                        <div class="ict-padlet-caption">📸 Padlet Comment — Screenshot 1</div>
-                        <div class="img-zoom-hint">🔍 Click to view</div>
+                        <div class="ict-padlet-caption">&#x1F4F8; Padlet Comment &mdash; Screenshot 1</div>
+                        <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                     </div>
                     <div class="ict-padlet-item" onclick="openLightbox(this)">
                         <img src="pics/p5.jpg" alt="Padlet comment screenshot 2">
-                        <div class="ict-padlet-caption">📸 Padlet Comment — Screenshot 2</div>
-                        <div class="img-zoom-hint">🔍 Click to view</div>
+                        <div class="ict-padlet-caption">&#x1F4F8; Padlet Comment &mdash; Screenshot 2</div>
+                        <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                     </div>
                 </div>
             </div>
 
-            <!-- E. Quote (last) -->
-            <div class="ict-quote-block">
-                <div class="ict-quote-icon">"</div>
-                <blockquote class="ict-quote-text">
-                    A safe internet begins with responsible users.
-                </blockquote>
-                <cite class="ict-quote-author"> </cite>
-            </div>
+            <!-- Aesthetic Quotes Grid -->
+            <div class="ict-quotes-section">
+                <div class="ict-quotes-label">&#x2728; Words to Live By</div>
+                <div class="ict-quotes-grid">
 
-            <div class="ict-quote-block">
-                <div class="ict-quote-icon">"</div>
-                <blockquote class="ict-quote-text">
-                    Use technology wisely, safely, and responsibly.
-                </blockquote>
-                <cite class="ict-quote-author"></cite>
-            </div>
+                    <div class="ict-aquote ict-aquote--teal">
+                        <div class="ict-aquote-glyph">&ldquo;</div>
+                        <div class="ict-aquote-sparkles">&#x2736; &#x2736; &#x2736;</div>
+                        <p class="ict-aquote-text">A safe internet begins with responsible users.</p>
+                        <div class="ict-aquote-line"></div>
+                        <span class="ict-aquote-tag">&#x1F310; Online Safety</span>
+                    </div>
 
-            <div class="ict-quote-block">
-                <div class="ict-quote-icon">"</div>
-                <blockquote class="ict-quote-text">
-                    Think before you click. Online safety starts with you.
-                </blockquote>
-                <cite class="ict-quote-author"></cite>
-            </div>
+                    <div class="ict-aquote ict-aquote--blue">
+                        <div class="ict-aquote-glyph">&ldquo;</div>
+                        <div class="ict-aquote-sparkles">&#x2736; &#x2736; &#x2736;</div>
+                        <p class="ict-aquote-text">Use technology wisely, safely, and responsibly.</p>
+                        <div class="ict-aquote-line"></div>
+                        <span class="ict-aquote-tag">&#x1F4A1; Digital Wisdom</span>
+                    </div>
 
-            <div class="ict-quote-block">
-                <div class="ict-quote-icon">"</div>
-                <blockquote class="ict-quote-text">
-                    Post with purpose, comment with respect.
-                    <cite class="ict-quote-author"></cite>
+                    <div class="ict-aquote ict-aquote--violet">
+                        <div class="ict-aquote-glyph">&ldquo;</div>
+                        <div class="ict-aquote-sparkles">&#x2736; &#x2736; &#x2736;</div>
+                        <p class="ict-aquote-text">Think before you click. Online safety starts with you.</p>
+                        <div class="ict-aquote-line"></div>
+                        <span class="ict-aquote-tag">&#x1F6E1; Think First</span>
+                    </div>
+
+                    <div class="ict-aquote ict-aquote--rose">
+                        <div class="ict-aquote-glyph">&ldquo;</div>
+                        <div class="ict-aquote-sparkles">&#x2736; &#x2736; &#x2736;</div>
+                        <p class="ict-aquote-text">Post with purpose, comment with respect.</p>
+                        <div class="ict-aquote-line"></div>
+                        <span class="ict-aquote-tag">&#x1F4AC; Netiquette</span>
+                    </div>
+
+                </div>
             </div>
 
         </div><!-- end ict-infographic-section -->
 
         </section>
-
-        <style>
-            /* ── Intro Banner Images ── */
-            .intro-image-block {
-                position: relative;
-                width: 100%;
-                border-radius: 16px;
-                overflow: hidden;
-                margin-bottom: 2.5rem;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-            }
-
-            .intro-banner-img {
-                width: 100%;
-                height: 320px;
-                object-fit: cover;
-                display: block;
-                transition: transform 0.6s ease;
-            }
-
-            .intro-image-block:hover .intro-banner-img {
-                transform: scale(1.03);
-            }
-
-            .intro-img-overlay {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                padding: 1rem 1.5rem;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 100%);
-            }
-
-            .intro-img-label {
-                color: #fff;
-                font-size: 0.95rem;
-                font-weight: 600;
-                letter-spacing: 0.03em;
-                text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-            }
-
-            /* ── My Infographic Wrapper ── */
-            .ict-infographic-section {
-                margin: 2.5rem 0 1rem;
-                border: 2px solid rgba(96, 165, 250, 0.4);
-                border-radius: 20px;
-                overflow: hidden;
-                box-shadow: 0 8px 40px rgba(96, 165, 250, 0.08);
-            }
-
-            /* A. Banner */
-            .ict-infographic-banner {
-                background: linear-gradient(135deg, #0c1a3a 0%, #0f2454 50%, #0c1a3a 100%);
-                border-bottom: 2px solid rgba(96, 165, 250, 0.35);
-                padding: 1.8rem 2rem;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .ict-infographic-banner::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: radial-gradient(ellipse at 50% 0%, rgba(96, 165, 250, 0.18) 0%, transparent 70%);
-                pointer-events: none;
-            }
-
-            .ict-infographic-banner-left {
-                font-size: 2.4rem;
-                line-height: 1;
-                flex-shrink: 0;
-            }
-
-            .ict-infographic-banner-center {
-                flex: 1;
-                text-align: center;
-            }
-
-            .ict-infographic-title {
-                font-size: 1.75rem;
-                font-weight: 800;
-                color: #fff;
-                margin: 0 0 0.3rem 0;
-                letter-spacing: 0.03em;
-                text-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
-            }
-
-            .ict-infographic-subtitle {
-                font-size: 0.85rem;
-                color: rgba(148, 163, 184, 0.9);
-                margin: 0;
-                letter-spacing: 0.02em;
-            }
-
-            .ict-infographic-banner-right {
-                flex-shrink: 0;
-            }
-
-            .ict-infographic-tag {
-                display: inline-block;
-                background: rgba(96, 165, 250, 0.15);
-                border: 1px solid rgba(96, 165, 250, 0.4);
-                color: #60a5fa;
-                font-size: 0.78rem;
-                font-weight: 700;
-                padding: 0.35rem 0.9rem;
-                border-radius: 50px;
-                letter-spacing: 0.07em;
-                text-transform: uppercase;
-            }
-
-            /* B. Infographic Image Grid */
-            .ict-infographic-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                padding: 1.4rem 1.4rem 1rem;
-                background: rgba(96, 165, 250, 0.02);
-            }
-
-            .ict-infographic-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .ict-infographic-item {
-                border-radius: 12px;
-                overflow: hidden;
-                border: 2px solid rgba(96, 165, 250, 0.22);
-                transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-            }
-
-            .ict-infographic-item:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 32px rgba(96, 165, 250, 0.22);
-                border-color: rgba(96, 165, 250, 0.55);
-            }
-
-            .ict-infographic-item img {
-                width: 100%;
-                height: 220px;
-                object-fit: cover;
-                display: block;
-                transition: transform 0.35s ease;
-            }
-
-            .ict-infographic-item:hover img {
-                transform: scale(1.03);
-            }
-
-            .ict-infographic-caption {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: #60a5fa;
-                background: rgba(96, 165, 250, 0.07);
-                text-align: center;
-                letter-spacing: 0.02em;
-            }
-
-            /* C. Reflection Card */
-            .ict-infographic-reflection {
-                margin: 0 1.4rem 1.2rem;
-                border-radius: 14px;
-                border: 1.5px solid rgba(96, 165, 250, 0.25);
-                background: rgba(96, 165, 250, 0.04);
-                overflow: hidden;
-            }
-
-            .ict-reflection-header {
-                display: flex;
-                align-items: center;
-                gap: 0.8rem;
-                padding: 1.1rem 1.4rem;
-                background: linear-gradient(90deg, rgba(96, 165, 250, 0.13) 0%, transparent 100%);
-                border-bottom: 1px solid rgba(96, 165, 250, 0.18);
-            }
-
-            .ict-reflection-icon {
-                font-size: 1.4rem;
-                flex-shrink: 0;
-            }
-
-            .ict-reflection-title {
-                font-size: 1rem;
-                font-weight: 700;
-                color: #60a5fa;
-                margin: 0;
-            }
-
-            .ict-reflection-body {
-                padding: 1.4rem 1.6rem;
-                display: flex;
-                flex-direction: column;
-                gap: 0.9rem;
-            }
-
-            .ict-reflection-body p {
-                margin: 0;
-                font-size: 0.96rem;
-                line-height: 1.85;
-                color: var(--text-secondary, #94a3b8);
-            }
-
-            .ict-reflection-body strong {
-                color: #93c5fd;
-                font-weight: 600;
-            }
-
-            .ict-reflection-footer {
-                padding: 0.85rem 1.6rem;
-                border-top: 1px solid rgba(96, 165, 250, 0.12);
-                background: rgba(96, 165, 250, 0.04);
-            }
-
-            .ict-reflection-author {
-                font-size: 0.8rem;
-                color: rgba(96, 165, 250, 0.7);
-                font-style: italic;
-                letter-spacing: 0.02em;
-            }
-
-            /* D. Padlet Comments Section */
-            .ict-padlet-section {
-                margin: 0 1.4rem 1.2rem;
-                border-radius: 14px;
-                border: 1.5px solid rgba(96, 165, 250, 0.25);
-                background: rgba(96, 165, 250, 0.03);
-                overflow: hidden;
-            }
-
-            .ict-padlet-header {
-                display: flex;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1.1rem 1.4rem;
-                background: linear-gradient(90deg, rgba(96, 165, 250, 0.13) 0%, transparent 100%);
-                border-bottom: 1px solid rgba(96, 165, 250, 0.18);
-            }
-
-            .ict-padlet-icon {
-                font-size: 1.6rem;
-                flex-shrink: 0;
-                margin-top: 0.1rem;
-            }
-
-            .ict-padlet-title {
-                font-size: 1rem;
-                font-weight: 700;
-                color: #60a5fa;
-                margin: 0 0 0.3rem 0;
-            }
-
-            .ict-padlet-desc {
-                font-size: 0.88rem;
-                color: var(--text-secondary, #94a3b8);
-                margin: 0;
-                line-height: 1.6;
-            }
-
-            .ict-padlet-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                padding: 1.2rem;
-            }
-
-            .ict-padlet-item {
-                border-radius: 10px;
-                overflow: hidden;
-                border: 2px solid rgba(96, 165, 250, 0.2);
-                transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-            }
-
-            .ict-padlet-item:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 10px 28px rgba(96, 165, 250, 0.2);
-                border-color: rgba(96, 165, 250, 0.5);
-            }
-
-            .ict-padlet-item img {
-                width: 100%;
-                height: 220px;
-                object-fit: cover;
-                display: block;
-                transition: transform 0.35s ease;
-            }
-
-            .ict-padlet-item:hover img {
-                transform: scale(1.03);
-            }
-
-            .ict-padlet-caption {
-                padding: 0.55rem 1rem;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: #60a5fa;
-                background: rgba(96, 165, 250, 0.07);
-                text-align: center;
-                letter-spacing: 0.02em;
-            }
-
-            /* E. Quote */
-            .ict-quote-block {
-                position: relative;
-                margin: 0 1.4rem 1.4rem;
-                padding: 2.2rem 2.5rem 1.8rem 3.8rem;
-                border-left: 5px solid #60a5fa;
-                border-radius: 0 14px 14px 0;
-                background: rgba(96, 165, 250, 0.06);
-                box-shadow: 0 4px 20px rgba(96, 165, 250, 0.08);
-            }
-
-            .ict-quote-icon {
-                position: absolute;
-                top: -0.3rem;
-                left: 1rem;
-                font-size: 5rem;
-                line-height: 1;
-                color: #60a5fa;
-                opacity: 0.22;
-                font-family: Georgia, serif;
-                pointer-events: none;
-                user-select: none;
-            }
-
-            .ict-quote-text {
-                margin: 0 0 1rem 0;
-                font-size: 1.08rem;
-                line-height: 1.75;
-                font-style: italic;
-                color: var(--text-primary, #e2e8f0);
-                font-family: Georgia, 'Times New Roman', serif;
-            }
-
-            .ict-quote-author {
-                display: block;
-                font-size: 0.85rem;
-                font-weight: 700;
-                color: #60a5fa;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                font-style: normal;
-            }
-
-            /* Mobile */
-            @media (max-width: 640px) {
-                .intro-banner-img {
-                    height: 200px;
-                }
-
-                .ict-infographic-grid,
-                .ict-infographic-grid-3 {
-                    grid-template-columns: 1fr;
-                    padding: 1rem;
-                }
-
-                .ict-infographic-item img {
-                    height: 200px;
-                }
-
-                .ict-infographic-banner {
-                    flex-direction: column;
-                    text-align: center;
-                    padding: 1.4rem 1rem;
-                }
-
-                .ict-infographic-title {
-                    font-size: 1.3rem;
-                }
-
-                .ict-infographic-reflection,
-                .ict-padlet-section {
-                    margin: 0 0.8rem 0.8rem;
-                }
-
-                .ict-reflection-body {
-                    padding: 1rem 1.1rem;
-                }
-
-                .ict-padlet-grid {
-                    grid-template-columns: 1fr;
-                    padding: 0.8rem;
-                }
-
-                .ict-padlet-item img {
-                    height: 200px;
-                }
-
-                .ict-quote-block {
-                    margin: 0 0.8rem 0.8rem;
-                    padding: 1.8rem 1.2rem 1.4rem 2.4rem;
-                }
-
-                .ict-quote-text {
-                    font-size: 0.93rem;
-                }
-            }
-        </style>
 
     </main>
 
@@ -595,7 +204,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">Digital Teaching</div>
-                <p class="footer-copyright">© 2026 Jessa Paradiang — Made with care and dedication</p>
+                <p class="footer-copyright">&copy; 2026 Jessa Paradiang &mdash; Made with care and dedication</p>
             </div>
             <div class="contact-info">
                 <h4>Contact Me</h4>
@@ -657,9 +266,9 @@
         </div>
     </footer>
 
-    <!-- ── LIGHTBOX MODAL ── -->
+    <!-- LIGHTBOX -->
     <div id="lightboxOverlay" class="lb-overlay" onclick="closeLightbox()">
-        <button class="lb-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
         <button class="lb-arrow lb-prev" onclick="shiftLightbox(-1, event)" aria-label="Previous">&#8249;</button>
         <div class="lb-content" onclick="event.stopPropagation()">
             <img id="lightboxImg" src="" alt="">
@@ -670,11 +279,170 @@
     </div>
 
     <style>
-        /* ── Click-to-view hint ── */
+        /* ── Intro Banner ── */
+        .intro-image-block {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .intro-banner-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .intro-image-block:hover .intro-banner-img {
+            transform: scale(1.03);
+        }
+
+        .intro-img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 100%);
+        }
+
+        .intro-img-label {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ── Infographic Wrapper ── */
+        .ict-infographic-section {
+            margin: 2.5rem 0 1rem;
+            border: 2px solid rgba(96, 165, 250, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(96, 165, 250, 0.08);
+        }
+
+        .ict-infographic-banner {
+            background: linear-gradient(135deg, #0c1a3a 0%, #0f2454 50%, #0c1a3a 100%);
+            border-bottom: 2px solid rgba(96, 165, 250, 0.35);
+            padding: 1.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ict-infographic-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(96, 165, 250, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ict-infographic-banner-left {
+            font-size: 2.4rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .ict-infographic-banner-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .ict-infographic-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 0.3rem;
+            letter-spacing: 0.03em;
+            text-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+        }
+
+        .ict-infographic-subtitle {
+            font-size: 0.85rem;
+            color: rgba(148, 163, 184, 0.9);
+            margin: 0;
+        }
+
+        .ict-infographic-banner-right {
+            flex-shrink: 0;
+        }
+
+        .ict-infographic-tag {
+            display: inline-block;
+            background: rgba(96, 165, 250, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            color: #60a5fa;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .ict-infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1.4rem 1.4rem 1rem;
+            background: rgba(96, 165, 250, 0.02);
+        }
+
+        .ict-infographic-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* Images */
         .ict-infographic-item,
         .ict-padlet-item {
             position: relative;
             cursor: zoom-in;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(96, 165, 250, 0.22);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .ict-infographic-item:hover,
+        .ict-padlet-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(96, 165, 250, 0.22);
+            border-color: rgba(96, 165, 250, 0.55);
+        }
+
+        .ict-infographic-item img,
+        .ict-padlet-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .ict-infographic-item:hover img,
+        .ict-padlet-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .ict-infographic-caption,
+        .ict-padlet-caption {
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.07);
+            text-align: center;
+            letter-spacing: 0.02em;
         }
 
         .img-zoom-hint {
@@ -703,7 +471,412 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        /* ── Lightbox Overlay ── */
+        /* Reflection */
+        .ict-infographic-reflection {
+            margin: 0 1.4rem 1.2rem;
+            border-radius: 14px;
+            border: 1.5px solid rgba(96, 165, 250, 0.25);
+            background: rgba(96, 165, 250, 0.04);
+            overflow: hidden;
+        }
+
+        .ict-reflection-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.1rem 1.4rem;
+            background: linear-gradient(90deg, rgba(96, 165, 250, 0.13) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.18);
+        }
+
+        .ict-reflection-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .ict-reflection-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin: 0;
+        }
+
+        .ict-reflection-body {
+            padding: 1.4rem 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .ict-reflection-body p {
+            margin: 0;
+            font-size: 0.96rem;
+            line-height: 1.85;
+            color: #cbd5e1;
+        }
+
+        [data-theme="light"] .ict-reflection-body p {
+            color: #374151;
+        }
+
+        .ict-reflection-body strong {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        [data-theme="light"] .ict-reflection-body strong {
+            color: #2563eb;
+        }
+
+        .ict-reflection-footer {
+            padding: 0.85rem 1.6rem;
+            border-top: 1px solid rgba(96, 165, 250, 0.12);
+            background: rgba(96, 165, 250, 0.04);
+        }
+
+        .ict-reflection-author {
+            font-size: 0.8rem;
+            color: rgba(96, 165, 250, 0.7);
+            font-style: italic;
+        }
+
+        /* Padlet */
+        .ict-padlet-section {
+            margin: 0 1.4rem 1.2rem;
+            border-radius: 14px;
+            border: 1.5px solid rgba(96, 165, 250, 0.25);
+            background: rgba(96, 165, 250, 0.03);
+            overflow: hidden;
+        }
+
+        .ict-padlet-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.1rem 1.4rem;
+            background: linear-gradient(90deg, rgba(96, 165, 250, 0.13) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.18);
+        }
+
+        .ict-padlet-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .ict-padlet-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin: 0 0 0.3rem;
+        }
+
+        .ict-padlet-desc {
+            font-size: 0.88rem;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        [data-theme="light"] .ict-padlet-desc {
+            color: #374151;
+        }
+
+        .ict-padlet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1.2rem;
+        }
+
+        /* ══════════════════════════════════════
+           AESTHETIC QUOTES
+        ══════════════════════════════════════ */
+        .ict-quotes-section {
+            padding: 0.5rem 1.4rem 1.8rem;
+        }
+
+        .ict-quotes-label {
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 1.2rem;
+        }
+
+        [data-theme="light"] .ict-quotes-label {
+            color: #94a3b8;
+        }
+
+        .ict-quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .ict-aquote {
+            position: relative;
+            border-radius: 18px;
+            padding: 2.2rem 1.7rem 1.6rem;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+        }
+
+        .ict-aquote:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Big decorative opening quote */
+        .ict-aquote-glyph {
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            font-size: 7rem;
+            line-height: 1;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.11;
+        }
+
+        .ict-aquote-sparkles {
+            font-size: 0.5rem;
+            letter-spacing: 0.4em;
+            margin-bottom: 1.1rem;
+            display: block;
+        }
+
+        .ict-aquote-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.7;
+            margin: 0 0 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ict-aquote-line {
+            width: 38px;
+            height: 2px;
+            border-radius: 2px;
+            margin: 0 auto 1rem;
+        }
+
+        .ict-aquote-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+        }
+
+        /* ── Teal ── */
+        .ict-aquote--teal {
+            background: linear-gradient(145deg, rgba(20, 184, 166, 0.13) 0%, rgba(20, 184, 166, 0.04) 100%);
+            border: 1.5px solid rgba(20, 184, 166, 0.3);
+            box-shadow: 0 6px 28px rgba(20, 184, 166, 0.09);
+        }
+
+        .ict-aquote--teal:hover {
+            box-shadow: 0 16px 44px rgba(20, 184, 166, 0.22);
+            border-color: rgba(20, 184, 166, 0.55);
+        }
+
+        .ict-aquote--teal .ict-aquote-glyph {
+            color: #2dd4bf;
+        }
+
+        .ict-aquote--teal .ict-aquote-sparkles {
+            color: #2dd4bf;
+        }
+
+        .ict-aquote--teal .ict-aquote-text {
+            color: #e2e8f0;
+        }
+
+        .ict-aquote--teal .ict-aquote-line {
+            background: #2dd4bf;
+        }
+
+        .ict-aquote--teal .ict-aquote-tag {
+            background: rgba(20, 184, 166, 0.14);
+            color: #2dd4bf;
+            border: 1px solid rgba(20, 184, 166, 0.32);
+        }
+
+        /* ── Blue ── */
+        .ict-aquote--blue {
+            background: linear-gradient(145deg, rgba(96, 165, 250, 0.13) 0%, rgba(96, 165, 250, 0.04) 100%);
+            border: 1.5px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 6px 28px rgba(96, 165, 250, 0.09);
+        }
+
+        .ict-aquote--blue:hover {
+            box-shadow: 0 16px 44px rgba(96, 165, 250, 0.22);
+            border-color: rgba(96, 165, 250, 0.55);
+        }
+
+        .ict-aquote--blue .ict-aquote-glyph {
+            color: #60a5fa;
+        }
+
+        .ict-aquote--blue .ict-aquote-sparkles {
+            color: #60a5fa;
+        }
+
+        .ict-aquote--blue .ict-aquote-text {
+            color: #e2e8f0;
+        }
+
+        .ict-aquote--blue .ict-aquote-line {
+            background: #60a5fa;
+        }
+
+        .ict-aquote--blue .ict-aquote-tag {
+            background: rgba(96, 165, 250, 0.14);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.32);
+        }
+
+        /* ── Violet ── */
+        .ict-aquote--violet {
+            background: linear-gradient(145deg, rgba(167, 139, 250, 0.13) 0%, rgba(167, 139, 250, 0.04) 100%);
+            border: 1.5px solid rgba(167, 139, 250, 0.3);
+            box-shadow: 0 6px 28px rgba(167, 139, 250, 0.09);
+        }
+
+        .ict-aquote--violet:hover {
+            box-shadow: 0 16px 44px rgba(167, 139, 250, 0.22);
+            border-color: rgba(167, 139, 250, 0.55);
+        }
+
+        .ict-aquote--violet .ict-aquote-glyph {
+            color: #a78bfa;
+        }
+
+        .ict-aquote--violet .ict-aquote-sparkles {
+            color: #a78bfa;
+        }
+
+        .ict-aquote--violet .ict-aquote-text {
+            color: #e2e8f0;
+        }
+
+        .ict-aquote--violet .ict-aquote-line {
+            background: #a78bfa;
+        }
+
+        .ict-aquote--violet .ict-aquote-tag {
+            background: rgba(167, 139, 250, 0.14);
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.32);
+        }
+
+        /* ── Rose ── */
+        .ict-aquote--rose {
+            background: linear-gradient(145deg, rgba(251, 113, 133, 0.13) 0%, rgba(251, 113, 133, 0.04) 100%);
+            border: 1.5px solid rgba(251, 113, 133, 0.3);
+            box-shadow: 0 6px 28px rgba(251, 113, 133, 0.09);
+        }
+
+        .ict-aquote--rose:hover {
+            box-shadow: 0 16px 44px rgba(251, 113, 133, 0.22);
+            border-color: rgba(251, 113, 133, 0.55);
+        }
+
+        .ict-aquote--rose .ict-aquote-glyph {
+            color: #fb7185;
+        }
+
+        .ict-aquote--rose .ict-aquote-sparkles {
+            color: #fb7185;
+        }
+
+        .ict-aquote--rose .ict-aquote-text {
+            color: #e2e8f0;
+        }
+
+        .ict-aquote--rose .ict-aquote-line {
+            background: #fb7185;
+        }
+
+        .ict-aquote--rose .ict-aquote-tag {
+            background: rgba(251, 113, 133, 0.14);
+            color: #fb7185;
+            border: 1px solid rgba(251, 113, 133, 0.32);
+        }
+
+        /* ── Light mode ── */
+        [data-theme="light"] .ict-aquote--teal .ict-aquote-text {
+            color: #0f4444;
+        }
+
+        [data-theme="light"] .ict-aquote--blue .ict-aquote-text {
+            color: #1e3a5f;
+        }
+
+        [data-theme="light"] .ict-aquote--blue .ict-aquote-glyph,
+        [data-theme="light"] .ict-aquote--blue .ict-aquote-sparkles {
+            color: #2563eb;
+        }
+
+        [data-theme="light"] .ict-aquote--blue .ict-aquote-line {
+            background: #2563eb;
+        }
+
+        [data-theme="light"] .ict-aquote--blue .ict-aquote-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: #1d4ed8;
+            border-color: rgba(37, 99, 235, 0.28);
+        }
+
+        [data-theme="light"] .ict-aquote--violet .ict-aquote-text {
+            color: #2e1065;
+        }
+
+        [data-theme="light"] .ict-aquote--violet .ict-aquote-glyph,
+        [data-theme="light"] .ict-aquote--violet .ict-aquote-sparkles {
+            color: #7c3aed;
+        }
+
+        [data-theme="light"] .ict-aquote--violet .ict-aquote-line {
+            background: #7c3aed;
+        }
+
+        [data-theme="light"] .ict-aquote--violet .ict-aquote-tag {
+            background: rgba(124, 58, 237, 0.1);
+            color: #6d28d9;
+            border-color: rgba(124, 58, 237, 0.28);
+        }
+
+        [data-theme="light"] .ict-aquote--rose .ict-aquote-text {
+            color: #4c0519;
+        }
+
+        [data-theme="light"] .ict-aquote--rose .ict-aquote-glyph,
+        [data-theme="light"] .ict-aquote--rose .ict-aquote-sparkles {
+            color: #e11d48;
+        }
+
+        [data-theme="light"] .ict-aquote--rose .ict-aquote-line {
+            background: #e11d48;
+        }
+
+        [data-theme="light"] .ict-aquote--rose .ict-aquote-tag {
+            background: rgba(225, 29, 72, 0.1);
+            color: #be123c;
+            border-color: rgba(225, 29, 72, 0.28);
+        }
+
+        /* ── Lightbox ── */
         .lb-overlay {
             display: none;
             position: fixed;
@@ -722,16 +895,15 @@
 
         @keyframes lbFadeIn {
             from {
-                opacity: 0;
+                opacity: 0
             }
 
             to {
-                opacity: 1;
+                opacity: 1
             }
         }
 
         .lb-content {
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -743,12 +915,12 @@
         @keyframes lbSlideUp {
             from {
                 transform: translateY(20px);
-                opacity: 0;
+                opacity: 0
             }
 
             to {
                 transform: translateY(0);
-                opacity: 1;
+                opacity: 1
             }
         }
 
@@ -767,18 +939,16 @@
             font-size: 0.88rem;
             color: rgba(255, 255, 255, 0.75);
             font-weight: 500;
-            letter-spacing: 0.03em;
             text-align: center;
         }
 
         .lb-counter {
             margin-top: 0.3rem;
             font-size: 0.78rem;
-            color: rgba(96, 165, 250, 0.7);
+            color: rgba(96, 165, 250, 0.8);
             letter-spacing: 0.05em;
         }
 
-        /* Close button */
         .lb-close {
             position: fixed;
             top: 1.2rem;
@@ -794,7 +964,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s ease;
+            transition: background 0.2s;
             z-index: 10001;
         }
 
@@ -802,7 +972,6 @@
             background: rgba(255, 255, 255, 0.22);
         }
 
-        /* Arrows */
         .lb-arrow {
             position: fixed;
             top: 50%;
@@ -818,7 +987,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s ease, transform 0.2s ease;
+            transition: background 0.2s, transform 0.2s;
             z-index: 10001;
             line-height: 1;
         }
@@ -840,7 +1009,59 @@
             display: none;
         }
 
-        @media (max-width: 640px) {
+        /* ── Mobile ── */
+        @media (max-width: 700px) {
+            .intro-banner-img {
+                height: 200px;
+            }
+
+            .ict-infographic-grid,
+            .ict-infographic-grid-3 {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .ict-infographic-item img,
+            .ict-padlet-item img {
+                height: 200px;
+            }
+
+            .ict-infographic-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.4rem 1rem;
+            }
+
+            .ict-infographic-title {
+                font-size: 1.3rem;
+            }
+
+            .ict-infographic-reflection,
+            .ict-padlet-section {
+                margin: 0 0.8rem 0.8rem;
+            }
+
+            .ict-reflection-body {
+                padding: 1rem 1.1rem;
+            }
+
+            .ict-padlet-grid {
+                grid-template-columns: 1fr;
+                padding: 0.8rem;
+            }
+
+            .ict-quotes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ict-aquote {
+                padding: 1.8rem 1.3rem 1.4rem;
+            }
+
+            .ict-aquote-text {
+                font-size: 0.97rem;
+            }
+
             .lb-arrow {
                 width: 40px;
                 height: 40px;
@@ -863,26 +1084,18 @@
     </style>
 
     <script>
-        let lbImages = [];
-        let lbIndex = 0;
-
+        let lbImages = [], lbIndex = 0;
         function buildImageList() {
             lbImages = [];
             document.querySelectorAll('.ict-infographic-item[onclick], .ict-padlet-item[onclick]').forEach(item => {
                 const img = item.querySelector('img');
-                const caption = item.querySelector('.ict-infographic-caption, .ict-padlet-caption');
-                lbImages.push({
-                    src: img ? img.src : '',
-                    alt: img ? img.alt : '',
-                    caption: caption ? caption.innerText.replace(/📌|📸/g, '').trim() : ''
-                });
+                const cap = item.querySelector('.ict-infographic-caption, .ict-padlet-caption');
+                lbImages.push({ src: img ? img.src : '', alt: img ? img.alt : '', caption: cap ? cap.innerText.replace(/[\u{1F4CC}\u{1F4F8}]/gu, '').trim() : '' });
             });
         }
-
         function openLightbox(el) {
             buildImageList();
-            const img = el.querySelector('img');
-            const src = img ? img.src : '';
+            const src = el.querySelector('img')?.src || '';
             lbIndex = lbImages.findIndex(i => i.src === src);
             if (lbIndex < 0) lbIndex = 0;
             showLightboxFrame();
@@ -890,32 +1103,27 @@
             document.body.style.overflow = 'hidden';
             document.addEventListener('keydown', lbKeyHandler);
         }
-
         function showLightboxFrame() {
-            const frame = lbImages[lbIndex];
-            const imgEl = document.getElementById('lightboxImg');
-            imgEl.style.opacity = '0';
-            imgEl.src = frame.src;
-            imgEl.alt = frame.alt;
-            imgEl.onload = () => { imgEl.style.opacity = '1'; };
-            document.getElementById('lightboxCaption').textContent = frame.caption;
+            const f = lbImages[lbIndex];
+            const el = document.getElementById('lightboxImg');
+            el.style.opacity = '0';
+            el.src = f.src; el.alt = f.alt;
+            el.onload = () => { el.style.opacity = '1'; };
+            document.getElementById('lightboxCaption').textContent = f.caption;
             document.getElementById('lightboxCounter').textContent = `${lbIndex + 1} / ${lbImages.length}`;
             document.querySelector('.lb-prev').classList.toggle('hidden', lbIndex === 0);
             document.querySelector('.lb-next').classList.toggle('hidden', lbIndex === lbImages.length - 1);
         }
-
         function shiftLightbox(dir, e) {
             if (e) e.stopPropagation();
             lbIndex = Math.max(0, Math.min(lbImages.length - 1, lbIndex + dir));
             showLightboxFrame();
         }
-
         function closeLightbox() {
             document.getElementById('lightboxOverlay').classList.remove('active');
             document.body.style.overflow = '';
             document.removeEventListener('keydown', lbKeyHandler);
         }
-
         function lbKeyHandler(e) {
             if (e.key === 'ArrowRight') shiftLightbox(1, null);
             if (e.key === 'ArrowLeft') shiftLightbox(-1, null);
@@ -928,4 +1136,3 @@
 </body>
 
 </html>
-
