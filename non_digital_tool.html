@@ -10,9 +10,378 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
+    <style>
+        /* ═══ BANNER ═══ */
+        .page-badge {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 7px;
+            padding: 0.52rem 1.6rem !important;
+            border-radius: 999px;
+            font-size: 0.7rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.15em !important;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(135deg,
+                    rgba(249, 115, 22, 0.18) 0%,
+                    rgba(249, 115, 22, 0.10) 100%) !important;
+            color: #f97316 !important;
+            border: 1px solid rgba(249, 115, 22, 0.42) !important;
+            box-shadow:
+                0 0 0 1px rgba(249, 115, 22, 0.14),
+                0 8px 32px rgba(249, 115, 22, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                inset 0 -1px 0 rgba(249, 115, 22, 0.12);
+            animation: badgePulse 3.8s ease-in-out infinite;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .page-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.28), 0 12px 40px rgba(249, 115, 22, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .page-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -90%;
+            width: 48%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: badgeShimmer 3.8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.14), 0 8px 32px rgba(249, 115, 22, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            }
+
+            50% {
+                box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.32), 0 12px 48px rgba(249, 115, 22, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+            }
+        }
+
+        @keyframes badgeShimmer {
+            0% {
+                left: -90%
+            }
+
+            55%,
+            100% {
+                left: 155%
+            }
+        }
+
+        /* ═══ GALLERY HEADING ═══ */
+        .photo-gallery-section {
+            margin-top: 64px;
+        }
+
+        .photo-gallery-section h2 {
+            text-align: center;
+            color: #f97316;
+            margin-bottom: 8px;
+            font-size: 1.48rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .gallery-subtitle {
+            text-align: center;
+            color: var(--text-muted, #888);
+            margin-bottom: 30px;
+            font-size: 0.86rem;
+        }
+
+        /* ═══ GRID ═══ */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        @media (max-width: 600px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ═══ PHOTO CARD — image sits inside the border ═══ */
+        .photo-card {
+            position: relative;
+            border: 2px solid rgba(249, 115, 22, 0.35);
+            border-radius: 20px;
+            padding: 10px 10px 0 10px;
+            background: linear-gradient(160deg, rgba(249, 115, 22, 0.07) 0%, rgba(0, 0, 0, 0.3) 100%);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), 0 0 0 0px rgba(249, 115, 22, 0);
+            cursor: pointer;
+            transition:
+                transform 0.35s cubic-bezier(.22, 1, .36, 1),
+                box-shadow 0.35s ease,
+                border-color 0.28s ease;
+            overflow: visible;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px) scale(1.015);
+            box-shadow:
+                0 28px 64px rgba(249, 115, 22, 0.28),
+                0 0 0 3px rgba(249, 115, 22, 0.5);
+            border-color: rgba(249, 115, 22, 0.7);
+        }
+
+        /* ── Image wrapper: clips the image inside the card's padding ── */
+        .photo-card .img-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            line-height: 0;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(.22, 1, .36, 1);
+            border-radius: 12px;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Caption — below the image, inside the card */
+        .photo-caption,
+        .media-caption {
+            padding: 10px 6px 12px;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .photo-caption strong,
+        .media-caption strong {
+            display: block;
+            color: #ffffff;
+            font-size: 0.93rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .photo-caption small,
+        .media-caption small {
+            color: rgba(249, 115, 22, 0.92);
+            font-size: 0.76rem;
+            font-weight: 500;
+        }
+
+        /* ═══ ZOOM OVERLAY ═══ */
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-overlay .zoom-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(249, 115, 22, 0.22);
+            border: 2px solid rgba(249, 115, 22, 0.85);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 1.4rem !important;
+            font-weight: 400 !important;
+            letter-spacing: 0 !important;
+            text-transform: none !important;
+            line-height: 1 !important;
+            box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.12), 0 8px 28px rgba(249, 115, 22, 0.45);
+            transform: scale(0.7);
+            transition: transform 0.35s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .photo-card:hover .photo-overlay .zoom-hint {
+            transform: scale(1);
+        }
+
+        /* ═══ LIGHTBOX — full improved ═══ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(3, 3, 12, 0.96);
+            backdrop-filter: blur(28px) saturate(1.5);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .lightbox.open {
+            display: flex;
+            animation: lbOpen 0.3s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @keyframes lbOpen {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lightbox.open #lbImg {
+            animation: lbImgIn 0.38s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @keyframes lbImgIn {
+            from {
+                opacity: 0;
+                transform: scale(0.88) translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* ── Image frame inside lightbox ── */
+        .lb-frame {
+            border: 3px solid rgba(249, 115, 22, 0.45);
+            border-radius: 22px;
+            padding: 8px;
+            background: rgba(249, 115, 22, 0.05);
+            box-shadow:
+                0 0 0 1px rgba(249, 115, 22, 0.12),
+                0 40px 100px rgba(0, 0, 0, 0.9),
+                0 0 80px rgba(249, 115, 22, 0.1);
+        }
+
+        #lbImg {
+            max-width: min(88vw, 940px);
+            max-height: 66vh;
+            border-radius: 15px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lb-counter {
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            color: #f97316;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.06em;
+        }
+
+        .lightbox-caption {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.92rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 680px;
+            letter-spacing: 0.01em;
+        }
+
+        /* ── Close button ── */
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(249, 115, 22, 0.15);
+            border: 1.5px solid rgba(249, 115, 22, 0.55);
+            color: #ffffff;
+            font-size: 1.05rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 16px rgba(249, 115, 22, 0.18);
+            transition: background 0.2s, transform 0.28s cubic-bezier(.22, 1, .36, 1), box-shadow 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(249, 115, 22, 0.45);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 6px 22px rgba(249, 115, 22, 0.38);
+        }
+
+        /* ── Nav buttons ── */
+        .lightbox-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(249, 115, 22, 0.12);
+            border: 1.5px solid rgba(249, 115, 22, 0.48);
+            color: #f97316;
+            border-radius: 14px;
+            padding: 10px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: background 0.2s, transform 0.25s cubic-bezier(.22, 1, .36, 1), box-shadow 0.2s;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(249, 115, 22, 0.28);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(249, 115, 22, 0.28);
+        }
+    </style>
 </head>
 
 <body>
+
+    <!-- ── LIGHTBOX ── -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+        <span class="lb-counter" id="lbCounter">1 / 4</span>
+        <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+        <div class="lb-frame">
+            <img id="lbImg" src="" alt="">
+        </div>
+        <div class="lightbox-caption" id="lbCaption"></div>
+        <div class="lightbox-nav">
+            <button id="lbPrev">‹ Prev</button>
+            <button id="lbNext">Next ›</button>
+        </div>
+    </div>
 
     <header>
         <div class="logo-container">
@@ -22,8 +391,8 @@
             <a href="index.html">Home</a>
             <a href="About_Me.html">About Me</a>
             <a href="ict_policies.html">ICT Policies &amp; Safety</a>
-            <a href="non_digital_Tool.html" class="active">Non-Digital Tool</a>
-            <a href="digital_tool.html">Digital Tool</a>
+            <a href="non_digital_tool.html" class="active">Non-Digital Tool</a>
+            <a href="digital_Tool.html">Digital Tool</a>
             <div class="nav-more-wrap" id="navMoreWrap">
                 <button class="nav-more-btn" id="navMoreBtn">More ▾</button>
                 <div class="nav-more-dropdown" id="navMoreDropdown">
@@ -47,109 +416,188 @@
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
             <button class="theme-toggle" aria-label="Toggle theme">
-                <span class="sun">☀</span>
-                <span class="moon">🌙</span>
+                <span class="sun">☀</span><span class="moon">🌙</span>
             </button>
         </div>
     </header>
 
-    </div>
+    <main>
 
-    </div>
+        <div class="photo-gallery-section">
+            <h2>📸 Non-Digital Tools in Physical Education</h2>
+            <p class="gallery-subtitle">Photos: click to zoom &nbsp;·&nbsp; Videos: press play</p>
+            <div class="photo-grid">
 
-    </div>
+                <!-- Photo 1 -->
+                <div class="photo-card" data-type="image" data-index="0">
+                    <div class="img-wrap">
+                        <img src="pics/non_d.jpg" alt="Training Cones used in PE">
+                        <div class="photo-overlay"><span class="zoom-hint">🔍</span></div>
+                    </div>
+                    <div class="media-caption">
+                        <strong></strong>
+                        <small></small>
+                    </div>
+                </div>
 
-    
+                <!-- Photo 2 -->
+                <div class="photo-card" data-type="image" data-index="1">
+                    <div class="img-wrap">
+                        <img src="pics/non2.jpg" alt="Hula Hoops activity">
+                        <div class="photo-overlay"><span class="zoom-hint">🔍</span></div>
+                    </div>
+                    <div class="media-caption">
+                        <strong></strong>
+                        <small></small>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-type="image" data-index="2">
+                    <div class="img-wrap">
+                        <img src="pics/non3.jpg" alt="Non-digital tools activity">
+                        <div class="photo-overlay"><span class="zoom-hint">🔍</span></div>
+                    </div>
+                    <div class="media-caption">
+                        <strong></strong>
+                        <small></small>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-type="image" data-index="3">
+                    <div class="img-wrap">
+                        <img src="pics/non4.jpg" alt="Hands-on learning activity">
+                        <div class="photo-overlay"><span class="zoom-hint">🔍</span></div>
+                    </div>
+                    <div class="media-caption">
+                        <strong></strong>
+                        <small></small>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="reflection-box" style="border-color:#f97316;background:rgba(249,115,22,0.05);margin-top:40px;">
+            <div class="reflection-icon">✏️</div>
+            <p>This is a group of students working together using non-digital tools such as colored papers,
+                scissors, cardboard, and other art materials. These traditional tools are used to create a project
+                through hands-on activities. Each member is actively involved in cutting, shaping, and assembling
+                materials, which promotes creativity and practical skills.</p>
+            <p style="margin-top:12px;">Non-digital tools are important because they allow learners to experience
+                direct interaction with materials, improving their motor skills, focus, and imagination. Even
+                without the use of technology, the group was able to produce meaningful output through cooperation
+                and effort. This shows that learning can still be effective and engaging using simple, traditional
+                methods.</p>
+        </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="footer-logo">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Digital Teaching
-                </div>
+                <div class="footer-logo">Digital Teaching</div>
                 <p class="footer-copyright">© 2026 Jessa Paradiang — Made with care and dedication</p>
             </div>
             <div class="contact-info">
                 <h4>Contact Me</h4>
-                <p>Email: <a href="https://paradiangjessa2005@gmail.com.google.com/">
-                        paradiangjessa2005@gmail.com</a>
-                </p>
+                <p>Email: <a href="mailto:paradiangjessa2005@gmail.com">paradiangjessa2005@gmail.com</a></p>
                 <p>Phone: +63 9537467916</p>
             </div>
         </div>
-
-        <!-- Circle social icons at the bottom -->
         <div class="footer-social-bar">
             <div class="social-links">
-
                 <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Facebook" class="social-btn social-fb">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="Facebook" class="social-btn social-fb"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Instagram" class="social-btn social-ig">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    aria-label="Instagram" class="social-btn social-ig"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                         <circle cx="12" cy="12" r="4" />
                         <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-                    </svg>
-
-                </a>
-
-                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    </svg></a>
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <polyline points="22,6 12,13 2,6" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="TikTok" class="social-btn social-tiktok">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="TikTok" class="social-btn social-tiktok"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="YouTube" class="social-btn social-youtube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="YouTube" class="social-btn social-youtube"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                         <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="X (Twitter)" class="social-btn social-x">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="X (Twitter)" class="social-btn social-x"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
             </div>
         </div>
     </footer>
 
     <script src="index.js"></script>
     <script src="search.js"></script>
-</body>
+    <script>
+        // ── Lightbox — photo cards only ──
+        (function () {
+            const photoCards = document.querySelectorAll('.photo-card[data-type="image"]');
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lbImg');
+            const lbCap = document.getElementById('lbCaption');
+            const lbCounter = document.getElementById('lbCounter');
+            const lbClose = document.getElementById('lbClose');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+            let current = 0;
 
+            const images = Array.from(photoCards).map(c => ({
+                src: c.querySelector('img').src,
+                alt: c.querySelector('img').alt,
+                caption: (c.querySelector('.media-caption strong') || c.querySelector('.photo-caption strong') || { textContent: '' }).textContent
+            }));
+
+            function open(i) {
+                current = (i + images.length) % images.length;
+                lbImg.src = images[current].src;
+                lbImg.alt = images[current].alt;
+                lbCap.textContent = images[current].caption;
+                if (lbCounter) lbCounter.textContent = (current + 1) + ' / ' + images.length;
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            function close() {
+                lb.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            photoCards.forEach((c, i) => c.addEventListener('click', () => open(i)));
+            lbClose.addEventListener('click', close);
+
+            lbPrev.addEventListener('click', e => { e.stopPropagation(); open(current - 1); });
+            lbNext.addEventListener('click', e => { e.stopPropagation(); open(current + 1); });
+            document.addEventListener('keydown', e => {
+                if (!lb.classList.contains('open')) return;
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowLeft') open(current - 1);
+                if (e.key === 'ArrowRight') open(current + 1);
+            });
+        })();
+    </script>
+</body>
 
 </html>
