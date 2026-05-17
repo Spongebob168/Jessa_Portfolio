@@ -10,20 +10,439 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
+    <style>
+        :root {
+            --clr: #34d399;
+            --clr-rgb: 52, 211, 153;
+        }
+
+        /* ── BANNER ── */
+        .page-badge {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 8px;
+            padding: 0.55rem 1.6rem !important;
+            border-radius: 999px;
+            font-size: 0.72rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.14em !important;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.35), 0 8px 32px rgba(52, 211, 153, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            animation: badgePulse 3.5s ease-in-out infinite;
+        }
+
+        .page-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -80%;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+            animation: badgeShimmer 3.5s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.35), 0 8px 32px rgba(52, 211, 153, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            }
+
+            50% {
+                box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.55), 0 14px 48px rgba(52, 211, 153, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            }
+        }
+
+        @keyframes badgeShimmer {
+            0% {
+                left: -80%
+            }
+
+            60%,
+            100% {
+                left: 160%
+            }
+        }
+
+        /* ── GALLERY ── */
+        .gallery-wrap {
+            margin-top: 60px;
+        }
+
+        .gallery-head {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .gallery-head h2 {
+            color: #34d399;
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .gallery-head p {
+            color: var(--text-muted, #888);
+            font-size: 0.88rem;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        @media(max-width:600px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Photo card — image inside the border */
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid rgba(52, 211, 153, 0.35);
+            background: linear-gradient(160deg, rgba(52, 211, 153, 0.07) 0%, rgba(0, 0, 0, 0.3) 100%);
+            padding: 10px 10px 0 10px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
+            transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s, border-color .28s;
+            overflow: visible;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px) scale(1.015);
+            box-shadow: 0 28px 64px rgba(52, 211, 153, 0.26), 0 0 0 3px rgba(52, 211, 153, 0.5);
+            border-color: rgba(52, 211, 153, 0.75);
+        }
+
+        .photo-card .img-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            line-height: 0;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+            border-radius: 12px;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .photo-card-caption {
+            padding: 10px 6px 12px;
+            text-align: center;
+        }
+
+        .photo-card-caption strong {
+            display: block;
+            color: #fff;
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .photo-card-caption small {
+            color: rgba(52, 211, 153, 0.9);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .zoom-circle {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .photo-card:hover .zoom-circle {
+            opacity: 1;
+        }
+
+        .zoom-circle-inner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, .22);
+            border: 2px solid rgba(52, 211, 153, .85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 0 0 6px rgba(52, 211, 153, .1), 0 8px 28px rgba(52, 211, 153, .4);
+            transform: scale(0.75);
+            transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .photo-card:hover .zoom-circle-inner {
+            transform: scale(1);
+        }
+
+        /* ── LIGHTBOX — improved ── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(5, 5, 15, .96);
+            backdrop-filter: blur(28px) saturate(1.5);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .lightbox.open {
+            display: flex;
+            animation: lbIn .3s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @keyframes lbIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .lb-img-wrap {
+            border: 3px solid rgba(52, 211, 153, 0.45);
+            border-radius: 22px;
+            padding: 8px;
+            background: rgba(52, 211, 153, 0.05);
+            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.12), 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 80px rgba(52, 211, 153, 0.1);
+            animation: lbScale .36s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        @keyframes lbScale {
+            from {
+                opacity: 0;
+                transform: scale(.88) translateY(14px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        #lbImg {
+            display: block;
+            max-width: min(88vw, 940px);
+            max-height: 66vh;
+            border-radius: 15px;
+            object-fit: contain;
+        }
+
+        .lb-counter {
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(52, 211, 153, 0.15);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            color: #34d399;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.06em;
+        }
+
+        .lb-caption {
+            color: rgba(255, 255, 255, .82);
+            font-size: .92rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 680px;
+        }
+
+        .lb-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, .15);
+            border: 1.5px solid rgba(52, 211, 153, .55);
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, transform .28s cubic-bezier(.22, 1, .36, 1), box-shadow .2s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5), 0 0 16px rgba(52, 211, 153, .18);
+        }
+
+        .lb-close:hover {
+            background: rgba(52, 211, 153, .45);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 6px 22px rgba(52, 211, 153, .38);
+        }
+
+        .lb-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .lb-nav button {
+            padding: 10px 32px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1.5px solid rgba(52, 211, 153, .48);
+            background: rgba(52, 211, 153, .12);
+            color: #34d399;
+            transition: background .2s, transform .22s cubic-bezier(.22, 1, .36, 1), box-shadow .2s;
+        }
+
+        .lb-nav button:hover {
+            background: rgba(52, 211, 153, .28);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(52, 211, 153, .26);
+        }
+
+        /* ── GROUP ROLES ── */
+        .roles-section {
+            margin-top: 52px;
+        }
+
+        .roles-section h2 {
+            color: #34d399;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .roles-section>p {
+            color: var(--text-muted, #888);
+            font-size: 0.88rem;
+            margin-bottom: 22px;
+        }
+
+        .roles-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .role-tab {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid rgba(52, 211, 153, 0.3);
+            background: transparent;
+            color: var(--text, #eee);
+            transition: all .2s;
+        }
+
+        .role-tab.active,
+        .role-tab:hover {
+            background: rgba(52, 211, 153, 0.15);
+            border-color: #34d399;
+            color: #34d399;
+        }
+
+        .role-panel {
+            display: none;
+            background: rgba(52, 211, 153, 0.06);
+            border: 1.5px solid rgba(52, 211, 153, 0.2);
+            border-radius: 14px;
+            padding: 20px 22px;
+        }
+
+        .role-panel.active {
+            display: block;
+            animation: fadeUp .2s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .role-panel h4 {
+            color: #34d399;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .role-panel p {
+            color: var(--text, #ddd);
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .role-panel ul {
+            color: var(--text, #ddd);
+            font-size: 0.9rem;
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        .role-panel ul li {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 
 <body>
 
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lbClose">✕</button>
+        <span class="lb-counter" id="lbCounter">1 / 2</span>
+        <div class="lb-img-wrap">
+            <img id="lbImg" src="" alt="">
+        </div>
+        <div class="lb-caption" id="lbCaption"></div>
+        <div class="lb-nav">
+            <button id="lbPrev">‹ Prev</button>
+            <button id="lbNext">Next ›</button>
+        </div>
+    </div>
+
     <header>
         <div class="logo-container">
-            <div class="logo">Digital Teaching </div>
+            <div class="logo">Digital Teaching</div>
         </div>
         <nav id="mainNav">
             <a href="index.html">Home</a>
             <a href="About_Me.html">About Me</a>
             <a href="ict_policies.html">ICT Policies &amp; Safety</a>
-            <a href="non_digital_Tool.html">Non-Digital Tool</a>
-            <a href="digital_tool.html">Digital Tool</a>
+            <a href="non_digital_tool.html">Non-Digital Tool</a>
+            <a href="digital_Tool.html">Digital Tool</a>
             <div class="nav-more-wrap" id="navMoreWrap">
                 <button class="nav-more-btn" id="navMoreBtn">More ▾</button>
                 <div class="nav-more-dropdown" id="navMoreDropdown">
@@ -47,108 +466,252 @@
                 </div>
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
-            <button class="theme-toggle" aria-label="Toggle theme">
-                <span class="sun">☀</span>
-                <span class="moon">🌙</span>
-            </button>
+            <button class="theme-toggle" aria-label="Toggle theme"><span class="sun">☀</span><span
+                    class="moon">🌙</span></button>
         </div>
     </header>
 
-    </div>
+    <main>
+        <section class="hero">
+            <div class="section-with-profile">
+                <div class="section-text">
+                    <span class="page-badge"
+                        style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(16,185,129,0.22));color:#34d399;border:1px solid rgba(52,211,153,0.3);">
+                        🤝 PED 105 · Technology for Teaching and Learning 1
+                    </span>
+                    <h1>Collaborative Task</h1>
+                    <p class="tagline">Learning together — building teamwork and shared growth.</p>
+                </div>
+            </div>
+        </section>
 
-    </div>
+        <section class="intro">
 
-    </div>
+            <!-- ══ GALLERY ══ -->
+            <div class="gallery-wrap">
+                <div class="gallery-head">
+                    <h2>📸 Collaborative Activities in Physical Education</h2>
+                    <p>Photos: click to zoom &nbsp;·&nbsp; Videos: press play</p>
+                </div>
+                <div class="photo-grid">
 
+                    <div class="photo-card" data-index="0">
+                        <div class="img-wrap">
+                            <img src="pics/c1.jpg" alt="Students doing group relay in PE">
+                            <div class="zoom-circle">
+                                <div class="zoom-circle-inner">🔍</div>
+                            </div>
+                        </div>
+                        <div class="photo-card-caption">
+                            <strong>Group Relay Race</strong>
+                            <small>Teamwork and speed development</small>
+                        </div>
+                    </div>
+
+                    <div class="photo-card" data-index="1">
+                        <div class="img-wrap">
+                            <img src="pics/c2.jpg" alt="Students in cooperative PE game">
+                            <div class="zoom-circle">
+                                <div class="zoom-circle-inner">🔍</div>
+                            </div>
+                        </div>
+                        <div class="photo-card-caption">
+                            <strong>Cooperative Obstacle Course</strong>
+                            <small>Building trust and communication</small>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <video src="pics/c3.mp4" controls muted playsinline>Your browser does not support video.</video>
+                        <div class="media-caption">
+                            <strong>Team Building Circle Game</strong>
+                            <small>Enhancing group coordination</small>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <video src="pics/c4.mp4" controls muted playsinline>Your browser does not support video.</video>
+                        <div class="media-caption">
+                            <strong>Group Fitness Challenge</strong>
+                            <small>Promoting motivation and support</small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content-sections">
+                <div class="content-card" style="border-left:3px solid #34d399;">
+                    <div class="card-icon" style="background:rgba(52,211,153,0.12);color:#34d399">🤝</div>
+                    <div class="card-body">
+                        <h3>What is Collaborative Learning?</h3>
+                        <p>A group of students working together in an outdoor space to create a project using colored
+                            papers and other materials. Each member has a specific role some are cutting, designing, and
+                            assembling showing teamwork and cooperation. They are sharing ideas, helping each other, and
+                            focusing on a common goal, which is to complete their group output successfully.
+
+                            This activity reflects the importance of collaboration, communication, and creativity. Even
+                            though they are using traditional materials like paper and scissors, they may also be
+                            supported by digital tools such as smartphones for ideas, design references, or
+                            instructions. Overall, the group demonstrates strong teamwork, responsibility, and active
+                            participation.</p>
+                    </div>
+                </div>
+
+                <!-- ══ GROUP ROLES ══ -->
+                <div class="roles-section">
+                    <h2>👥 Explore Collaborative Group Roles</h2>
+                    <p>In collaborative PE tasks, each student plays an important role. Click a role to learn more.</p>
+                    <div class="roles-tabs">
+                        <button class="role-tab active" data-target="leader">🏅 Leader</button>
+                        <button class="role-tab" data-target="timekeeper">⏱️ Timekeeper</button>
+                        <button class="role-tab" data-target="recorder">📝 Recorder</button>
+                        <button class="role-tab" data-target="encourager">💚 Encourager</button>
+                        <button class="role-tab" data-target="materials">🎒 Materials Manager</button>
+                    </div>
+                    <div class="role-panel active" id="panel-leader">
+                        <h4>🏅 Leader / Facilitator</h4>
+                        <p>The leader guides the group toward the common goal and ensures everyone participates. In PE:
+                        </p>
+                        <ul>
+                            <li>Calls out instructions during relay or drills</li>
+                            <li>Makes sure all group members are engaged</li>
+                            <li>Keeps the group focused and on task</li>
+                        </ul>
+                    </div>
+                    <div class="role-panel" id="panel-timekeeper">
+                        <h4>⏱️ Timekeeper</h4>
+                        <p>The timekeeper ensures the group completes tasks within the allotted time. In PE:</p>
+                        <ul>
+                            <li>Tracks timing for fitness circuits or relays</li>
+                            <li>Signals when to switch stations</li>
+                            <li>Reports time to the teacher or group</li>
+                        </ul>
+                    </div>
+                    <div class="role-panel" id="panel-recorder">
+                        <h4>📝 Recorder / Reporter</h4>
+                        <p>The recorder documents the group's performance and shares results. In PE:</p>
+                        <ul>
+                            <li>Writes down scores, reps, or activity results</li>
+                            <li>Fills in group worksheets or task cards</li>
+                            <li>Reports findings to the class</li>
+                        </ul>
+                    </div>
+                    <div class="role-panel" id="panel-encourager">
+                        <h4>💚 Encourager / Motivator</h4>
+                        <p>The encourager boosts group morale and ensures positive teamwork. In PE:</p>
+                        <ul>
+                            <li>Cheers on teammates during physical activities</li>
+                            <li>Ensures no one feels left out</li>
+                            <li>Celebrates the group's progress and effort</li>
+                        </ul>
+                    </div>
+                    <div class="role-panel" id="panel-materials">
+                        <h4>🎒 Materials Manager</h4>
+                        <p>The materials manager handles equipment and supplies. In PE:</p>
+                        <ul>
+                            <li>Sets up and collects cones, balls, and equipment</li>
+                            <li>Ensures safe use and storage of tools</li>
+                            <li>Distributes task cards to group members</li>
+                        </ul>
+                    </div>
+                </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="footer-logo">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Digital Teaching
-                </div>
+                <div class="footer-logo">Digital Teaching</div>
                 <p class="footer-copyright">© 2026 Jessa Paradiang — Made with care and dedication</p>
             </div>
             <div class="contact-info">
                 <h4>Contact Me</h4>
-                <p>Email: <a href="https://paradiangjessa2005@gmail.com.google.com/">
-                        paradiangjessa2005@gmail.com</a>
-                </p>
+                <p>Email: <a href="mailto:paradiangjessa2005@gmail.com">paradiangjessa2005@gmail.com</a></p>
                 <p>Phone: +63 9537467916</p>
             </div>
         </div>
-
-        <!-- Circle social icons at the bottom -->
         <div class="footer-social-bar">
             <div class="social-links">
-
                 <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Facebook" class="social-btn social-fb">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="Facebook" class="social-btn social-fb"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Instagram" class="social-btn social-ig">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    aria-label="Instagram" class="social-btn social-ig"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                         <circle cx="12" cy="12" r="4" />
                         <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-                    </svg>
-
-                </a>
-
-                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    </svg></a>
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <polyline points="22,6 12,13 2,6" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="TikTok" class="social-btn social-tiktok">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="TikTok" class="social-btn social-tiktok"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="YouTube" class="social-btn social-youtube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="YouTube" class="social-btn social-youtube"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                         <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="X (Twitter)" class="social-btn social-x">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="X (Twitter)" class="social-btn social-x"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
             </div>
         </div>
     </footer>
 
     <script src="index.js"></script>
     <script src="search.js"></script>
+    <script>
+        (function () {
+            const cards = document.querySelectorAll('.photo-card');
+            const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'),
+                lbCap = document.getElementById('lbCaption'), lbCounter = document.getElementById('lbCounter'),
+                lbClose = document.getElementById('lbClose'), lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
+            let current = 0; const total = cards.length;
+            const images = Array.from(cards).map(c => ({
+                src: c.querySelector('img').src, alt: c.querySelector('img').alt,
+                caption: (c.querySelector('.photo-card-caption strong') || { textContent: '' }).textContent + ' — ' + (c.querySelector('.photo-card-caption small') || { textContent: '' }).textContent
+            }));
+            function open(i) {
+                current = (i + total) % total; lbImg.src = images[current].src; lbImg.alt = images[current].alt;
+                lbCap.textContent = images[current].caption;
+                if (lbCounter) lbCounter.textContent = (current + 1) + ' / ' + total;
+                lb.classList.add('open'); document.body.style.overflow = 'hidden';
+            }
+            function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+            cards.forEach((c, i) => c.addEventListener('click', () => open(i)));
+            lbClose.addEventListener('click', close);
+            lbPrev.addEventListener('click', e => { e.stopPropagation(); open(current - 1); });
+            lbNext.addEventListener('click', e => { e.stopPropagation(); open(current + 1); });
+            document.addEventListener('keydown', e => {
+                if (!lb.classList.contains('open')) return;
+                if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') open(current - 1); if (e.key === 'ArrowRight') open(current + 1);
+            });
+        })();
+        (function () {
+            const tabs = document.querySelectorAll('.role-tab'), panels = document.querySelectorAll('.role-panel');
+            tabs.forEach(tab => tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active')); panels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active'); document.getElementById('panel-' + tab.dataset.target).classList.add('active');
+            }));
+        })();
+    </script>
 </body>
 
 </html>
