@@ -9,7 +9,7 @@ const SITE_PAGES = [
         ]
     },
     {
-        page: "About Me", url: "About Me.html", icon: "👤", sections: [
+        page: "About Me", url: "About_Me.html", icon: "👤", sections: [
             { title: "About Me", content: "2nd year BPED student passionate about movement, wellness, and lifelong learning. Developing knowledge, skills, and values as a future educator." },
             { title: "Skills & Goals", content: "Sports, athletics, dance, movement, fitness training, lesson planning, teaching strategies, team leadership, classroom management, sportsmanship." }
         ]
@@ -22,27 +22,32 @@ const SITE_PAGES = [
     },
     {
         page: "Non-Digital Teaching Tool", url: "non_digital_tool.html", icon: "📌", sections: [
-            { title: "Non-Digital Teaching Tool", content: "Traditional teaching tools, physical materials, cones, hoops, task cards, charts, printed worksheets, hands-on learning without technology." }
+            { title: "Non-Digital Teaching Tool", content: "Traditional teaching tools, physical materials, cones, hoops, task cards, charts, printed worksheets, hands-on learning without technology." },
+            { title: "Application in PE Classes", content: "Cones, task cards, fitness charts, visual aids, jump ropes, hoops, balls, activity boards used to keep students physically active and engaged." }
         ]
     },
     {
-        page: "Digital Teaching Tool", url: "digital_tool.html", icon: "💻", sections: [
-            { title: "Digital Teaching Tool", content: "Technology tools for teaching, educational apps, software, multimedia, interactive presentations, digital assessments, online platforms for PE." }
+        page: "Digital Teaching Tool", url: "digital_Tool.html", icon: "💻", sections: [
+            { title: "Digital Teaching Tool", content: "Technology tools for teaching, educational apps, software, multimedia, interactive presentations, digital assessments, online platforms for PE." },
+            { title: "Assessment & Feedback Tools", content: "Google Forms, Kahoot, Padlet, digital rubrics, performance checklists to evaluate physical skills, teamwork, and sportsmanship." }
         ]
     },
     {
         page: "Collaborative Task", url: "collaborative_task.html", icon: "🤝", sections: [
-            { title: "Collaborative Task", content: "Group work, cooperative learning, team activities, collaborative projects, peer learning, group assignments in Physical Education." }
+            { title: "Collaborative Task", content: "Group work, cooperative learning, team activities, collaborative projects, peer learning, group assignments in Physical Education." },
+            { title: "What is Collaborative Learning", content: "Students working together, sharing roles, cutting designing assembling, teamwork communication creativity cooperation common goal." }
         ]
     },
     {
         page: "Flexible Learning Design", url: "flexible_learning.html", icon: "🔄", sections: [
-            { title: "Flexible Learning Design", content: "Blended learning, differentiated instruction, adaptive teaching, modular distance learning, online and face-to-face integration for Physical Education." }
+            { title: "Flexible Learning Design", content: "Blended learning, differentiated instruction, adaptive teaching, modular distance learning, online and face-to-face integration for Physical Education." },
+            { title: "Benefits of Flexible Design", content: "Equity, inclusion, student agency, reduce learning gaps, diverse communities, ownership of health and fitness journey." }
         ]
     },
     {
         page: "Final Reflection", url: "final_reflection.html", icon: "🌟", sections: [
-            { title: "Final Reflection", content: "Personal reflection on learning journey, growth as a BPED student, insights gained, challenges overcome, and aspirations for becoming a Physical Education teacher." }
+            { title: "Final Reflection", content: "Personal reflection on learning journey, growth as a BPED student, insights gained, challenges overcome, and aspirations for becoming a Physical Education teacher." },
+            { title: "My Learning Journey", content: "PED 105 Technology for Teaching and Learning, digital portfolio, ICT policies, non-digital and digital tools, flexible learning design, modern educator." }
         ]
     }
 ];
