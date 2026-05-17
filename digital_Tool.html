@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
     <style>
-        /* ═══ BANNER ═══ */
+
+        /* ═══ PAGE BADGE ═══ */
         .page-badge {
             display: inline-flex !important;
             align-items: center;
@@ -33,79 +34,113 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .page-badge:hover {
-            transform: translateY(-2px);
-        }
+        .page-badge:hover { transform: translateY(-2px); }
 
         .page-badge::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -90%;
-            width: 48%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            top: 0; left: -90%;
+            width: 48%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             animation: badgeShimmer 3.8s ease-in-out infinite;
             pointer-events: none;
         }
 
         @keyframes badgePulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.14), 0 8px 32px rgba(167, 139, 250, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-            }
-
-            50% {
-                box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.32), 0 12px 48px rgba(167, 139, 250, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.22);
-            }
+            0%,100% { box-shadow: 0 0 0 1px rgba(167,139,250,0.14),0 8px 32px rgba(167,139,250,0.24),inset 0 1px 0 rgba(255,255,255,0.14); }
+            50%      { box-shadow: 0 0 0 1px rgba(167,139,250,0.32),0 12px 48px rgba(167,139,250,0.40),inset 0 1px 0 rgba(255,255,255,0.22); }
         }
-
         @keyframes badgeShimmer {
-            0% {
-                left: -90%
-            }
-
-            55%,
-            100% {
-                left: 155%
-            }
+            0%       { left: -90% }
+            55%,100% { left: 155% }
         }
 
-        /* ══ PHOTO GRID ══ */
+        /* ═══ GALLERY SECTION ═══ */
+        .photo-gallery-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.25rem 4rem;
+        }
+
+        /* ── Section header ── */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .gallery-header h2 {
+            color: #a78bfa;
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+        }
+
+        .gallery-subtitle {
+            color: rgba(167, 139, 250, 0.55);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            margin: 0;
+        }
+
+        /* ── Divider label ── */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 2.6rem 0 1.6rem;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(167, 139, 250, 0.18);
+        }
+        .section-divider span {
+            color: rgba(167, 139, 250, 0.6);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ═══ PHOTO GRID ═══ */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 1.1rem;
+        }
+        @media (max-width: 600px) {
+            .photo-grid { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 640px) {
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ══ PHOTO CARD — image inside the border ══ */
+        /* ═══ PHOTO CARD ═══ */
         .photo-card {
             position: relative;
             cursor: zoom-in;
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: visible;
-            border: 2px solid rgba(167, 139, 250, 0.38);
-            background: linear-gradient(160deg, rgba(167, 139, 250, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%);
+            border: 1.5px solid rgba(167, 139, 250, 0.3);
+            background: linear-gradient(160deg, rgba(167,139,250,0.07) 0%, rgba(0,0,0,0.22) 100%);
             padding: 8px 8px 0 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
-            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.25s ease;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+            transition: transform 0.28s cubic-bezier(.22,.68,0,1.2),
+                        box-shadow 0.28s ease,
+                        border-color 0.22s ease;
         }
 
         .photo-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 44px rgba(167, 139, 250, 0.26), 0 0 0 2px rgba(167, 139, 250, 0.45);
-            border-color: rgba(167, 139, 250, 0.7);
+            transform: translateY(-7px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(167,139,250,0.22), 0 0 0 1.5px rgba(167,139,250,0.55);
+            border-color: rgba(167, 139, 250, 0.65);
         }
 
         .photo-card .img-frame {
-            border-radius: 12px;
+            border-radius: 13px;
             overflow: hidden;
             position: relative;
             line-height: 0;
@@ -113,33 +148,45 @@
 
         .photo-card img {
             width: 100%;
-            height: 210px;
+            height: 220px;
             object-fit: cover;
             display: block;
-            border-radius: 12px;
-            transition: transform 0.38s ease;
+            border-radius: 13px;
+            transition: transform 0.42s cubic-bezier(.22,.68,0,1.2);
         }
 
-        .photo-card:hover img {
-            transform: scale(1.05);
+        .photo-card:hover img { transform: scale(1.06); }
+
+        /* Shimmer overlay on hover */
+        .photo-card .img-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(167,139,250,0.12) 100%);
+            opacity: 0;
+            transition: opacity 0.28s ease;
+            border-radius: 13px;
+            pointer-events: none;
         }
+        .photo-card:hover .img-frame::after { opacity: 1; }
 
         .photo-caption {
-            padding: 8px 6px 10px;
+            padding: 10px 6px 12px;
             text-align: center;
         }
 
         .photo-caption strong {
             display: block;
             color: #a78bfa;
-            font-size: 0.88rem;
+            font-size: 0.87rem;
             font-weight: 700;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
+            letter-spacing: 0.01em;
         }
 
         .photo-caption small {
-            color: rgba(167, 139, 250, 0.7);
-            font-size: 0.75rem;
+            color: rgba(167, 139, 250, 0.58);
+            font-size: 0.74rem;
             font-weight: 500;
         }
 
@@ -147,17 +194,17 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: rgba(0, 0, 0, 0.65);
+            transform: translate(-50%, -50%) scale(0.82);
+            background: rgba(0, 0, 0, 0.62);
             color: #fff;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            padding: 0.45rem 0.9rem;
+            padding: 0.42rem 0.9rem;
             border-radius: 50px;
             letter-spacing: 0.04em;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
             opacity: 0;
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition: opacity 0.22s ease, transform 0.22s cubic-bezier(.22,.68,0,1.2);
             pointer-events: none;
             white-space: nowrap;
             z-index: 2;
@@ -168,32 +215,187 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        /* ══ LIGHTBOX ══ */
+        /* ═══ MESSAGE BOX ═══ */
+        .msg-box {
+            border: 1.5px solid rgba(167, 139, 250, 0.28);
+            border-radius: 20px;
+            padding: 1.6rem 1.5rem;
+            background: linear-gradient(155deg, rgba(167,139,250,0.07) 0%, rgba(0,0,0,0.20) 100%);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.16);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: border-color 0.22s ease, box-shadow 0.28s ease, transform 0.28s cubic-bezier(.22,.68,0,1.2);
+        }
+
+        .msg-box:hover {
+            border-color: rgba(167, 139, 250, 0.6);
+            box-shadow: 0 16px 44px rgba(167,139,250,0.20), 0 0 0 1.5px rgba(167,139,250,0.4);
+            transform: translateY(-4px);
+        }
+
+        .msg-icon {
+            font-size: 1.75rem;
+            line-height: 1;
+        }
+
+        .msg-box h4 {
+            color: #a78bfa;
+            font-size: 0.97rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+
+        .msg-box p {
+            color: var(--text, #ccc);
+            font-size: 0.875rem;
+            line-height: 1.78;
+            margin: 0;
+            opacity: 0.88;
+        }
+
+        /* ── Full-width message box variant ── */
+        .msg-box-full {
+            margin-top: 1.4rem;
+        }
+
+        /* ═══ PAIR GRID — 2 col photo + message layout ═══ */
+        .pair-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem;
+            margin-top: 1.1rem;
+        }
+        @media (max-width: 600px) {
+            .pair-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ═══ BLOCK GRID — 3 photo + msg stacked ═══ */
+        .block-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.1rem;
+            margin-top: 1.1rem;
+        }
+        @media (max-width: 720px) {
+            .block-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .block-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Bottom standalone message ── */
+        .standalone-msg {
+            margin-top: 2.2rem;
+        }
+
+        /* ═══ COMBO CARD — text block + image stacked ═══ */
+        .combo-card {
+            border: 1.5px solid rgba(167, 139, 250, 0.3);
+            border-radius: 20px;
+            background: linear-gradient(160deg, rgba(167,139,250,0.07) 0%, rgba(0,0,0,0.22) 100%);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+            overflow: hidden;
+            transition: border-color 0.22s ease, box-shadow 0.28s ease, transform 0.28s cubic-bezier(.22,.68,0,1.2);
+        }
+        .combo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(167,139,250,0.22), 0 0 0 1.5px rgba(167,139,250,0.55);
+            border-color: rgba(167, 139, 250, 0.65);
+        }
+        .combo-text {
+            padding: 1.5rem 1.5rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+        }
+        .combo-text h4 {
+            color: #a78bfa;
+            font-size: 0.97rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+        .combo-text p {
+            color: var(--text, #ccc);
+            font-size: 0.875rem;
+            line-height: 1.78;
+            margin: 0;
+            opacity: 0.88;
+        }
+        .combo-img-wrap {
+            padding: 10px 10px 0 10px;
+            position: relative;
+            cursor: zoom-in;
+        }
+        .combo-img-wrap .img-frame {
+            border-radius: 13px;
+            overflow: hidden;
+            line-height: 0;
+            position: relative;
+        }
+        .combo-img-wrap img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            border-radius: 13px;
+            transition: transform 0.42s cubic-bezier(.22,.68,0,1.2);
+        }
+        .combo-img-wrap:hover img { transform: scale(1.05); }
+        .combo-img-wrap .img-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(167,139,250,0.12) 100%);
+            opacity: 0;
+            transition: opacity 0.28s ease;
+            border-radius: 13px;
+            pointer-events: none;
+        }
+        .combo-img-wrap:hover .img-frame::after { opacity: 1; }
+        .combo-img-wrap .img-zoom-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%) scale(0.82);
+            background: rgba(0,0,0,0.62);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.42rem 0.9rem;
+            border-radius: 50px;
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            transition: opacity 0.22s ease, transform 0.22s cubic-bezier(.22,.68,0,1.2);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 2;
+            letter-spacing: 0.04em;
+        }
+        .combo-img-wrap:hover .img-zoom-hint {
+            opacity: 1;
+            transform: translate(-50%, -60%) scale(1);
+        }
+
+        /* ═══ LIGHTBOX ═══ */
         .lb-overlay {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.93);
+            backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             animation: lbFadeIn 0.2s ease;
         }
+        .lb-overlay.active { display: flex; }
 
-        .lb-overlay.active {
-            display: flex;
-        }
-
-        @keyframes lbFadeIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
-        }
+        @keyframes lbFadeIn  { from { opacity: 0 } to { opacity: 1 } }
 
         .lb-content {
             display: flex;
@@ -201,79 +403,66 @@
             align-items: center;
             max-width: 90vw;
             max-height: 90vh;
-            animation: lbSlideUp 0.25s ease;
+            animation: lbSlideUp 0.26s cubic-bezier(.22,.68,0,1.2);
         }
 
         @keyframes lbSlideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1
-            }
+            from { transform: translateY(22px); opacity: 0 }
+            to   { transform: translateY(0);    opacity: 1 }
         }
 
         #lightboxImg {
             max-width: 88vw;
             max-height: 78vh;
             object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+            border-radius: 14px;
+            box-shadow: 0 24px 90px rgba(0,0,0,0.75);
             display: block;
             transition: opacity 0.18s ease;
         }
 
         .lb-caption {
-            margin-top: 0.85rem;
+            margin-top: 1rem;
             font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255,255,255,0.72);
             font-weight: 500;
             text-align: center;
         }
 
         .lb-counter {
             margin-top: 0.3rem;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #a78bfa;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
 
         .lb-close {
             position: fixed;
-            top: 1.2rem;
-            right: 1.4rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            top: 1.3rem; right: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.16);
             color: #fff;
-            font-size: 1.3rem;
-            width: 42px;
-            height: 42px;
+            font-size: 1.25rem;
+            width: 42px; height: 42px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s;
             z-index: 10001;
         }
-
-        .lb-close:hover {
-            background: rgba(255, 255, 255, 0.22);
-        }
+        .lb-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
 
         .lb-arrow {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.16);
             color: #fff;
             font-size: 2.2rem;
-            width: 52px;
-            height: 52px;
+            width: 52px; height: 52px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -283,98 +472,21 @@
             z-index: 10001;
             line-height: 1;
         }
-
         .lb-arrow:hover {
-            background: rgba(167, 139, 250, 0.35);
+            background: rgba(167,139,250,0.32);
             transform: translateY(-50%) scale(1.1);
         }
+        .lb-prev { left: 1.2rem; }
+        .lb-next { right: 1.2rem; }
+        .lb-arrow.hidden { display: none; }
 
-        .lb-prev {
-            left: 1.2rem;
-        }
-
-        .lb-next {
-            right: 1.2rem;
-        }
-
-        .lb-arrow.hidden {
-            display: none;
-        }
-
-        /* ══ PAIR GRID: 2-column photo+message layout ══ */
-        .pair-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-            margin-top: 18px;
-        }
-
-        @media (max-width: 640px) {
-            .pair-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ══ MESSAGE BOX — same border/background as photo-card ══ */
-        .msg-box {
-            border: 2px solid rgba(167, 139, 250, 0.38);
-            border-radius: 18px;
-            padding: 22px 20px;
-            background: linear-gradient(160deg, rgba(167, 139, 250, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 10px;
-            transition: border-color 0.25s ease, box-shadow 0.28s ease;
-        }
-
-        .msg-box:hover {
-            border-color: rgba(167, 139, 250, 0.7);
-            box-shadow: 0 18px 44px rgba(167, 139, 250, 0.26), 0 0 0 2px rgba(167, 139, 250, 0.45);
-        }
-
-        .msg-icon {
-            font-size: 1.9rem;
-            line-height: 1;
-        }
-
-        .msg-box h4 {
-            color: #a78bfa;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .msg-box p {
-            color: var(--text, #ddd);
-            font-size: 0.87rem;
-            line-height: 1.72;
-            margin: 0;
-        }
-
-        /* gallery heading */
-        .photo-gallery-section h2 {
-            text-align: center;
-            color: #a78bfa;
-            margin-bottom: 8px;
-            font-size: 1.48rem;
-            font-weight: 700;
-        }
-
-        .gallery-subtitle {
-            text-align: center;
-            color: var(--text-muted, #888);
-            margin-bottom: 20px;
-            font-size: 0.86rem;
-        }
     </style>
 </head>
 
 <body>
 
     <!-- LIGHTBOX -->
-    <div id="lightboxOverlay" class="lb-overlay">
+    <div id="lightboxOverlay" class="lb-overlay" onclick="closeLightbox()">
         <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
         <button class="lb-arrow lb-prev" onclick="shiftLightbox(-1, event)" aria-label="Previous">&#8249;</button>
         <div class="lb-content" onclick="event.stopPropagation()">
@@ -412,8 +524,7 @@
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
-                    <input type="text" id="siteSearch" placeholder="Search pages&hellip;" autocomplete="off"
-                        spellcheck="false">
+                    <input type="text" id="siteSearch" placeholder="Search pages&hellip;" autocomplete="off" spellcheck="false">
                 </div>
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
@@ -425,10 +536,16 @@
 
     <main>
         <div class="photo-gallery-section">
-            <h2>&#x1F4F8; Digital Tools in Action &mdash; PE Classroom</h2>
-            <p class="gallery-subtitle">Click any photo to view it in full size</p>
 
-            <!-- ── Row 1: 2 photos ── -->
+            <!-- ── Header ── -->
+            <div class="gallery-header">
+                <h2>&#x1F4F8; Digital Tools in Action &mdash; PE Classroom</h2>
+                <p class="gallery-subtitle">Click any photo to view it in full size</p>
+            </div>
+
+            <!-- ── Block 1: Video Conferencing ── -->
+            <div class="section-divider"><span>&#x1F4F9; Video Conferencing</span></div>
+
             <div class="photo-grid">
                 <div class="photo-card" onclick="openLightbox(this)">
                     <div class="img-frame">
@@ -444,25 +561,27 @@
                         <img src="pics/d2.jpg" alt="GoogleMeet">
                     </div>
                     <div class="photo-caption">
-                        <strong>GoogleMeet</strong>
+                        <strong>Google Meet</strong>
                     </div>
                     <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
             </div>
 
-            <!-- ── Message 1 (full width) ── -->
-            <div class="msg-box" style="margin-top:18px;">
+            <!-- Message 1 -->
+            <div class="msg-box msg-box-full">
                 <div class="msg-icon">&#x1F4BB;</div>
-                <h4>Assessment &amp; Feedback Tools</h4>
-                <p>Our group used Zoom and Google Meet to prepare for our demo teaching. Through virtual meetings,
-                    we shared ideas, assigned tasks, and worked together even at a distance. This helped us stay
-                    organized and communicate effectively.</p>
+                <h4>Zoom &amp; Google Meet</h4>
+                <p>Our group used Zoom and Google Meet to prepare for our demo teaching. Through virtual meetings, we
+                    shared ideas, assigned tasks, and worked together even at a distance. This helped us stay organized
+                    and communicate effectively. Overall, the experience showed how digital tools support teamwork,
+                    making our preparation easier and more flexible.</p>
             </div>
 
-            <!-- ── Row 2: 2×2 pair grid ── -->
-            <div class="pair-grid">
+            <!-- ── Block 2: Online Resources & Collaboration ── -->
+            <div class="section-divider"><span>&#x1F310; Online Resources &amp; Collaboration</span></div>
 
-                <!-- d3 photo -->
+            <!-- d3 and d4 photos -->
+            <div class="photo-grid">
                 <div class="photo-card" onclick="openLightbox(this)">
                     <div class="img-frame">
                         <img src="pics/d3.jpg" alt="Online resources">
@@ -474,7 +593,6 @@
                     <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
 
-                <!-- d4 photo -->
                 <div class="photo-card" onclick="openLightbox(this)">
                     <div class="img-frame">
                         <img src="pics/d4.jpg" alt="Online Discussion Forums">
@@ -485,17 +603,32 @@
                     </div>
                     <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
+            </div>
 
-                <!-- Message 2 — same design as message 1 -->
+            <!-- Digital Collaboration message -->
+            <div class="msg-box msg-box-full">
+                <div class="msg-icon">&#x1F4BB;</div>
+                <h4>Digital Collaboration</h4>
+                <p>Our group used laptops to create and organize our lesson plan. With tools like Microsoft Word and
+                    Google Docs, we were able to edit, share, and finalize our work easily. Using a laptop made our
+                    planning faster, more organized, and more efficient. Overall, it helped us collaborate better
+                    and prepare effectively for our demo teaching.</p>
+            </div>
+
+            <!-- ── Block 3: Microsoft / Presentation ── -->
+            <div class="section-divider"><span>&#x1F4CA; Presentation Tools</span></div>
+
+            <!-- Microsoft PowerPoint message + Laptop image side by side -->
+            <div class="pair-grid">
                 <div class="msg-box">
-                    <div class="msg-icon">&#x1F4BB;</div>
-                    <h4>Digital Collaboration</h4>
-                    <p>Our group used Zoom and Google Meet to prepare for our demo teaching. Through virtual meetings,
-                        we shared ideas, assigned tasks, and worked together even at a distance. This helped us stay
-                        organized and communicate effectively.</p>
+                    <div class="msg-icon">&#x1F4CA;</div>
+                    <h4>Microsoft PowerPoint</h4>
+                    <p>Our group used Microsoft PowerPoint to present our lesson during the demo teaching. It helped us
+                        organize our ideas, show visuals, and explain the topic clearly. The slides made our presentation
+                        more engaging and easier to understand. Overall, using PPT improved our delivery and helped us
+                        present confidently as a group.</p>
                 </div>
 
-                <!-- d5 photo -->
                 <div class="photo-card" onclick="openLightbox(this)">
                     <div class="img-frame">
                         <img src="pics/d5.jpg" alt="Laptop for Lesson Planning">
@@ -506,8 +639,8 @@
                     </div>
                     <div class="img-zoom-hint">&#x1F50D; Click to view</div>
                 </div>
+            </div>
 
-            </div><!-- end pair-grid -->
         </div><!-- end photo-gallery-section -->
     </main>
 
@@ -525,44 +658,24 @@
         </div>
         <div class="footer-social-bar">
             <div class="social-links">
-                <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Facebook" class="social-btn social-fb"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg></a>
-                <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Instagram" class="social-btn social-ig"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                        <circle cx="12" cy="12" r="4" />
-                        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-                    </svg></a>
-                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="4" width="20" height="16" rx="2" />
-                        <polyline points="22,6 12,13 2,6" />
-                    </svg></a>
-                <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="TikTok" class="social-btn social-tiktok"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
-                    </svg></a>
-                <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="YouTube" class="social-btn social-youtube"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
-                    </svg></a>
-                <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="X (Twitter)" class="social-btn social-x"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg></a>
+                <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-btn social-fb">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-btn social-ig">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-btn social-tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-btn social-youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+                </a>
+                <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="social-btn social-x">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
             </div>
         </div>
     </footer>
@@ -571,18 +684,29 @@
     <script src="search.js"></script>
     <script>
         let lbImages = [], lbIndex = 0;
+
+        function openLightboxSrc(src, caption) {
+            buildImageList();
+            lbIndex = lbImages.findIndex(i => i.src.endsWith(src.replace('pics/','')));
+            if (lbIndex < 0) lbIndex = 0;
+            showLightboxFrame();
+            document.getElementById('lightboxOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.addEventListener('keydown', lbKeyHandler);
+        }
+
         function buildImageList() {
             lbImages = [];
             document.querySelectorAll('.photo-card').forEach(item => {
-                const img = item.querySelector('img');
+                const img    = item.querySelector('img');
                 const strong = item.querySelector('.photo-caption strong');
-                const small = item.querySelector('.photo-caption small');
-                const plain = item.querySelector('.photo-caption');
-                let cap = strong ? strong.textContent : (plain ? plain.textContent.trim() : '');
+                const small  = item.querySelector('.photo-caption small');
+                let cap = strong ? strong.textContent : '';
                 if (small) cap += ' \u2014 ' + small.textContent;
                 lbImages.push({ src: img ? img.src : '', alt: img ? img.alt : '', caption: cap });
             });
         }
+
         function openLightbox(el) {
             buildImageList();
             const src = el.querySelector('img')?.src || '';
@@ -593,8 +717,9 @@
             document.body.style.overflow = 'hidden';
             document.addEventListener('keydown', lbKeyHandler);
         }
+
         function showLightboxFrame() {
-            const f = lbImages[lbIndex];
+            const f  = lbImages[lbIndex];
             const el = document.getElementById('lightboxImg');
             el.style.opacity = '0';
             el.src = f.src; el.alt = f.alt;
@@ -604,23 +729,25 @@
             document.querySelector('.lb-prev').classList.toggle('hidden', lbIndex === 0);
             document.querySelector('.lb-next').classList.toggle('hidden', lbIndex === lbImages.length - 1);
         }
+
         function shiftLightbox(dir, e) {
             if (e) e.stopPropagation();
             lbIndex = Math.max(0, Math.min(lbImages.length - 1, lbIndex + dir));
             showLightboxFrame();
         }
+
         function closeLightbox() {
             document.getElementById('lightboxOverlay').classList.remove('active');
             document.body.style.overflow = '';
             document.removeEventListener('keydown', lbKeyHandler);
         }
+
         function lbKeyHandler(e) {
             if (e.key === 'ArrowRight') shiftLightbox(1, null);
-            if (e.key === 'ArrowLeft') shiftLightbox(-1, null);
-            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft')  shiftLightbox(-1, null);
+            if (e.key === 'Escape')     closeLightbox();
         }
     </script>
 
 </body>
-
 </html>
