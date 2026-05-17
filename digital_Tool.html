@@ -10,26 +10,397 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
+    <style>
+        /* ═══ BANNER ═══ */
+        .page-badge {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 7px;
+            padding: 0.52rem 1.6rem !important;
+            border-radius: 999px;
+            font-size: 0.7rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.15em !important;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.18) 0%, rgba(167, 139, 250, 0.10) 100%) !important;
+            color: #a78bfa !important;
+            border: 1px solid rgba(167, 139, 250, 0.42) !important;
+            box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.14), 0 8px 32px rgba(167, 139, 250, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 rgba(167, 139, 250, 0.12);
+            animation: badgePulse 3.8s ease-in-out infinite;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .page-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .page-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -90%;
+            width: 48%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: badgeShimmer 3.8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.14), 0 8px 32px rgba(167, 139, 250, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            }
+
+            50% {
+                box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.32), 0 12px 48px rgba(167, 139, 250, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+            }
+        }
+
+        @keyframes badgeShimmer {
+            0% {
+                left: -90%
+            }
+
+            55%,
+            100% {
+                left: 155%
+            }
+        }
+
+        /* ══ PHOTO GRID ══ */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ══ PHOTO CARD — image inside the border ══ */
+        .photo-card {
+            position: relative;
+            cursor: zoom-in;
+            border-radius: 18px;
+            overflow: visible;
+            border: 2px solid rgba(167, 139, 250, 0.38);
+            background: linear-gradient(160deg, rgba(167, 139, 250, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%);
+            padding: 8px 8px 0 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.25s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 44px rgba(167, 139, 250, 0.26), 0 0 0 2px rgba(167, 139, 250, 0.45);
+            border-color: rgba(167, 139, 250, 0.7);
+        }
+
+        .photo-card .img-frame {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            line-height: 0;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            transition: transform 0.38s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            padding: 8px 6px 10px;
+            text-align: center;
+        }
+
+        .photo-caption strong {
+            display: block;
+            color: #a78bfa;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .photo-caption small {
+            color: rgba(167, 139, 250, 0.7);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .img-zoom-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .photo-card:hover .img-zoom-hint {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* ══ LIGHTBOX ══ */
+        .lb-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            animation: lbFadeIn 0.2s ease;
+        }
+
+        .lb-overlay.active {
+            display: flex;
+        }
+
+        @keyframes lbFadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .lb-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: lbSlideUp 0.25s ease;
+        }
+
+        @keyframes lbSlideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        #lightboxImg {
+            max-width: 88vw;
+            max-height: 78vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+            display: block;
+            transition: opacity 0.18s ease;
+        }
+
+        .lb-caption {
+            margin-top: 0.85rem;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .lb-counter {
+            margin-top: 0.3rem;
+            font-size: 0.78rem;
+            color: #a78bfa;
+            letter-spacing: 0.05em;
+        }
+
+        .lb-close {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.4rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #fff;
+            font-size: 1.3rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10001;
+        }
+
+        .lb-close:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .lb-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #fff;
+            font-size: 2.2rem;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 10001;
+            line-height: 1;
+        }
+
+        .lb-arrow:hover {
+            background: rgba(167, 139, 250, 0.35);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lb-prev {
+            left: 1.2rem;
+        }
+
+        .lb-next {
+            right: 1.2rem;
+        }
+
+        .lb-arrow.hidden {
+            display: none;
+        }
+
+        /* ══ PAIR GRID: 2-column photo+message layout ══ */
+        .pair-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 640px) {
+            .pair-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ══ MESSAGE BOX — same border/background as photo-card ══ */
+        .msg-box {
+            border: 2px solid rgba(167, 139, 250, 0.38);
+            border-radius: 18px;
+            padding: 22px 20px;
+            background: linear-gradient(160deg, rgba(167, 139, 250, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            transition: border-color 0.25s ease, box-shadow 0.28s ease;
+        }
+
+        .msg-box:hover {
+            border-color: rgba(167, 139, 250, 0.7);
+            box-shadow: 0 18px 44px rgba(167, 139, 250, 0.26), 0 0 0 2px rgba(167, 139, 250, 0.45);
+        }
+
+        .msg-icon {
+            font-size: 1.9rem;
+            line-height: 1;
+        }
+
+        .msg-box h4 {
+            color: #a78bfa;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .msg-box p {
+            color: var(--text, #ddd);
+            font-size: 0.87rem;
+            line-height: 1.72;
+            margin: 0;
+        }
+
+        /* gallery heading */
+        .photo-gallery-section h2 {
+            text-align: center;
+            color: #a78bfa;
+            margin-bottom: 8px;
+            font-size: 1.48rem;
+            font-weight: 700;
+        }
+
+        .gallery-subtitle {
+            text-align: center;
+            color: var(--text-muted, #888);
+            margin-bottom: 20px;
+            font-size: 0.86rem;
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- LIGHTBOX -->
+    <div id="lightboxOverlay" class="lb-overlay">
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+        <button class="lb-arrow lb-prev" onclick="shiftLightbox(-1, event)" aria-label="Previous">&#8249;</button>
+        <div class="lb-content" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="">
+            <div id="lightboxCaption" class="lb-caption"></div>
+            <div id="lightboxCounter" class="lb-counter"></div>
+        </div>
+        <button class="lb-arrow lb-next" onclick="shiftLightbox(1, event)" aria-label="Next">&#8250;</button>
+    </div>
+
     <header>
         <div class="logo-container">
-            <div class="logo"> Digital Teaching</div>
+            <div class="logo">Digital Teaching</div>
         </div>
         <nav id="mainNav">
             <a href="index.html">Home</a>
             <a href="About_Me.html">About Me</a>
             <a href="ict_policies.html">ICT Policies &amp; Safety</a>
             <a href="non_digital_tool.html">Non-Digital Tool</a>
-            <a href="digital_Tool.html">Digital Tool</a>
+            <a href="digital_Tool.html" class="active">Digital Tool</a>
             <div class="nav-more-wrap" id="navMoreWrap">
-                <button class="nav-more-btn" id="navMoreBtn">More ▾</button>
+                <button class="nav-more-btn" id="navMoreBtn">More &#9662;</button>
                 <div class="nav-more-dropdown" id="navMoreDropdown">
-                    <a href="collaborative_task.html"><span class="nav-emoji">🤝</span>Collaborative Task</a>
-                    <a href="flexible_learning.html"><span class="nav-emoji">🔄</span>Flexible Learning</a>
-                    <a href="final_reflection.html"><span class="nav-emoji">🌟</span>Final Reflection</a>
+                    <a href="collaborative_task.html"><span class="nav-emoji">&#x1F91D;</span>Collaborative Task</a>
+                    <a href="flexible_learning.html"><span class="nav-emoji">&#x1F504;</span>Flexible Learning</a>
+                    <a href="final_reflection.html"><span class="nav-emoji">&#x1F31F;</span>Final Reflection</a>
                 </div>
             </div>
         </nav>
@@ -41,113 +412,215 @@
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
-                    <input type="text" id="siteSearch" placeholder="Search pages…" autocomplete="off"
+                    <input type="text" id="siteSearch" placeholder="Search pages&hellip;" autocomplete="off"
                         spellcheck="false">
                 </div>
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
             <button class="theme-toggle" aria-label="Toggle theme">
-                <span class="sun">☀</span>
-                <span class="moon">🌙</span>
+                <span class="sun">&#9728;</span><span class="moon">&#127769;</span>
             </button>
         </div>
     </header>
 
-    </div>
+    <main>
+        <div class="photo-gallery-section">
+            <h2>&#x1F4F8; Digital Tools in Action &mdash; PE Classroom</h2>
+            <p class="gallery-subtitle">Click any photo to view it in full size</p>
 
-    </div>
+            <!-- ── Row 1: 2 photos ── -->
+            <div class="photo-grid">
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <div class="img-frame">
+                        <img src="pics/d1.jpg" alt="Online Learning Platforms">
+                    </div>
+                    <div class="photo-caption">
+                        <strong>Online Learning Platforms</strong>
+                    </div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <div class="img-frame">
+                        <img src="pics/d2.jpg" alt="GoogleMeet">
+                    </div>
+                    <div class="photo-caption">
+                        <strong>GoogleMeet</strong>
+                    </div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
+                </div>
+            </div>
 
-    </div>
+            <!-- ── Message 1 (full width) ── -->
+            <div class="msg-box" style="margin-top:18px;">
+                <div class="msg-icon">&#x1F4BB;</div>
+                <h4>Assessment &amp; Feedback Tools</h4>
+                <p>Our group used Zoom and Google Meet to prepare for our demo teaching. Through virtual meetings,
+                    we shared ideas, assigned tasks, and worked together even at a distance. This helped us stay
+                    organized and communicate effectively.</p>
+            </div>
 
-    
+            <!-- ── Row 2: 2×2 pair grid ── -->
+            <div class="pair-grid">
+
+                <!-- d3 photo -->
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <div class="img-frame">
+                        <img src="pics/d3.jpg" alt="Online resources">
+                    </div>
+                    <div class="photo-caption">
+                        <strong>Online Resources</strong>
+                        <small>Finding &amp; using online resources</small>
+                    </div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
+                </div>
+
+                <!-- d4 photo -->
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <div class="img-frame">
+                        <img src="pics/d4.jpg" alt="Online Discussion Forums">
+                    </div>
+                    <div class="photo-caption">
+                        <strong>Online Discussion Forums</strong>
+                        <small>Online collaboration</small>
+                    </div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
+                </div>
+
+                <!-- Message 2 — same design as message 1 -->
+                <div class="msg-box">
+                    <div class="msg-icon">&#x1F4BB;</div>
+                    <h4>Digital Collaboration</h4>
+                    <p>Our group used Zoom and Google Meet to prepare for our demo teaching. Through virtual meetings,
+                        we shared ideas, assigned tasks, and worked together even at a distance. This helped us stay
+                        organized and communicate effectively.</p>
+                </div>
+
+                <!-- d5 photo -->
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <div class="img-frame">
+                        <img src="pics/d5.jpg" alt="Laptop for Lesson Planning">
+                    </div>
+                    <div class="photo-caption">
+                        <strong>Laptop for Lesson Planning</strong>
+                        <small>Digital tools for preparation</small>
+                    </div>
+                    <div class="img-zoom-hint">&#x1F50D; Click to view</div>
+                </div>
+
+            </div><!-- end pair-grid -->
+        </div><!-- end photo-gallery-section -->
+    </main>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="footer-logo">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Digital Teaching
-                </div>
-                <p class="footer-copyright">© 2026 Jessa Paradiang — Made with care and dedication</p>
+                <div class="footer-logo">Digital Teaching</div>
+                <p class="footer-copyright">&copy; 2026 Jessa Paradiang &mdash; Made with care and dedication</p>
             </div>
             <div class="contact-info">
                 <h4>Contact Me</h4>
-                <p>Email: <a href="https://paradiangjessa2005@gmail.com.google.com/">
-                        paradiangjessa2005@gmail.com</a>
-                </p>
+                <p>Email: <a href="mailto:paradiangjessa2005@gmail.com">paradiangjessa2005@gmail.com</a></p>
                 <p>Phone: +63 9537467916</p>
             </div>
         </div>
-
-        <!-- Circle social icons at the bottom -->
         <div class="footer-social-bar">
             <div class="social-links">
-
                 <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Facebook" class="social-btn social-fb">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="Facebook" class="social-btn social-fb"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Instagram" class="social-btn social-ig">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    aria-label="Instagram" class="social-btn social-ig"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                         <circle cx="12" cy="12" r="4" />
                         <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-                    </svg>
-
-                </a>
-
-                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    </svg></a>
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <polyline points="22,6 12,13 2,6" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="TikTok" class="social-btn social-tiktok">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="TikTok" class="social-btn social-tiktok"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="YouTube" class="social-btn social-youtube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="YouTube" class="social-btn social-youtube"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                         <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
                 <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="X (Twitter)" class="social-btn social-x">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="currentColor">
+                    aria-label="X (Twitter)" class="social-btn social-x"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-
-                </a>
-
+                    </svg></a>
             </div>
         </div>
     </footer>
 
     <script src="index.js"></script>
     <script src="search.js"></script>
+    <script>
+        let lbImages = [], lbIndex = 0;
+        function buildImageList() {
+            lbImages = [];
+            document.querySelectorAll('.photo-card').forEach(item => {
+                const img = item.querySelector('img');
+                const strong = item.querySelector('.photo-caption strong');
+                const small = item.querySelector('.photo-caption small');
+                const plain = item.querySelector('.photo-caption');
+                let cap = strong ? strong.textContent : (plain ? plain.textContent.trim() : '');
+                if (small) cap += ' \u2014 ' + small.textContent;
+                lbImages.push({ src: img ? img.src : '', alt: img ? img.alt : '', caption: cap });
+            });
+        }
+        function openLightbox(el) {
+            buildImageList();
+            const src = el.querySelector('img')?.src || '';
+            lbIndex = lbImages.findIndex(i => i.src === src);
+            if (lbIndex < 0) lbIndex = 0;
+            showLightboxFrame();
+            document.getElementById('lightboxOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.addEventListener('keydown', lbKeyHandler);
+        }
+        function showLightboxFrame() {
+            const f = lbImages[lbIndex];
+            const el = document.getElementById('lightboxImg');
+            el.style.opacity = '0';
+            el.src = f.src; el.alt = f.alt;
+            el.onload = () => { el.style.opacity = '1'; };
+            document.getElementById('lightboxCaption').textContent = f.caption;
+            document.getElementById('lightboxCounter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+            document.querySelector('.lb-prev').classList.toggle('hidden', lbIndex === 0);
+            document.querySelector('.lb-next').classList.toggle('hidden', lbIndex === lbImages.length - 1);
+        }
+        function shiftLightbox(dir, e) {
+            if (e) e.stopPropagation();
+            lbIndex = Math.max(0, Math.min(lbImages.length - 1, lbIndex + dir));
+            showLightboxFrame();
+        }
+        function closeLightbox() {
+            document.getElementById('lightboxOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', lbKeyHandler);
+        }
+        function lbKeyHandler(e) {
+            if (e.key === 'ArrowRight') shiftLightbox(1, null);
+            if (e.key === 'ArrowLeft') shiftLightbox(-1, null);
+            if (e.key === 'Escape') closeLightbox();
+        }
+    </script>
+
 </body>
 
 </html>
