@@ -6,79 +6,717 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Final Reflection — Jessa Paradiang | BPED Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
+
     <style>
-        /* ── Photo Gallery ── */
-        .photo-gallery-section {
-            margin-top: 60px;
+        /* ═══════════════════════════════════════
+           PAGE ACCENT — GOLD / AMBER
+        ═══════════════════════════════════════ */
+        :root {
+            --gold: #fbbf24;
+            --gold-dim: rgba(251, 191, 36, 0.18);
+            --gold-border: rgba(251, 191, 36, 0.28);
+            --gold-glow: rgba(251, 191, 36, 0.35);
         }
 
-        .photo-gallery-section h2 {
+        /* ═══════════════════════════════════════
+           CINEMATIC HERO
+        ═══════════════════════════════════════ */
+        .rf-hero {
+            position: relative;
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
             text-align: center;
-            color: #fbbf24;
-            margin-bottom: 10px;
+            padding: 8rem 5% 5rem;
+        }
+
+        /* Background image with dark overlay */
+        .rf-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .rf-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: brightness(0.32) saturate(0.9);
+            transform: scale(1.04);
+            transition: transform 10s ease;
+        }
+
+        .rf-hero:hover .rf-hero-bg img {
+            transform: scale(1);
+        }
+
+        .rf-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(10, 10, 24, 0.5) 0%, rgba(10, 10, 24, 0.1) 40%, rgba(10, 10, 24, 0.85) 100%),
+                radial-gradient(ellipse 70% 60% at 50% 50%, rgba(251, 191, 36, 0.06) 0%, transparent 70%);
+        }
+
+        /* Decorative orbs */
+        .rf-hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            pointer-events: none;
+            z-index: 1;
+            animation: orbFloat 9s ease-in-out infinite alternate;
+        }
+
+        .rf-hero::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(192, 132, 252, 0.07) 0%, transparent 70%);
+            bottom: 40px;
+            right: -60px;
+            pointer-events: none;
+            z-index: 1;
+            animation: orbFloat 12s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes orbFloat {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(20px, 15px) scale(1.07);
+            }
+        }
+
+        .rf-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .rf-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.4rem;
+            border-radius: 999px;
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.32);
+            color: var(--gold);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 1.8rem;
+            animation: fadeSlideUp 0.7s ease 0.1s both;
+            backdrop-filter: blur(12px);
+        }
+
+        .rf-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 700;
+            line-height: 1.02;
+            color: #fff;
+            margin-bottom: 1.4rem;
+            animation: fadeSlideUp 0.7s ease 0.25s both;
+            text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .rf-hero-title .gold-word {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .rf-hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+            animation: fadeSlideUp 0.7s ease 0.4s both;
+        }
+
+        .rf-hero-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            animation: fadeSlideUp 0.7s ease 0.55s both;
+            flex-wrap: wrap;
+        }
+
+        .rf-meta-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 1rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+        }
+
+        .rf-meta-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* Scroll indicator */
+        .rf-scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: fadeSlideUp 0.7s ease 0.9s both;
+        }
+
+        .rf-scroll-hint span {
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .rf-scroll-line {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, rgba(251, 191, 36, 0.7), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scaleY(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleY(1.15);
+            }
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           SECTION LABEL / EYEBROW
+        ═══════════════════════════════════════ */
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .section-eyebrow span {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.85;
+        }
+
+        /* ═══════════════════════════════════════
+           STORY CARDS — THEMATIC CHAPTERS
+        ═══════════════════════════════════════ */
+        .rf-story {
+            padding: 5rem 5%;
+        }
+
+        .rf-story-header {
+            margin-bottom: 3rem;
+        }
+
+        .rf-story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--text);
+            line-height: 1.15;
+            margin-top: 0.5rem;
+        }
+
+        .rf-story-title em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .story-chapters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.4rem;
+        }
+
+        .story-chapter {
+            position: relative;
+            padding: 2rem 1.8rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .story-chapter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .story-chapter:hover::before {
+            opacity: 1;
+        }
+
+        .story-chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(251, 191, 36, 0.15);
+            border-color: var(--gold-border);
+        }
+
+        .chapter-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            opacity: 0.12;
+            position: absolute;
+            top: 0.8rem;
+            right: 1.4rem;
+            line-height: 1;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .story-chapter:hover .chapter-num {
+            opacity: 0.22;
+        }
+
+        .chapter-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 13px;
+            background: var(--gold-dim);
+            border: 1px solid var(--gold-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-subtitle {
+        .story-chapter:hover .chapter-icon {
+            transform: scale(1.1) rotate(-4deg);
+        }
+
+        .chapter-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.75;
+            margin-bottom: 0.4rem;
+        }
+
+        .chapter-heading {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .chapter-text {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            opacity: 0.88;
+        }
+
+        /* ═══════════════════════════════════════
+           PULL QUOTE
+        ═══════════════════════════════════════ */
+        .rf-quote {
+            margin: 0 5%;
+            padding: 3.5rem 4rem;
+            background: linear-gradient(135deg,
+                    rgba(251, 191, 36, 0.07) 0%,
+                    rgba(192, 132, 252, 0.05) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.22);
+            border-radius: 24px;
             text-align: center;
-            color: var(--text-muted, #888);
-            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rf-quote::before {
+            content: '"';
+            position: absolute;
+            top: -1rem;
+            left: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 12rem;
+            color: var(--gold);
+            opacity: 0.06;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .rf-quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rf-quote-text strong {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .rf-quote-attr {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══════════════════════════════════════
+           KEY INSIGHTS GRID
+        ═══════════════════════════════════════ */
+        .rf-insights {
+            padding: 5rem 5%;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.1rem;
+            margin-top: 2.5rem;
+        }
+
+        .insight-card {
+            padding: 1.6rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-card:hover {
+            border-color: var(--gold-border);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(251, 191, 36, 0.1);
+        }
+
+        .insight-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.85rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .insight-title {
             font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .insight-text {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.72;
+            opacity: 0.82;
+        }
+
+        .insight-num {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            opacity: 0.08;
+            line-height: 1;
+        }
+
+        /* ═══════════════════════════════════════
+           ENHANCED TIMELINE
+        ═══════════════════════════════════════ */
+        .rf-timeline {
+            padding: 5rem 5%;
+        }
+
+        .rf-timeline-header {
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 44px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                    var(--gold) 0%,
+                    rgba(251, 191, 36, 0.3) 70%,
+                    transparent 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.2rem;
+            cursor: pointer;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -34px;
+            top: 14px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.1);
+            border: 2px solid rgba(251, 191, 36, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            z-index: 1;
+        }
+
+        .timeline-item:hover .timeline-dot,
+        .timeline-item.open .timeline-dot {
+            background: var(--gold);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.18), 0 0 16px rgba(251, 191, 36, 0.3);
+        }
+
+        .timeline-dot-inner {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.6;
+            transition: all 0.25s ease;
+        }
+
+        .timeline-item.open .timeline-dot-inner {
+            background: #fff;
+            opacity: 1;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 1.3rem;
+            transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+        }
+
+        .timeline-item:hover .timeline-header {
+            border-color: rgba(251, 191, 36, 0.3);
+            background: rgba(251, 191, 36, 0.05);
+        }
+
+        .timeline-item.open .timeline-header {
+            border-color: rgba(251, 191, 36, 0.4);
+            background: rgba(251, 191, 36, 0.08);
+            border-radius: 14px 14px 0 0;
+            box-shadow: none;
+        }
+
+        .timeline-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-title {
+            flex: 1;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.92rem;
+            line-height: 1.3;
+        }
+
+        .timeline-arrow {
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 700;
+            transition: transform 0.28s ease;
+            flex-shrink: 0;
+        }
+
+        .timeline-item.open .timeline-arrow {
+            transform: rotate(90deg);
+        }
+
+        .timeline-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s ease;
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-top: none;
+            border-radius: 0 0 14px 14px;
+            padding: 0 1.3rem;
+        }
+
+        .timeline-body-inner {
+            padding: 1rem 0 1.2rem;
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.78;
+            opacity: 0.9;
+        }
+
+        .timeline-item.open .timeline-body {
+            max-height: 300px;
+            padding: 0 1.3rem;
+        }
+
+        /* ═══════════════════════════════════════
+           PHOTO GALLERY
+        ═══════════════════════════════════════ */
+        .rf-gallery {
+            padding: 5rem 5%;
+        }
+
+        .rf-gallery-header {
+            margin-bottom: 2.5rem;
         }
 
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        @media (max-width: 600px) {
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 1.2rem;
         }
 
         .photo-card {
             position: relative;
-            border: 2px solid rgba(251, 191, 36, 0.28);
-            border-radius: 14px;
+            border: 1px solid var(--gold-border);
+            border-radius: 16px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+            background: var(--surface);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
         }
 
         .photo-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 16px 40px rgba(251, 191, 36, 0.18);
-            border-color: rgba(251, 191, 36, 0.6);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 20px 48px rgba(251, 191, 36, 0.16), 0 0 0 1px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.5);
         }
 
         .photo-card img {
             width: 100%;
-            height: 220px;
+            height: 230px;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s;
+            transition: transform 0.45s ease;
         }
 
         .photo-card:hover img {
-            transform: scale(1.04);
+            transform: scale(1.05);
         }
 
         .photo-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 55%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, transparent 55%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 16px;
+            padding: 1.2rem;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -87,42 +725,66 @@
             opacity: 1;
         }
 
-        .photo-overlay .zoom-hint {
-            color: #fbbf24;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
+        .zoom-hint {
+            color: var(--gold);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .photo-caption {
-            padding: 14px 16px;
-            text-align: center;
+        .zoom-hint::before {
+            content: '⊕';
+            font-size: 1rem;
         }
 
-        .photo-caption strong {
-            display: block;
-            color: var(--text, #eee);
-            font-size: 0.95rem;
+        .photo-caption-bar {
+            padding: 0.9rem 1.1rem;
+            border-top: 1px solid var(--gold-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
         }
 
-        .photo-caption small {
-            color: #fbbf24;
-            font-size: 0.8rem;
+        .photo-caption-bar strong {
+            font-size: 0.88rem;
+            color: var(--text);
+            font-weight: 600;
         }
 
-        /* ── Lightbox ── */
+        .photo-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: var(--gold-dim);
+            border: 1px solid var(--gold-border);
+            border-radius: 999px;
+            padding: 0.2rem 0.7rem;
+            white-space: nowrap;
+        }
+
+        /* ═══════════════════════════════════════
+           LIGHTBOX
+        ═══════════════════════════════════════ */
         .lightbox {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 16px;
+            gap: 1.2rem;
+            padding: 2rem;
         }
 
         .lightbox.open {
@@ -143,179 +805,196 @@
         .lightbox img {
             max-width: 88vw;
             max-height: 70vh;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border-radius: 14px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(251, 191, 36, 0.25);
+            object-fit: contain;
         }
 
         .lightbox-caption {
-            color: #f5f5f5;
-            font-size: 1rem;
-            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: center;
         }
 
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 26px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 2rem;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            color: var(--gold);
+            font-size: 1.1rem;
             cursor: pointer;
-            opacity: 0.7;
-            line-height: 1;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
 
         .lightbox-close:hover {
-            opacity: 1;
+            background: var(--gold);
+            color: #000;
+            transform: rotate(90deg);
         }
 
         .lightbox-nav {
             display: flex;
-            gap: 14px;
+            gap: 0.8rem;
         }
 
         .lightbox-nav button {
-            background: rgba(251, 191, 36, 0.18);
-            border: 1px solid rgba(251, 191, 36, 0.5);
-            color: #fbbf24;
-            border-radius: 8px;
-            padding: 8px 20px;
-            font-size: 1.1rem;
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            color: var(--gold);
+            border-radius: 10px;
+            padding: 0.55rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
+            font-family: inherit;
         }
 
         .lightbox-nav button:hover {
-            background: rgba(251, 191, 36, 0.35);
+            background: rgba(251, 191, 36, 0.25);
         }
 
-        /* ── Learning Journey Timeline ── */
-        .timeline-section {
-            margin-top: 56px;
-        }
-
-        .timeline-section h2 {
-            color: #fbbf24;
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-        }
-
-        .timeline-section>p {
-            color: var(--text-muted, #888);
-            font-size: 0.88rem;
-            margin-bottom: 30px;
-        }
-
-        .timeline {
+        /* ═══════════════════════════════════════
+           CLOSING CARD
+        ═══════════════════════════════════════ */
+        .rf-closing {
+            margin: 0 5% 5rem;
+            padding: 3.5rem 4rem;
+            background: linear-gradient(135deg,
+                    rgba(251, 191, 36, 0.08) 0%,
+                    rgba(192, 132, 252, 0.06) 100%);
+            border: 1px solid var(--gold-border);
+            border-radius: 24px;
+            text-align: center;
             position: relative;
-            padding-left: 32px;
+            overflow: hidden;
         }
 
-        .timeline::before {
-            content: '';
+        .rf-closing::before {
+            content: '🌟';
             position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #fbbf24, rgba(251, 191, 36, 0.1));
-            border-radius: 2px;
+            font-size: 12rem;
+            opacity: 0.04;
+            top: -2rem;
+            right: -2rem;
+            pointer-events: none;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 28px;
-            cursor: pointer;
+        .rf-closing h2 {
+            color: var(--gold) !important;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
         }
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
+        .rf-closing p {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.85;
+            max-width: 640px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
         }
 
-        .timeline-dot {
-            position: absolute;
-            left: -27px;
-            top: 4px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: rgba(251, 191, 36, 0.15);
-            border: 2px solid rgba(251, 191, 36, 0.5);
-            display: flex;
+        .rf-closing-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.6rem;
-            transition: all 0.2s;
-        }
-
-        .timeline-item:hover .timeline-dot,
-        .timeline-item.open .timeline-dot {
-            background: #fbbf24;
-            border-color: #fbbf24;
-            box-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
-        }
-
-        .timeline-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(251, 191, 36, 0.06);
-            border: 1.5px solid rgba(251, 191, 36, 0.18);
-            border-radius: 10px;
-            padding: 12px 16px;
-            transition: border-color 0.2s, background 0.2s;
-        }
-
-        .timeline-item:hover .timeline-header,
-        .timeline-item.open .timeline-header {
-            border-color: rgba(251, 191, 36, 0.45);
-            background: rgba(251, 191, 36, 0.1);
-        }
-
-        .timeline-icon {
-            font-size: 1.2rem;
-        }
-
-        .timeline-title {
-            font-weight: 600;
-            color: var(--text, #eee);
-            font-size: 0.95rem;
-            flex: 1;
-        }
-
-        .timeline-arrow {
-            color: #fbbf24;
-            font-size: 0.85rem;
-            transition: transform 0.2s;
-        }
-
-        .timeline-item.open .timeline-arrow {
-            transform: rotate(90deg);
-        }
-
-        .timeline-body {
-            display: none;
-            padding: 14px 16px 4px 16px;
-            color: var(--text, #ddd);
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: var(--gold);
+            color: #1a0a00;
+            font-weight: 700;
             font-size: 0.9rem;
-            line-height: 1.65;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            letter-spacing: 0.02em;
         }
 
-        .timeline-item.open .timeline-body {
-            display: block;
-            animation: fadeDown 0.2s ease;
+        .rf-closing-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.35);
         }
 
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rf-hero {
+                min-height: 65vh;
+                padding: 7rem 5% 4rem;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .story-chapters {
+                grid-template-columns: 1fr;
+            }
+
+            .rf-quote {
+                padding: 2.5rem 2rem;
+                margin: 0 4%;
+            }
+
+            .rf-closing {
+                padding: 2.5rem 2rem;
+                margin: 0 4% 4rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .insights-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rf-hero-meta {
+                gap: 0.7rem;
+            }
+
+            .rf-quote::before {
+                font-size: 7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rf-hero {
+                min-height: 60vh;
+            }
+
+            .rf-hero-title {
+                font-size: clamp(2.4rem, 12vw, 4rem);
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rf-story {
+                padding: 3.5rem 4%;
+            }
+
+            .rf-insights,
+            .rf-timeline,
+            .rf-gallery {
+                padding: 3.5rem 4%;
             }
         }
     </style>
@@ -323,7 +1002,7 @@
 
 <body>
 
-    <!-- ── LIGHTBOX ── -->
+    <!-- ══════════ LIGHTBOX ══════════ -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" id="lbClose">✕</button>
         <img id="lbImg" src="" alt="">
@@ -334,9 +1013,10 @@
         </div>
     </div>
 
+    <!-- ══════════ HEADER ══════════ -->
     <header>
         <div class="logo-container">
-            <div class="logo"> Digital Teaching </div>
+            <div class="logo">Digital Teaching</div>
         </div>
         <nav id="mainNav">
             <a href="index.html">Home</a>
@@ -355,7 +1035,7 @@
         </nav>
         <div class="header-right">
             <div class="search-wrap">
-                <div class="search-input-box">
+                <div class="search-input-box" id="searchInputBox">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8" />
@@ -367,131 +1047,395 @@
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
             <button class="theme-toggle" aria-label="Toggle theme">
-                <span class="sun">☀</span><span class="moon">🌙</span>
+                <span class="sun">☀</span>
+                <span class="moon">🌙</span>
+            </button>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+                <span class="ham-bar"></span>
+                <span class="ham-bar"></span>
+                <span class="ham-bar"></span>
             </button>
         </div>
     </header>
 
+    <!-- ══════════ MAIN ══════════ -->
     <main>
-        <section class="hero">
-            <img src="pics/profile.jpg" alt="profile" class="hero-profile">
-            <div class="section-with-profile">
-                <div class="section-text">
-                    <span class="page-badge"
-                        style="background:rgba(251,191,36,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.25);">PED
-                        105 · Technology for Teaching and Learning 1</span>
-                    <h1>Final Reflection</h1>
-                    <p class="tagline">Looking back to move forward with purpose.</p>
+
+        <!-- ── CINEMATIC HERO ── -->
+        <section class="rf-hero">
+            <div class="rf-hero-bg">
+                <img src="pics/ref.jpg" alt="Final Reflection background">
+            </div>
+
+            <div class="rf-hero-content">
+                <div class="rf-eyebrow">
+                    🌟 PED 105 · Technology for Teaching and Learning 1
                 </div>
+                <h1 class="rf-hero-title">
+                    Final<br><span class="gold-word">Reflection</span>
+                </h1>
+                <p class="rf-hero-subtitle">
+                    Looking back on a transformative journey — the lessons learned,
+                    the challenges overcome, and the educator I am becoming.
+                </p>
+                <div class="rf-hero-meta">
+                    <span class="rf-meta-pill">
+                        <span class="rf-meta-dot"></span>
+                        Jessa Paradiang
+                    </span>
+                    <span class="rf-meta-pill">
+                        <span class="rf-meta-dot"></span>
+                        BPED 2nd Year
+                    </span>
+                    <span class="rf-meta-pill">
+                        <span class="rf-meta-dot"></span>
+                        Ms. Michele Baguinat
+                    </span>
+                </div>
+            </div>
+
+            <div class="rf-scroll-hint">
+                <span>Scroll</span>
+                <div class="rf-scroll-line"></div>
             </div>
         </section>
 
-        <section class="intro">
-            <div class="content-sections">
-                <div class="content-card" style="border-left:3px solid #fbbf24;">
-                    <div class="card-icon" style="background:rgba(251,191,36,0.12);color:#fbbf24">📖</div>
-                    <div class="card-body">
-                        <h3>My Learning Journey</h3>
-                        <p>My e-portfolio in ICT represents not only my outputs but also my growth as a learner in using
-                            technology meaningfully. Throughout the process, I learned how to organize my ideas, present
-                            my work creatively, and use digital tools effectively. It helped me become more responsible
-                            and independent, as I had to manage my time, improve my outputs, and reflect on my learning.
-                            This experience showed me that ICT is not just about using technology, but about
-                            communicating ideas clearly and creatively.
-
-                            Our successful group demonstration was another important part of my learning. It showed the
-                            value of teamwork, cooperation, and shared responsibility. Each member contributed their
-                            skills, and we supported each other to achieve a common goal. There were challenges, but
-                            through communication and collaboration, we were able to perform confidently and
-                            successfully. This experience taught me that working as a team leads to better outcomes and
-                            helps build trust, respect, and unity among members.
-
-                            Overall, both my e-portfolio and our group demonstration helped me grow not only in skills
-                            but also in attitude. I became more confident, collaborative, and motivated to improve.
-                            These experiences will guide me in future tasks where technology and teamwork are important.
-                        </p>
-                    </div>
-                </div>
-
+        <!-- ══ STORY CHAPTERS ══ -->
+        <section class="rf-story">
+            <div class="rf-story-header">
+                <div class="section-eyebrow"><span>My Reflection</span></div>
+                <h2 class="rf-story-title">A Journey Through<br><em>PED 105</em></h2>
             </div>
 
+            <div class="story-chapters">
 
-            <!-- ══ LEARNING JOURNEY TIMELINE ══ -->
-            <div class="timeline-section">
-                <h2>🗓️ My Learning Journey — PED 105 Highlights</h2>
-                <p>Click each milestone to read more about what I learned and experienced.</p>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-icon">🔒</span>
-                            <span class="timeline-title">ICT Policies &amp; Digital Safety</span>
-                            <span class="timeline-arrow">›</span>
-                        </div>
-                        <div class="timeline-body">I learned about responsible technology use in education — including
-                            cyber safety, digital citizenship, privacy, and copyright. Understanding these policies is
-                            essential for creating a safe digital learning environment for students.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-icon">📌</span>
-                            <span class="timeline-title">Exploring Non-Digital Teaching Tools</span>
-                            <span class="timeline-arrow">›</span>
-                        </div>
-                        <div class="timeline-body">I explored how traditional, hands-on tools like cones, task cards,
-                            and fitness charts can be highly effective without any technology. This taught me that great
-                            teaching doesn't always require a screen.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-icon">💻</span>
-                            <span class="timeline-title">Harnessing Digital Teaching Tools</span>
-                            <span class="timeline-arrow">›</span>
-                        </div>
-                        <div class="timeline-body">I discovered how platforms like Kahoot, Google Forms, Canva, and
-                            YouTube can transform PE instruction by making assessment interactive, content visual, and
-                            learning more personalized and engaging.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-icon">🤝</span>
-                            <span class="timeline-title">Collaborative Task &amp; Group Work</span>
-                            <span class="timeline-arrow">›</span>
-                        </div>
-                        <div class="timeline-body">Through group tasks, I experienced firsthand how collaboration builds
-                            not just academic skills but also character — developing trust, communication, shared
-                            responsibility, and a sense of community.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-icon">🔄</span>
-                            <span class="timeline-title">Designing Flexible Learning Experiences</span>
-                            <span class="timeline-arrow">›</span>
-                        </div>
-                        <div class="timeline-body">I learned how to design lessons that adapt to different learner needs
-                            — whether at school, at home, or in a blended setting. Flexible learning design promotes
-                            equity and ensures no student is left behind.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-header">
-                            <span class="timeline-icon">🌟</span>
-                            <span class="timeline-title">Final Reflection &amp; Future Vision</span>
-                            <span class="timeline-arrow">›</span>
-                        </div>
-                        <div class="timeline-body">Looking back, I see how much I've grown — not just as a student, but
-                            as a future Physical Education teacher. This portfolio is a record of my journey and a
-                            promise of who I am still becoming: prepared, passionate, and purposeful.</div>
-                    </div>
+                <div class="story-chapter">
+                    <div class="chapter-num">01</div>
+                    <div class="chapter-icon">📖</div>
+                    <div class="chapter-label">The Beginning</div>
+                    <h3 class="chapter-heading">How Technology Changed My Perspective</h3>
+                    <p class="chapter-text">
+                        Throughout PED 105, I gained invaluable knowledge about the role technology plays in education.
+                        At first, I thought technology was mainly for presentations and online activities — but as
+                        lessons
+                        progressed, I realized it is a powerful force for improving how teachers teach and how students
+                        learn. Through discussions, activities, reporting, and demonstrations, I discovered a wide range
+                        of tools that create engaging, interactive, and meaningful learning experiences.
+                    </p>
                 </div>
+
+                <div class="story-chapter">
+                    <div class="chapter-num">02</div>
+                    <div class="chapter-icon">🤝</div>
+                    <div class="chapter-label">Collaboration</div>
+                    <h3 class="chapter-heading">Group Work That Shaped Who I Am</h3>
+                    <p class="chapter-text">
+                        The group demonstration and reporting was among the most memorable experiences of this course.
+                        I developed communication, creativity, leadership, and the ability to work effectively with
+                        others.
+                        Despite challenges — limited time, technical difficulties, and nerves during reporting — we
+                        overcame
+                        every obstacle through teamwork and preparation. This taught me that great teaching demands
+                        patience, confidence, and meticulous planning.
+                    </p>
+                </div>
+
+                <div class="story-chapter">
+                    <div class="chapter-num">03</div>
+                    <div class="chapter-icon">💡</div>
+                    <div class="chapter-label">Technology as a Bridge</div>
+                    <h3 class="chapter-heading">Making Learning Come Alive</h3>
+                    <p class="chapter-text">
+                        PowerPoint presentations, videos, online platforms, and digital learning materials transformed
+                        how I understood our lessons — and revealed how students become more motivated when technology
+                        is
+                        thoughtfully integrated. I also discovered the importance of being responsible and ethical:
+                        sharing information carefully, communicating respectfully online, and creating outputs that
+                        reflect integrity. Technology, used well, amplifies everything good in a classroom.
+                    </p>
+                </div>
+
+                <div class="story-chapter">
+                    <div class="chapter-num">04</div>
+                    <div class="chapter-icon">🌱</div>
+                    <div class="chapter-label">Looking Forward</div>
+                    <h3 class="chapter-heading">The Educator I Am Becoming</h3>
+                    <p class="chapter-text">
+                        As a future educator, I will apply everything I've learned — using technology creatively and
+                        responsibly to build lessons that are interactive, student-centered, and truly enjoyable.
+                        I now understand that technology should never replace teachers; it should support and elevate
+                        the teaching-learning process. PED 105 strengthened my confidence, sharpened my digital skills,
+                        and inspired me to become a creative, responsible, and effective PE teacher.
+                    </p>
+                </div>
+
             </div>
         </section>
+
+        <!-- ══ PULL QUOTE ══ -->
+        <div class="rf-quote">
+            <p class="rf-quote-text">
+                "Technology should not replace teachers — it should
+                <strong>support and improve</strong> the teaching-learning process,
+                making every student's experience richer and more meaningful."
+            </p>
+            <span class="rf-quote-attr">— Jessa Paradiang, BPED Student · PED 105 Reflection</span>
+        </div>
+
+        <!-- ══ KEY INSIGHTS ══ -->
+        <section class="rf-insights">
+            <div class="section-eyebrow"><span>What I Learned</span></div>
+            <h2 style="text-align:left; color:var(--text); font-size:clamp(1.8rem,3.5vw,2.6rem); margin:0.4rem 0 0;">
+                Key Takeaways &amp; Insights
+            </h2>
+
+            <div class="insights-grid">
+
+                <div class="insight-card">
+                    <div class="insight-num">1</div>
+                    <span class="insight-icon">🎯</span>
+                    <div class="insight-title">Technology Supports, Never Replaces</div>
+                    <p class="insight-text">
+                        The greatest lesson: digital tools amplify great teaching but cannot substitute the human
+                        connection between teacher and student.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-num">2</div>
+                    <span class="insight-icon">🤝</span>
+                    <div class="insight-title">Collaboration Builds Character</div>
+                    <p class="insight-text">
+                        Group work developed skills far beyond academics — trust, communication, shared responsibility,
+                        and a genuine sense of community.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-num">3</div>
+                    <span class="insight-icon">📱</span>
+                    <div class="insight-title">Digital Tools Make Learning Interactive</div>
+                    <p class="insight-text">
+                        Platforms like Kahoot, Google Forms, Canva, and YouTube transform passive learning into
+                        active, personalized, and engaging experiences.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-num">4</div>
+                    <span class="insight-icon">🛡️</span>
+                    <div class="insight-title">Ethics &amp; Responsibility Matter</div>
+                    <p class="insight-text">
+                        Using technology responsibly — respecting privacy, copyright, and safe communication — is
+                        a core professional skill for every modern educator.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-num">5</div>
+                    <span class="insight-icon">🔄</span>
+                    <div class="insight-title">Flexible Learning Serves Every Student</div>
+                    <p class="insight-text">
+                        Designing adaptable lessons — blended, modular, or face-to-face — ensures no learner is
+                        left behind, regardless of their context.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-num">6</div>
+                    <span class="insight-icon">🌱</span>
+                    <div class="insight-title">Growth Happens Through Challenge</div>
+                    <p class="insight-text">
+                        Every technical difficulty, tight deadline, and moment of nervousness became a stepping stone
+                        toward becoming a more resilient and prepared educator.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DIVIDER -->
+        <div class="section-divider"><span class="divider-icon">✦</span></div>
+
+        <!-- ══ ENHANCED TIMELINE ══ -->
+        <section class="rf-timeline">
+            <div class="rf-timeline-header">
+                <div class="section-eyebrow"><span>PED 105 Highlights</span></div>
+                <h2
+                    style="text-align:left; color:var(--text); font-size:clamp(1.8rem,3.5vw,2.6rem); margin:0.4rem 0 0.6rem;">
+                    My Learning Journey
+                </h2>
+                <p style="color:var(--text-muted); font-size:0.88rem;">
+                    Tap each milestone to read more about what I learned and experienced.
+                </p>
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                    <div class="timeline-header">
+                        <span class="timeline-icon">🔒</span>
+                        <span class="timeline-title">ICT Policies &amp; Digital Safety</span>
+                        <span class="timeline-arrow">›</span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-body-inner">
+                            I learned about responsible technology use in education — including cyber safety, digital
+                            citizenship, privacy, and copyright. Understanding these policies is essential for creating
+                            a safe digital learning environment for students.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                    <div class="timeline-header">
+                        <span class="timeline-icon">📌</span>
+                        <span class="timeline-title">Exploring Non-Digital Teaching Tools</span>
+                        <span class="timeline-arrow">›</span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-body-inner">
+                            I explored how traditional, hands-on tools like cones, task cards, and fitness charts can be
+                            highly effective without any technology. This taught me that great teaching doesn't always
+                            require a screen.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                    <div class="timeline-header">
+                        <span class="timeline-icon">💻</span>
+                        <span class="timeline-title">Harnessing Digital Teaching Tools</span>
+                        <span class="timeline-arrow">›</span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-body-inner">
+                            I discovered how platforms like Kahoot, Google Forms, Canva, and YouTube can transform PE
+                            instruction by making assessment interactive, content visual, and learning more personalized
+                            and engaging.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                    <div class="timeline-header">
+                        <span class="timeline-icon">🤝</span>
+                        <span class="timeline-title">Collaborative Task &amp; Group Work</span>
+                        <span class="timeline-arrow">›</span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-body-inner">
+                            Through group tasks, I experienced firsthand how collaboration builds not just academic
+                            skills but also character — developing trust, communication, shared responsibility, and a
+                            sense of community.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                    <div class="timeline-header">
+                        <span class="timeline-icon">🔄</span>
+                        <span class="timeline-title">Designing Flexible Learning Experiences</span>
+                        <span class="timeline-arrow">›</span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-body-inner">
+                            I learned how to design lessons that adapt to different learner needs — whether at school,
+                            at home, or in a blended setting. Flexible learning design promotes equity and ensures no
+                            student is left behind.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                    <div class="timeline-header">
+                        <span class="timeline-icon">🌟</span>
+                        <span class="timeline-title">Final Reflection &amp; Future Vision</span>
+                        <span class="timeline-arrow">›</span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-body-inner">
+                            Looking back, I see how much I've grown — not just as a student, but as a future Physical
+                            Education teacher. This portfolio is a record of my journey and a promise of who I am still
+                            becoming: prepared, passionate, and purposeful.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DIVIDER -->
+        <div class="section-divider"><span class="divider-icon">✦</span></div>
+
+        <!-- ══ PHOTO GALLERY ══ -->
+        <section class="rf-gallery">
+            <div class="rf-gallery-header">
+                <div class="section-eyebrow"><span></span></div>
+                <h2
+                    style="text-align:left; color:var(--text); font-size:clamp(1.8rem,3.5vw,2.6rem); margin:0.4rem 0 0.5rem;">
+
+                </h2>
+                <p style="color:var(--text-muted); font-size:0.88rem;">
+
+                </p>
+            </div>
+
+            <div class="photo-grid">
+
+                <div class="photo-card" data-caption="My Learning Journey — PED 105 · Reflection">
+                    <img src="pics/ref.jpg" alt="Final Reflection - Learning Journey">
+                    <div class="photo-overlay">
+                        <span class="zoom-hint">View Photo</span>
+                    </div>
+                    <div class="photo-caption-bar">
+                        <strong>My Learning Journey</strong>
+                        <span class="photo-tag">Reflection</span>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </section>
+
+        <!-- ══ CLOSING ══ -->
+        <div class="rf-closing">
+            <h2>Thank You 🌟</h2>
+            <p>
+                This portfolio marks not just the end of PED 105, but the beginning of my journey
+                as a future Physical Education teacher. Every lesson, every challenge, and every
+                collaboration has shaped who I am. I carry these experiences with me — prepared,
+                passionate, and purposeful.
+            </p>
+            <a href="index.html" class="rf-closing-btn">← Back to Portfolio Home</a>
+        </div>
+
     </main>
 
+    <!-- ══════════ FOOTER ══════════ -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -507,52 +1451,123 @@
         <div class="footer-social-bar">
             <div class="social-links">
                 <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Facebook" class="social-btn social-fb"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    aria-label="Facebook" class="social-btn social-fb">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg></a>
+                    </svg>
+                </a>
                 <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="Instagram" class="social-btn social-ig"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round">
+                    aria-label="Instagram" class="social-btn social-ig">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                         <circle cx="12" cy="12" r="4" />
                         <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-                    </svg></a>
-                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    </svg>
+                </a>
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <polyline points="22,6 12,13 2,6" />
-                    </svg></a>
+                    </svg>
+                </a>
                 <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="TikTok" class="social-btn social-tiktok"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    aria-label="TikTok" class="social-btn social-tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
                         <path
                             d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
-                    </svg></a>
+                    </svg>
+                </a>
                 <a href="https://www.youtube.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="YouTube" class="social-btn social-youtube"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    aria-label="YouTube" class="social-btn social-youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
                         <path
                             d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                         <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
-                    </svg></a>
+                    </svg>
+                </a>
                 <a href="https://twitter.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
-                    aria-label="X (Twitter)" class="social-btn social-x"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    aria-label="X (Twitter)" class="social-btn social-x">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
                         <path
                             d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg></a>
+                    </svg>
+                </a>
             </div>
         </div>
     </footer>
 
+    <!-- ══════════ MOBILE DRAWER ══════════ -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-header">
+            <span class="drawer-logo">Digital Teaching</span>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+        </div>
+        <div class="drawer-nav" id="drawerNav">
+            <span class="drawer-section-label">Main Pages</span>
+            <a href="index.html"><span class="drawer-nav-icon">🏠</span>Home</a>
+            <a href="About_Me.html"><span class="drawer-nav-icon">👤</span>About Me</a>
+            <a href="ict_policies.html"><span class="drawer-nav-icon">🔒</span>ICT Policies &amp; Safety</a>
+            <a href="non_digital_tool.html"><span class="drawer-nav-icon">📌</span>Non-Digital Tool</a>
+            <a href="digital_Tool.html"><span class="drawer-nav-icon">💻</span>Digital Tool</a>
+            <span class="drawer-section-label">More</span>
+            <a href="collaborative_task.html"><span class="drawer-nav-icon">🤝</span>Collaborative Task</a>
+            <a href="flexible_learning.html"><span class="drawer-nav-icon">🔄</span>Flexible Learning</a>
+            <a href="final_reflection.html" class="active"><span class="drawer-nav-icon">🌟</span>Final Reflection</a>
+        </div>
+        <div class="drawer-footer">
+            <span class="drawer-footer-label">Connect with Jessa</span>
+            <div class="drawer-social social-links">
+                <a href="https://www.facebook.com/jessa.maninantan.paradiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="Facebook" class="social-btn social-fb">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/jessaparadiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="Instagram" class="social-btn social-ig">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+                    </svg>
+                </a>
+                <a href="mailto:paradiangjessa2005@gmail.com" aria-label="Gmail" class="social-btn social-email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@jessaparadiang" target="_blank" rel="noopener noreferrer"
+                    aria-label="TikTok" class="social-btn social-tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+    <!-- ══════════ SCRIPTS ══════════ -->
     <script src="index.js"></script>
     <script src="search.js"></script>
     <script>
-        // ── Lightbox ──
         (function () {
+            // ── Lightbox ──
             const cards = document.querySelectorAll('.photo-card');
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lbImg');
@@ -560,34 +1575,40 @@
             const lbClose = document.getElementById('lbClose');
             const lbPrev = document.getElementById('lbPrev');
             const lbNext = document.getElementById('lbNext');
-            let current = 0;
+            let cur = 0;
+
             const images = Array.from(cards).map(c => ({
                 src: c.querySelector('img').src,
                 alt: c.querySelector('img').alt,
-                caption: c.querySelector('.photo-caption strong').textContent + ' — ' + c.querySelector('.photo-caption small').textContent
+                caption: c.getAttribute('data-caption') || c.querySelector('strong')?.textContent || ''
             }));
-            function open(i) {
-                current = (i + images.length) % images.length;
-                lbImg.src = images[current].src; lbImg.alt = images[current].alt;
-                lbCap.textContent = images[current].caption;
-                lb.classList.add('open'); document.body.style.overflow = 'hidden';
+
+            function lbOpen(i) {
+                cur = (i + images.length) % images.length;
+                lbImg.src = images[cur].src;
+                lbImg.alt = images[cur].alt;
+                lbCap.textContent = images[cur].caption;
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
             }
-            function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-            cards.forEach((c, i) => c.addEventListener('click', () => open(i)));
-            lbClose.addEventListener('click', close);
-            lb.addEventListener('click', e => { if (e.target === lb) close(); });
-            lbPrev.addEventListener('click', e => { e.stopPropagation(); open(current - 1); });
-            lbNext.addEventListener('click', e => { e.stopPropagation(); open(current + 1); });
+            function lbClose2() {
+                lb.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            cards.forEach((c, i) => c.addEventListener('click', () => lbOpen(i)));
+            lbClose.addEventListener('click', lbClose2);
+            lb.addEventListener('click', e => { if (e.target === lb) lbClose2(); });
+            lbPrev.addEventListener('click', e => { e.stopPropagation(); lbOpen(cur - 1); });
+            lbNext.addEventListener('click', e => { e.stopPropagation(); lbOpen(cur + 1); });
             document.addEventListener('keydown', e => {
                 if (!lb.classList.contains('open')) return;
-                if (e.key === 'Escape') close();
-                if (e.key === 'ArrowLeft') open(current - 1);
-                if (e.key === 'ArrowRight') open(current + 1);
+                if (e.key === 'Escape') lbClose2();
+                if (e.key === 'ArrowLeft') lbOpen(cur - 1);
+                if (e.key === 'ArrowRight') lbOpen(cur + 1);
             });
-        })();
 
-        // ── Timeline Accordion ──
-        (function () {
+            // ── Timeline accordion with smooth max-height ──
             document.querySelectorAll('.timeline-item').forEach(item => {
                 item.querySelector('.timeline-header').addEventListener('click', () => {
                     const isOpen = item.classList.contains('open');
@@ -597,6 +1618,7 @@
             });
         })();
     </script>
+
 </body>
 
 </html>
