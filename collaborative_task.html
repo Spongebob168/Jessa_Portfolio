@@ -3,219 +3,431 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Collaborative Task — Jessa Paradiang | BPED Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <script>!function () { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t) }();</script>
     <style>
+        /* ── TOKENS ── */
         :root {
-            --clr: #34d399;
-            --clr-rgb: 52, 211, 153;
+            --g: #34d399;
+            --g2: #10b981;
+            --g3: #059669;
+            --gd: rgba(52, 211, 153, 0.1);
+            --gb: rgba(52, 211, 153, 0.22);
+            --gg: rgba(52, 211, 153, 0.18);
         }
 
-        /* ── BANNER ── */
-        .page-badge {
-            display: inline-flex !important;
+        body {
+            font-family: 'Outfit', system-ui, sans-serif;
+        }
+
+        /* ════════════════════════════════
+           HERO
+        ════════════════════════════════ */
+        .ct-hero {
+            position: relative;
+            min-height: 62vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 7rem 6% 4.5rem;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ct-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 80% at -5% 70%, rgba(52, 211, 153, 0.13) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 60% at 105% 5%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 35% 45% at 55% 95%, rgba(52, 211, 153, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* large ghost emoji background */
+        .ct-hero-bg-glyph {
+            position: absolute;
+            right: -4%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: clamp(16rem, 32vw, 30rem);
+            line-height: 1;
+            opacity: 0.04;
+            pointer-events: none;
+            user-select: none;
+            filter: blur(2px);
+        }
+
+        /* animated accent line */
+        .ct-hero-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, var(--g), transparent);
+            animation: linePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes linePulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .ct-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
+        }
+
+        .ct-eyebrow {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 0.55rem 1.6rem !important;
+            padding: 0.45rem 1.2rem;
             border-radius: 999px;
-            font-size: 0.72rem !important;
-            font-weight: 800 !important;
-            letter-spacing: 0.14em !important;
+            font-size: 0.69rem;
+            font-weight: 700;
+            letter-spacing: 0.17em;
             text-transform: uppercase;
+            background: var(--gd);
+            border: 1px solid var(--gb);
+            color: var(--g);
+            margin-bottom: 1.8rem;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(14px);
-            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.35), 0 8px 32px rgba(52, 211, 153, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-            animation: badgePulse 3.5s ease-in-out infinite;
         }
 
-        .page-badge::before {
+        .ct-eyebrow::after {
             content: '';
             position: absolute;
             top: 0;
             left: -80%;
-            width: 55%;
+            width: 50%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
-            animation: badgeShimmer 3.5s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 4s ease-in-out infinite;
         }
 
-        @keyframes badgePulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.35), 0 8px 32px rgba(52, 211, 153, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-            }
-
-            50% {
-                box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.55), 0 14px 48px rgba(52, 211, 153, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-            }
-        }
-
-        @keyframes badgeShimmer {
+        @keyframes shimmer {
             0% {
                 left: -80%
             }
 
-            60%,
+            70%,
             100% {
                 left: 160%
             }
         }
 
-        /* ── GALLERY ── */
-        .gallery-wrap {
-            margin-top: 60px;
+        .ct-live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--g);
+            box-shadow: 0 0 8px var(--g);
+            animation: dotPulse 2s ease-in-out infinite;
+            flex-shrink: 0;
         }
 
-        .gallery-head {
-            text-align: center;
-            margin-bottom: 32px;
-        }
+        @keyframes dotPulse {
 
-        .gallery-head h2 {
-            color: #34d399;
-            font-size: 1.45rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 6px var(--g);
+            }
 
-        .gallery-head p {
-            color: var(--text-muted, #888);
-            font-size: 0.88rem;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        @media(max-width:600px) {
-            .photo-grid {
-                grid-template-columns: 1fr;
+            50% {
+                transform: scale(1.25);
+                box-shadow: 0 0 16px var(--g);
             }
         }
 
-        /* Photo card — image inside the border */
-        .photo-card {
-            position: relative;
-            border-radius: 20px;
-            cursor: pointer;
-            border: 2px solid rgba(52, 211, 153, 0.35);
-            background: linear-gradient(160deg, rgba(52, 211, 153, 0.07) 0%, rgba(0, 0, 0, 0.3) 100%);
-            padding: 10px 10px 0 10px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
-            transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s, border-color .28s;
-            overflow: visible;
+        .ct-h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3.2rem, 9vw, 7rem);
+            line-height: 0.92;
+            letter-spacing: -0.025em;
+            color: var(--text);
+            margin-bottom: 1.4rem;
         }
 
-        .photo-card:hover {
-            transform: translateY(-8px) scale(1.015);
-            box-shadow: 0 28px 64px rgba(52, 211, 153, 0.26), 0 0 0 3px rgba(52, 211, 153, 0.5);
-            border-color: rgba(52, 211, 153, 0.75);
+        .ct-h1 em {
+            font-style: italic;
+            color: var(--g);
         }
 
-        .photo-card .img-wrap {
-            border-radius: 12px;
+        .ct-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.18rem);
+            color: var(--text-light);
+            font-weight: 400;
+            opacity: 0.8;
+            max-width: 500px;
+            line-height: 1.65;
+            margin-bottom: 2rem;
+        }
+
+        .ct-hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .ct-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.38rem 1rem;
+            border-radius: 999px;
+            font-size: 0.79rem;
+            font-weight: 600;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .ct-chip.green {
+            background: var(--gd);
+            border-color: var(--gb);
+            color: var(--g);
+        }
+
+        /* ════════════════════════════════
+           SECTION WRAPPER
+        ════════════════════════════════ */
+        .ct-wrap {
+            padding: 5rem 6%;
+        }
+
+        .ct-wrap+.ct-wrap {
+            border-top: 1px solid var(--border);
+        }
+
+        .ct-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.67rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--g);
+            margin-bottom: 1rem;
+        }
+
+        .ct-label::after {
+            content: '';
+            width: 48px;
+            height: 1px;
+            background: var(--gb);
+        }
+
+        .ct-heading {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.4rem);
+            line-height: 1.08;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .ct-sub {
+            font-size: 0.92rem;
+            color: var(--text-light);
+            opacity: 0.7;
+            max-width: 480px;
+            line-height: 1.65;
+            margin-bottom: 3rem;
+        }
+
+        /* ════════════════════════════════
+           BENTO GALLERY
+        ════════════════════════════════ */
+        .ct-bento {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 16px;
+            align-items: start;
+        }
+
+        /* first photo — tall, spans 2 rows */
+        .ct-bento .media-item:nth-child(1) {
+            grid-row: span 2;
+            height: 100%;
+            min-height: 460px;
+        }
+
+        .media-item {
+            border-radius: 22px;
             overflow: hidden;
+            border: 1px solid var(--gb);
+            background: var(--gd);
             position: relative;
-            line-height: 0;
+            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.38s,
+                border-color 0.28s;
         }
 
-        .photo-card img {
+        .media-item.is-photo {
+            cursor: pointer;
+        }
+
+        .media-item:hover {
+            transform: translateY(-7px);
+            border-color: rgba(52, 211, 153, 0.6);
+            box-shadow: 0 24px 60px rgba(52, 211, 153, 0.15), 0 0 0 1px rgba(52, 211, 153, 0.1);
+        }
+
+        .media-item img {
             width: 100%;
-            height: 230px;
+            height: 100%;
+            min-height: 240px;
             object-fit: cover;
             display: block;
-            transition: transform .5s cubic-bezier(.22, 1, .36, 1);
-            border-radius: 12px;
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .photo-card:hover img {
+        .media-item:hover img {
             transform: scale(1.07);
         }
 
-        .photo-card-caption {
-            padding: 10px 6px 12px;
-            text-align: center;
+        /* ── VIDEO CARDS: flex column so caption sits BELOW the video ── */
+        .media-item.is-video {
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            /* allow caption outside rounded box */
+            background: transparent;
+            border: none;
         }
 
-        .photo-card-caption strong {
+        /* kill the lift-hover on video items so controls stay reachable */
+        .media-item.is-video:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .media-item.is-video .video-shell {
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--gb);
+            background: #000;
+            transition: border-color 0.28s, box-shadow 0.28s;
+            flex-shrink: 0;
+        }
+
+        .media-item.is-video:hover .video-shell {
+            border-color: rgba(52, 211, 153, 0.6);
+            box-shadow: 0 18px 50px rgba(52, 211, 153, 0.14);
+        }
+
+        .media-item video {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
             display: block;
-            color: #fff;
-            font-size: 0.92rem;
+            background: #000;
+        }
+
+        /* ── PHOTO caption: overlaid gradient (unchanged) ── */
+        .media-item.is-photo .media-cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.2rem 1.2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* ── VIDEO caption: below the video shell ── */
+        .media-item.is-video .media-cap {
+            position: static;
+            padding: 0.9rem 0.2rem 0.5rem;
+            background: transparent;
+        }
+
+        .media-cap strong {
+            display: block;
+            color: var(--text);
+            font-size: 0.93rem;
             font-weight: 700;
             margin-bottom: 2px;
         }
 
-        .photo-card-caption small {
-            color: rgba(52, 211, 153, 0.9);
-            font-size: 0.75rem;
+        .media-item.is-photo .media-cap strong {
+            color: #fff;
+        }
+
+        .media-cap small {
+            color: var(--g);
+            font-size: 0.76rem;
             font-weight: 500;
         }
 
-        .zoom-circle {
+        /* zoom hint */
+        .zoom-hint {
             position: absolute;
-            inset: 0;
+            top: 12px;
+            right: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.18);
+            border: 1.5px solid rgba(52, 211, 153, 0.7);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
+            font-size: 1rem;
+            transform: scale(0.6) rotate(-15deg);
             opacity: 0;
-            transition: opacity .3s;
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s;
         }
 
-        .photo-card:hover .zoom-circle {
+        .media-item:hover .zoom-hint {
+            transform: scale(1) rotate(0deg);
             opacity: 1;
         }
 
-        .zoom-circle-inner {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(52, 211, 153, .22);
-            border: 2px solid rgba(52, 211, 153, .85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            box-shadow: 0 0 0 6px rgba(52, 211, 153, .1), 0 8px 28px rgba(52, 211, 153, .4);
-            transform: scale(0.75);
-            transition: transform .3s cubic-bezier(.22, 1, .36, 1);
-        }
-
-        .photo-card:hover .zoom-circle-inner {
-            transform: scale(1);
-        }
-
-        /* ── LIGHTBOX — improved ── */
-        .lightbox {
+        /* ════════════════════════════════
+           LIGHTBOX
+        ════════════════════════════════ */
+        .lb {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(5, 5, 15, .96);
-            backdrop-filter: blur(28px) saturate(1.5);
+            background: rgba(3, 5, 14, 0.97);
+            backdrop-filter: blur(34px) saturate(1.6);
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            gap: 18px;
+            gap: 22px;
         }
 
-        .lightbox.open {
+        .lb.open {
             display: flex;
-            animation: lbIn .3s cubic-bezier(.22, 1, .36, 1);
+            animation: lbFade 0.28s ease;
         }
 
-        @keyframes lbIn {
+        @keyframes lbFade {
             from {
                 opacity: 0
             }
@@ -225,214 +437,527 @@
             }
         }
 
-        .lb-img-wrap {
-            border: 3px solid rgba(52, 211, 153, 0.45);
-            border-radius: 22px;
-            padding: 8px;
-            background: rgba(52, 211, 153, 0.05);
-            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.12), 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 80px rgba(52, 211, 153, 0.1);
-            animation: lbScale .36s cubic-bezier(.22, 1, .36, 1);
-        }
-
-        @keyframes lbScale {
-            from {
-                opacity: 0;
-                transform: scale(.88) translateY(14px)
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0)
-            }
-        }
-
-        #lbImg {
-            display: block;
-            max-width: min(88vw, 940px);
-            max-height: 66vh;
-            border-radius: 15px;
-            object-fit: contain;
-        }
-
-        .lb-counter {
+        .lb-x {
             position: absolute;
             top: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(52, 211, 153, 0.15);
-            border: 1px solid rgba(52, 211, 153, 0.35);
-            color: #34d399;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 4px 14px;
-            border-radius: 999px;
-            letter-spacing: 0.06em;
-        }
-
-        .lb-caption {
-            color: rgba(255, 255, 255, .82);
-            font-size: .92rem;
-            font-weight: 500;
-            text-align: center;
-            max-width: 680px;
-        }
-
-        .lb-close {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            width: 46px;
-            height: 46px;
+            right: 26px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(52, 211, 153, .15);
-            border: 1.5px solid rgba(52, 211, 153, .55);
+            background: rgba(52, 211, 153, 0.1);
+            border: 1.5px solid rgba(52, 211, 153, 0.4);
             color: #fff;
             font-size: 1.1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background .2s, transform .28s cubic-bezier(.22, 1, .36, 1), box-shadow .2s;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, .5), 0 0 16px rgba(52, 211, 153, .18);
+            transition: background 0.2s, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .lb-close:hover {
-            background: rgba(52, 211, 153, .45);
+        .lb-x:hover {
+            background: rgba(52, 211, 153, 0.32);
             transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 6px 22px rgba(52, 211, 153, .38);
         }
 
-        .lb-nav {
-            display: flex;
-            gap: 12px;
-        }
-
-        .lb-nav button {
-            padding: 10px 32px;
-            border-radius: 14px;
-            font-size: 1rem;
+        .lb-pill {
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gd);
+            border: 1px solid var(--gb);
+            color: var(--g);
+            font-size: 0.75rem;
             font-weight: 700;
-            cursor: pointer;
-            border: 1.5px solid rgba(52, 211, 153, .48);
-            background: rgba(52, 211, 153, .12);
-            color: #34d399;
-            transition: background .2s, transform .22s cubic-bezier(.22, 1, .36, 1), box-shadow .2s;
+            padding: 5px 18px;
+            border-radius: 999px;
+            letter-spacing: 0.08em;
         }
 
-        .lb-nav button:hover {
-            background: rgba(52, 211, 153, .28);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 22px rgba(52, 211, 153, .26);
+        .lb-frame {
+            border: 2px solid rgba(52, 211, 153, 0.38);
+            border-radius: 24px;
+            padding: 8px;
+            background: rgba(52, 211, 153, 0.04);
+            box-shadow: 0 0 80px rgba(52, 211, 153, 0.08), 0 40px 100px rgba(0, 0, 0, 0.92);
+            animation: lbPop 0.34s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* ── GROUP ROLES ── */
-        .roles-section {
-            margin-top: 52px;
-        }
-
-        .roles-section h2 {
-            color: #34d399;
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-        }
-
-        .roles-section>p {
-            color: var(--text-muted, #888);
-            font-size: 0.88rem;
-            margin-bottom: 22px;
-        }
-
-        .roles-tabs {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-        }
-
-        .role-tab {
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1.5px solid rgba(52, 211, 153, 0.3);
-            background: transparent;
-            color: var(--text, #eee);
-            transition: all .2s;
-        }
-
-        .role-tab.active,
-        .role-tab:hover {
-            background: rgba(52, 211, 153, 0.15);
-            border-color: #34d399;
-            color: #34d399;
-        }
-
-        .role-panel {
-            display: none;
-            background: rgba(52, 211, 153, 0.06);
-            border: 1.5px solid rgba(52, 211, 153, 0.2);
-            border-radius: 14px;
-            padding: 20px 22px;
-        }
-
-        .role-panel.active {
-            display: block;
-            animation: fadeUp .2s ease;
-        }
-
-        @keyframes fadeUp {
+        @keyframes lbPop {
             from {
                 opacity: 0;
-                transform: translateY(8px)
+                transform: scale(0.87) translateY(14px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0)
+                transform: scale(1) translateY(0);
             }
         }
 
-        .role-panel h4 {
-            color: #34d399;
-            margin-bottom: 8px;
-            font-size: 1rem;
+        #lbImg {
+            display: block;
+            max-width: min(90vw, 960px);
+            max-height: 66vh;
+            border-radius: 17px;
+            object-fit: contain;
         }
 
-        .role-panel p {
-            color: var(--text, #ddd);
+        .lb-cap {
+            color: rgba(255, 255, 255, 0.75);
             font-size: 0.9rem;
-            line-height: 1.65;
+            font-weight: 500;
+            text-align: center;
+            max-width: 600px;
         }
 
-        .role-panel ul {
-            color: var(--text, #ddd);
-            font-size: 0.9rem;
-            padding-left: 18px;
-            margin-top: 8px;
+        .lb-btns {
+            display: flex;
+            gap: 10px;
         }
 
-        .role-panel ul li {
-            margin-bottom: 5px;
+        .lb-btns button {
+            padding: 10px 36px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1.5px solid rgba(52, 211, 153, 0.4);
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--g);
+            transition: background 0.2s, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .lb-btns button:hover {
+            background: rgba(52, 211, 153, 0.26);
+            transform: translateY(-3px);
+        }
+
+        /* ════════════════════════════════
+           REFLECTION — 2-COL EDITORIAL
+        ════════════════════════════════ */
+        .ct-ref-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.9fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .ct-ref-aside {
+            position: sticky;
+            top: 90px;
+        }
+
+        .ct-blockquote-wrap {
+            position: relative;
+            padding-left: 1.6rem;
+            border-left: 3px solid var(--g);
+            margin-bottom: 1.6rem;
+        }
+
+        .ct-big-q {
+            font-family: 'DM Serif Display', serif;
+            font-size: 7rem;
+            line-height: 0.7;
+            color: var(--g);
+            opacity: 0.15;
+            display: block;
+            margin-bottom: -1.2rem;
+            user-select: none;
+        }
+
+        .ct-blockquote-wrap blockquote {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .ct-attr {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--g);
+            margin-top: 0.8rem;
+            display: block;
+        }
+
+        /* emotion pills */
+        .ct-emotions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1.8rem;
+        }
+
+        .ct-emotion {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.38rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: var(--gd);
+            border: 1px solid var(--gb);
+            color: var(--g);
+        }
+
+        /* Timeline */
+        .ct-timeline {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ct-tl-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 1.4rem;
+            padding-bottom: 2.8rem;
+            position: relative;
+        }
+
+        .ct-tl-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .ct-tl-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 48px;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--gb), transparent);
+        }
+
+        .ct-tl-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding-top: 2px;
+        }
+
+        .ct-tl-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--gd);
+            border: 1.5px solid var(--gb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .ct-tl-item:hover .ct-tl-icon {
+            background: rgba(52, 211, 153, 0.2);
+            border-color: var(--g);
+            box-shadow: 0 0 18px rgba(52, 211, 153, 0.3);
+        }
+
+        .ct-tl-phase {
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--g);
+            opacity: 0.65;
+            text-align: center;
+        }
+
+        .ct-tl-right h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 0.55rem;
+            line-height: 1.2;
+        }
+
+        .ct-tl-right p {
+            font-size: 0.91rem;
+            line-height: 1.78;
+            color: var(--text-light);
+            opacity: 0.88;
+        }
+
+        /* ════════════════════════════════
+           ROLES — ALWAYS-VISIBLE CARDS
+        ════════════════════════════════ */
+        .ct-roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .ct-role-card {
+            border-radius: 24px;
+            padding: 2rem 1.8rem 1.8rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.38s,
+                border-color 0.28s;
+        }
+
+        /* top shimmer line */
+        .ct-role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--g), transparent);
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        /* corner radial glow */
+        .ct-role-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.16) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .ct-role-card:hover {
+            transform: translateY(-9px);
+            border-color: var(--gb);
+            box-shadow: 0 28px 64px rgba(52, 211, 153, 0.13), 0 0 0 1px rgba(52, 211, 153, 0.08);
+        }
+
+        .ct-role-card:hover::before {
+            opacity: 1;
+        }
+
+        .ct-role-card:hover::after {
+            opacity: 1;
+        }
+
+        .ct-role-emoji {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 1.1rem;
+        }
+
+        .ct-role-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.22rem;
+            color: var(--text);
+            margin-bottom: 0.55rem;
+        }
+
+        .ct-role-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.68;
+            opacity: 0.82;
+            margin-bottom: 1.2rem;
+        }
+
+        .ct-role-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .ct-role-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            opacity: 0.78;
+            line-height: 1.5;
+        }
+
+        .ct-role-list li::before {
+            content: '›';
+            color: var(--g);
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.25;
+            flex-shrink: 0;
+        }
+
+        /* ════════════════════════════════
+           CLOSING BANNER
+        ════════════════════════════════ */
+        .ct-banner {
+            margin: 0 6% 5rem;
+            padding: 3.5rem 4rem;
+            background: var(--gd);
+            border: 1px solid var(--gb);
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ct-banner::before {
+            content: '🤝';
+            position: absolute;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: clamp(7rem, 16vw, 13rem);
+            opacity: 0.05;
+            pointer-events: none;
+            line-height: 1;
+            filter: blur(1px);
+        }
+
+        .ct-banner-lbl {
+            font-size: 0.67rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--g);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ct-banner-lbl::before {
+            content: '';
+            width: 22px;
+            height: 1.5px;
+            background: var(--g);
+        }
+
+        .ct-banner h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            color: var(--text);
+            line-height: 1.22;
+            margin-bottom: 1rem;
+            max-width: 640px;
+        }
+
+        .ct-banner p {
+            font-size: 0.96rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            max-width: 580px;
+            line-height: 1.72;
+        }
+
+        /* ════════════════════════════════
+           RESPONSIVE
+        ════════════════════════════════ */
+        @media (max-width: 900px) {
+            .ct-bento {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ct-bento .media-item:nth-child(1) {
+                grid-row: span 1;
+                min-height: 0;
+                height: auto;
+            }
+
+            .ct-ref-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .ct-ref-aside {
+                position: static;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .ct-hero {
+                padding: 5.5rem 5% 3.5rem;
+            }
+
+            .ct-wrap {
+                padding: 3.5rem 5%;
+            }
+
+            .ct-bento {
+                grid-template-columns: 1fr;
+            }
+
+            .ct-bento .media-item:nth-child(1) {
+                grid-row: span 1;
+                min-height: 0;
+                height: auto;
+            }
+
+            .ct-roles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ct-banner {
+                margin: 0 4% 4rem;
+                padding: 2.2rem 1.8rem;
+            }
+
+            .ct-banner::before {
+                display: none;
+            }
+
+            .ct-tl-item {
+                grid-template-columns: 48px 1fr;
+                gap: 1rem;
+            }
+
+            .ct-tl-item::after {
+                left: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ct-h1 {
+                font-size: clamp(2.8rem, 12vw, 4.5rem);
+            }
+
+            .ct-hero-bg-glyph {
+                font-size: 12rem;
+                opacity: 0.03;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="lightbox" id="lightbox">
-        <button class="lb-close" id="lbClose">✕</button>
-        <span class="lb-counter" id="lbCounter">1 / 2</span>
-        <div class="lb-img-wrap">
+    <!-- ── LIGHTBOX ── -->
+    <div class="lb" id="lb">
+        <button class="lb-x" id="lbClose">✕</button>
+        <span class="lb-pill" id="lbPill">1 / 2</span>
+        <div class="lb-frame">
             <img id="lbImg" src="" alt="">
         </div>
-        <div class="lb-caption" id="lbCaption"></div>
-        <div class="lb-nav">
+        <div class="lb-cap" id="lbCap"></div>
+        <div class="lb-btns">
             <button id="lbPrev">‹ Prev</button>
             <button id="lbNext">Next ›</button>
         </div>
     </div>
 
+    <!-- ── HEADER ── -->
     <header>
         <div class="logo-container">
             <div class="logo">Digital Teaching</div>
@@ -468,157 +993,263 @@
             </div>
             <button class="theme-toggle" aria-label="Toggle theme"><span class="sun">☀</span><span
                     class="moon">🌙</span></button>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+                <span class="ham-bar"></span><span class="ham-bar"></span><span class="ham-bar"></span>
+            </button>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="section-with-profile">
-                <div class="section-text">
-                    <span class="page-badge"
-                        style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(16,185,129,0.22));color:#34d399;border:1px solid rgba(52,211,153,0.3);">
-                        🤝 PED 105 · Technology for Teaching and Learning 1
-                    </span>
-                    <h1>Collaborative Task</h1>
-                    <p class="tagline">Learning together — building teamwork and shared growth.</p>
+
+        <!-- ══ HERO ══ -->
+        <section class="ct-hero">
+            <div class="ct-hero-line"></div>
+            <span class="ct-hero-bg-glyph">🤝</span>
+            <div class="ct-hero-inner">
+                <span class="ct-eyebrow">
+                    <span class="ct-live-dot"></span>
+                    PED 105 · Technology for Teaching and Learning 1
+                </span>
+                <h1 class="ct-h1">
+                    Collaborative<br><em>Task</em>
+                </h1>
+                <p class="ct-hero-sub">
+                    Learning together — building teamwork, shared growth, and the confidence to lead as a future
+                    educator.
+                </p>
+                <div class="ct-hero-chips">
+                    <span class="ct-chip green">🤝 BPED 2nd Year</span>
+                    <span class="ct-chip">📅 2026</span>
+                    <span class="ct-chip">👩‍🏫 Ms. Michele Baguinat</span>
                 </div>
             </div>
         </section>
 
-        <section class="intro">
+        <!-- ══ BENTO GALLERY ══ -->
+        <section class="ct-wrap">
+            <div class="ct-label">📸 Visual Documentation</div>
+            <h2 class="ct-heading">Activities in<br>Physical Education</h2>
+            <p class="ct-sub">Click a photo to enlarge · Press play on videos</p>
 
-            <!-- ══ GALLERY ══ -->
-            <div class="gallery-wrap">
-                <div class="gallery-head">
-                    <h2>📸 Collaborative Activities in Physical Education</h2>
-                    <p>Photos: click to zoom &nbsp;·&nbsp; Videos: press play</p>
+            <div class="ct-bento">
+
+                <div class="media-item is-photo" data-index="0">
+                    <img src="pics/c1.jpg" alt="Students doing group relay in PE">
+                    <div class="zoom-hint">🔍</div>
+                    <div class="media-cap">
+                        <strong>Group Relay Race</strong>
+                        <small>Teamwork and speed development</small>
+                    </div>
                 </div>
-                <div class="photo-grid">
 
-                    <div class="photo-card" data-index="0">
-                        <div class="img-wrap">
-                            <img src="pics/c1.jpg" alt="Students doing group relay in PE">
-                            <div class="zoom-circle">
-                                <div class="zoom-circle-inner">🔍</div>
-                            </div>
-                        </div>
-                        <div class="photo-card-caption">
-                            <strong>Group Relay Race</strong>
-                            <small>Teamwork and speed development</small>
-                        </div>
+                <div class="media-item is-photo" data-index="1">
+                    <img src="pics/c2.jpg" alt="Students in cooperative PE game">
+                    <div class="zoom-hint">🔍</div>
+                    <div class="media-cap">
+                        <strong>Cooperative Obstacle Course</strong>
+                        <small>Building trust and communication</small>
                     </div>
+                </div>
 
-                    <div class="photo-card" data-index="1">
-                        <div class="img-wrap">
-                            <img src="pics/c2.jpg" alt="Students in cooperative PE game">
-                            <div class="zoom-circle">
-                                <div class="zoom-circle-inner">🔍</div>
-                            </div>
-                        </div>
-                        <div class="photo-card-caption">
-                            <strong>Cooperative Obstacle Course</strong>
-                            <small>Building trust and communication</small>
-                        </div>
-                    </div>
-
-                    <div class="video-card">
+                <div class="media-item is-video">
+                    <div class="video-shell">
                         <video src="pics/c3.mp4" controls muted playsinline>Your browser does not support video.</video>
-                        <div class="media-caption">
-                            <strong>Team Building Circle Game</strong>
-                            <small>Enhancing group coordination</small>
-                        </div>
                     </div>
+                    <div class="media-cap">
+                        <strong>Team Building Circle Game</strong>
+                        <small>Enhancing group coordination</small>
+                    </div>
+                </div>
 
-                    <div class="video-card">
+                <div class="media-item is-video">
+                    <div class="video-shell">
                         <video src="pics/c4.mp4" controls muted playsinline>Your browser does not support video.</video>
-                        <div class="media-caption">
-                            <strong>Group Fitness Challenge</strong>
-                            <small>Promoting motivation and support</small>
-                        </div>
                     </div>
+                    <div class="media-cap">
+                        <strong>Group Fitness Challenge</strong>
+                        <small>Promoting motivation and support</small>
+                    </div>
+                </div>
 
+            </div>
+        </section>
+
+        <!-- ══ REFLECTION TIMELINE ══ -->
+        <section class="ct-wrap">
+            <div class="ct-ref-grid">
+
+                <!-- Left: sticky quote + emotion pills -->
+                <div class="ct-ref-aside">
+                    <div class="ct-label">✍️ Personal Reflection</div>
+                    <div class="ct-blockquote-wrap">
+                        <span class="ct-big-q">"</span>
+                        <blockquote>
+                            Teaching requires preparation, cooperation, and dedication.
+                        </blockquote>
+                    </div>
+                    <span class="ct-attr">— Jessa Paradiang</span>
+                    <div class="ct-emotions">
+                        <span class="ct-emotion">😤 Nervous</span>
+                        <span class="ct-emotion">💪 Confident</span>
+                        <span class="ct-emotion">😊 Proud</span>
+                        <span class="ct-emotion">🌱 Growth</span>
+                        <span class="ct-emotion">🤝 Teamwork</span>
+                        <span class="ct-emotion">⏰ Time-managed</span>
+                    </div>
+                </div>
+
+                <!-- Right: vertical timeline -->
+                <div>
+                    <h2 class="ct-heading">My Collaborative<br>Journey</h2>
+                    <p class="ct-sub">A reflection on our demonstration teaching — the challenges, the growth, and the
+                        lessons that stayed.</p>
+
+                    <div class="ct-timeline">
+
+                        <div class="ct-tl-item">
+                            <div class="ct-tl-left">
+                                <div class="ct-tl-icon">📋</div>
+                                <span class="ct-tl-phase">Before</span>
+                            </div>
+                            <div class="ct-tl-right">
+                                <h4>Preparing the Materials</h4>
+                                <p>I became one of the members who helped prepare our instructional materials (IMs) and
+                                    organize everything needed for our presentation. My contribution focused on creating
+                                    visual aids and materials that made our demonstration more organized, creative, and
+                                    effective. I also participated in planning and sharing ideas to make our lesson more
+                                    engaging for the class.</p>
+                            </div>
+                        </div>
+
+                        <div class="ct-tl-item">
+                            <div class="ct-tl-left">
+                                <div class="ct-tl-icon">⚡</div>
+                                <span class="ct-tl-phase">Challenge</span>
+                            </div>
+                            <div class="ct-tl-right">
+                                <h4>Overcoming Delays Together</h4>
+                                <p>Some members could not arrive on time during IM preparation, causing delays and
+                                    misunderstandings. Instead of focusing on the problem, we reassigned
+                                    responsibilities to late arrivals so everyone could still contribute. Through
+                                    cooperation, communication, and teamwork, we completed the demonstration
+                                    successfully.</p>
+                            </div>
+                        </div>
+
+                        <div class="ct-tl-item">
+                            <div class="ct-tl-left">
+                                <div class="ct-tl-icon">🎤</div>
+                                <span class="ct-tl-phase">During</span>
+                            </div>
+                            <div class="ct-tl-right">
+                                <h4>Growing Confident on Stage</h4>
+                                <p>Before the demonstration I felt nervous and pressured. During the presentation, that
+                                    nervousness gave way to confidence — we supported each other at every step, and the
+                                    energy of the group carried us through.</p>
+                            </div>
+                        </div>
+
+                        <div class="ct-tl-item">
+                            <div class="ct-tl-left">
+                                <div class="ct-tl-icon">🌟</div>
+                                <span class="ct-tl-phase">After</span>
+                            </div>
+                            <div class="ct-tl-right">
+                                <h4>Pride, Growth &amp; Realisation</h4>
+                                <p>After the demonstration I felt happy, proud, and relieved — all the hard work paid
+                                    off. This experience taught me the value of responsibility, patience, and time
+                                    management, and helped me grow as a communicator, leader, and future educator.</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-
-            <div class="content-sections">
-                <div class="content-card" style="border-left:3px solid #34d399;">
-                    <div class="card-icon" style="background:rgba(52,211,153,0.12);color:#34d399">🤝</div>
-                    <div class="card-body">
-                        <h3>What is Collaborative Learning?</h3>
-                        <p>A group of students working together in an outdoor space to create a project using colored
-                            papers and other materials. Each member has a specific role some are cutting, designing, and
-                            assembling showing teamwork and cooperation. They are sharing ideas, helping each other, and
-                            focusing on a common goal, which is to complete their group output successfully.
-
-                            This activity reflects the importance of collaboration, communication, and creativity. Even
-                            though they are using traditional materials like paper and scissors, they may also be
-                            supported by digital tools such as smartphones for ideas, design references, or
-                            instructions. Overall, the group demonstrates strong teamwork, responsibility, and active
-                            participation.</p>
-                    </div>
-                </div>
-
-                <!-- ══ GROUP ROLES ══ -->
-                <div class="roles-section">
-                    <h2>👥 Explore Collaborative Group Roles</h2>
-                    <p>In collaborative PE tasks, each student plays an important role. Click a role to learn more.</p>
-                    <div class="roles-tabs">
-                        <button class="role-tab active" data-target="leader">🏅 Leader</button>
-                        <button class="role-tab" data-target="timekeeper">⏱️ Timekeeper</button>
-                        <button class="role-tab" data-target="recorder">📝 Recorder</button>
-                        <button class="role-tab" data-target="encourager">💚 Encourager</button>
-                        <button class="role-tab" data-target="materials">🎒 Materials Manager</button>
-                    </div>
-                    <div class="role-panel active" id="panel-leader">
-                        <h4>🏅 Leader / Facilitator</h4>
-                        <p>The leader guides the group toward the common goal and ensures everyone participates. In PE:
-                        </p>
-                        <ul>
-                            <li>Calls out instructions during relay or drills</li>
-                            <li>Makes sure all group members are engaged</li>
-                            <li>Keeps the group focused and on task</li>
-                        </ul>
-                    </div>
-                    <div class="role-panel" id="panel-timekeeper">
-                        <h4>⏱️ Timekeeper</h4>
-                        <p>The timekeeper ensures the group completes tasks within the allotted time. In PE:</p>
-                        <ul>
-                            <li>Tracks timing for fitness circuits or relays</li>
-                            <li>Signals when to switch stations</li>
-                            <li>Reports time to the teacher or group</li>
-                        </ul>
-                    </div>
-                    <div class="role-panel" id="panel-recorder">
-                        <h4>📝 Recorder / Reporter</h4>
-                        <p>The recorder documents the group's performance and shares results. In PE:</p>
-                        <ul>
-                            <li>Writes down scores, reps, or activity results</li>
-                            <li>Fills in group worksheets or task cards</li>
-                            <li>Reports findings to the class</li>
-                        </ul>
-                    </div>
-                    <div class="role-panel" id="panel-encourager">
-                        <h4>💚 Encourager / Motivator</h4>
-                        <p>The encourager boosts group morale and ensures positive teamwork. In PE:</p>
-                        <ul>
-                            <li>Cheers on teammates during physical activities</li>
-                            <li>Ensures no one feels left out</li>
-                            <li>Celebrates the group's progress and effort</li>
-                        </ul>
-                    </div>
-                    <div class="role-panel" id="panel-materials">
-                        <h4>🎒 Materials Manager</h4>
-                        <p>The materials manager handles equipment and supplies. In PE:</p>
-                        <ul>
-                            <li>Sets up and collects cones, balls, and equipment</li>
-                            <li>Ensures safe use and storage of tools</li>
-                            <li>Distributes task cards to group members</li>
-                        </ul>
-                    </div>
-                </div>
         </section>
+
+        <!-- ══ ROLES — ALWAYS-VISIBLE CARDS ══ -->
+        <section class="ct-wrap">
+            <div class="ct-label">👥 Team Structure</div>
+            <h2 class="ct-heading">Collaborative<br>Group Roles</h2>
+            <p class="ct-sub">Every member plays a vital part. Hover to explore each role in action.</p>
+
+            <div class="ct-roles-grid">
+
+                <div class="ct-role-card">
+                    <span class="ct-role-emoji">🏅</span>
+                    <h3 class="ct-role-name">Leader / Facilitator</h3>
+                    <p class="ct-role-desc">Guides the group toward the common goal and ensures everyone participates.
+                    </p>
+                    <ul class="ct-role-list">
+                        <li>Calls out instructions during relay or drills</li>
+                        <li>Makes sure all group members are engaged</li>
+                        <li>Keeps the group focused and on task</li>
+                    </ul>
+                </div>
+
+                <div class="ct-role-card">
+                    <span class="ct-role-emoji">⏱️</span>
+                    <h3 class="ct-role-name">Timekeeper</h3>
+                    <p class="ct-role-desc">Ensures the group completes tasks within the allotted time and keeps
+                        everyone on schedule.</p>
+                    <ul class="ct-role-list">
+                        <li>Tracks timing for fitness circuits or relays</li>
+                        <li>Signals when to switch stations</li>
+                        <li>Reports time to the teacher or group</li>
+                    </ul>
+                </div>
+
+                <div class="ct-role-card">
+                    <span class="ct-role-emoji">📝</span>
+                    <h3 class="ct-role-name">Recorder / Reporter</h3>
+                    <p class="ct-role-desc">Documents the group's performance and shares results with the class and
+                        teacher.</p>
+                    <ul class="ct-role-list">
+                        <li>Writes down scores, reps, or activity results</li>
+                        <li>Fills in group worksheets or task cards</li>
+                        <li>Reports findings to the class</li>
+                    </ul>
+                </div>
+
+                <div class="ct-role-card">
+                    <span class="ct-role-emoji">💚</span>
+                    <h3 class="ct-role-name">Encourager / Motivator</h3>
+                    <p class="ct-role-desc">Boosts group morale and ensures positive teamwork throughout the activity.
+                    </p>
+                    <ul class="ct-role-list">
+                        <li>Cheers on teammates during physical activities</li>
+                        <li>Ensures no one feels excluded or left behind</li>
+                        <li>Celebrates the group's progress and effort</li>
+                    </ul>
+                </div>
+
+                <div class="ct-role-card">
+                    <span class="ct-role-emoji">🎒</span>
+                    <h3 class="ct-role-name">Materials Manager</h3>
+                    <p class="ct-role-desc">Handles equipment and supplies, ensuring everything is set up safely and on
+                        time.</p>
+                    <ul class="ct-role-list">
+                        <li>Sets up and collects cones, balls, and equipment</li>
+                        <li>Ensures safe use and storage of tools</li>
+                        <li>Distributes task cards to group members</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══ CLOSING BANNER ══ -->
+        <div class="ct-banner">
+            <div class="ct-banner-lbl">Key Takeaway</div>
+            <h3>Teamwork turns individual effort into collective achievement.</h3>
+            <p>This collaborative task helped me improve my communication and leadership skills while teaching me how to
+                work with different kinds of people. It reminded me that being a great educator starts with being a
+                great teammate.</p>
+        </div>
+
     </main>
 
+    <!-- ── FOOTER ── -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -679,37 +1310,50 @@
     <script src="search.js"></script>
     <script>
         (function () {
-            const cards = document.querySelectorAll('.photo-card');
-            const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'),
-                lbCap = document.getElementById('lbCaption'), lbCounter = document.getElementById('lbCounter'),
-                lbClose = document.getElementById('lbClose'), lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
-            let current = 0; const total = cards.length;
-            const images = Array.from(cards).map(c => ({
-                src: c.querySelector('img').src, alt: c.querySelector('img').alt,
-                caption: (c.querySelector('.photo-card-caption strong') || { textContent: '' }).textContent + ' — ' + (c.querySelector('.photo-card-caption small') || { textContent: '' }).textContent
+            const photos = document.querySelectorAll('.media-item.is-photo');
+            const lb = document.getElementById('lb');
+            const lbImg = document.getElementById('lbImg');
+            const lbCap = document.getElementById('lbCap');
+            const lbPill = document.getElementById('lbPill');
+            const lbClose = document.getElementById('lbClose');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+            let cur = 0;
+            const total = photos.length;
+
+            const data = Array.from(photos).map(p => ({
+                src: p.querySelector('img').src,
+                alt: p.querySelector('img').alt,
+                cap: (p.querySelector('.media-cap strong') || { textContent: '' }).textContent
+                    + ' — '
+                    + (p.querySelector('.media-cap small') || { textContent: '' }).textContent
             }));
+
             function open(i) {
-                current = (i + total) % total; lbImg.src = images[current].src; lbImg.alt = images[current].alt;
-                lbCap.textContent = images[current].caption;
-                if (lbCounter) lbCounter.textContent = (current + 1) + ' / ' + total;
-                lb.classList.add('open'); document.body.style.overflow = 'hidden';
+                cur = (i + total) % total;
+                lbImg.src = data[cur].src;
+                lbImg.alt = data[cur].alt;
+                lbCap.textContent = data[cur].cap;
+                lbPill.textContent = (cur + 1) + ' / ' + total;
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
             }
-            function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-            cards.forEach((c, i) => c.addEventListener('click', () => open(i)));
+            function close() {
+                lb.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            photos.forEach((p, i) => p.addEventListener('click', () => open(i)));
             lbClose.addEventListener('click', close);
-            lbPrev.addEventListener('click', e => { e.stopPropagation(); open(current - 1); });
-            lbNext.addEventListener('click', e => { e.stopPropagation(); open(current + 1); });
+            lb.addEventListener('click', e => { if (e.target === lb) close(); });
+            lbPrev.addEventListener('click', e => { e.stopPropagation(); open(cur - 1); });
+            lbNext.addEventListener('click', e => { e.stopPropagation(); open(cur + 1); });
             document.addEventListener('keydown', e => {
                 if (!lb.classList.contains('open')) return;
-                if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') open(current - 1); if (e.key === 'ArrowRight') open(current + 1);
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowLeft') open(cur - 1);
+                if (e.key === 'ArrowRight') open(cur + 1);
             });
-        })();
-        (function () {
-            const tabs = document.querySelectorAll('.role-tab'), panels = document.querySelectorAll('.role-panel');
-            tabs.forEach(tab => tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active')); panels.forEach(p => p.classList.remove('active'));
-                tab.classList.add('active'); document.getElementById('panel-' + tab.dataset.target).classList.add('active');
-            }));
         })();
     </script>
 </body>
