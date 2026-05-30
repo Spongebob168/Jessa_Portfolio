@@ -583,10 +583,6 @@
             transition: opacity 0.18s ease;
         }
 
-        .fl-lb-img-wrap img.fading {
-            opacity: 0;
-        }
-
         /* ── Side nav arrows ── */
         .fl-lb-arrow {
             position: absolute;
@@ -1142,7 +1138,7 @@
                     <a href="flexible_learning.html" class="active"><span class="nav-emoji">🔄</span>Flexible
                         Learning</a>
                     <a href="final_reflection.html"><span class="nav-emoji">🌟</span>Final Reflection</a>
-                     <a href="evaluation.html"><span class="nav-emoji">📋</span>PEER EVALUATION TASK FOR MY E
+                    <a href="evaluation.html"><span class="nav-emoji">📋</span>PEER EVALUATION TASK FOR MY E
                         PORTFOLIO</a>
                 </div>
             </div>
@@ -1793,11 +1789,11 @@
 
                 function show(i) {
                     cur = (i + total) % total;
-                    lbImg.classList.add('fading');
+                    lbImg.style.opacity='0';
                     setTimeout(() => {
                         lbImg.src = items[cur].src;
-                        lbImg.onload = () => lbImg.classList.remove('fading');
-                    }, 160);
+                        lbImg.style.opacity='1';
+                    }, 180);
                     lbCap.innerHTML = renderCaption(items[cur].cap);
                     lbPill.textContent = `${cur + 1} / ${total}`;
                     updateThumbs(cur);
@@ -1806,6 +1802,7 @@
                 function open(i) {
                     cur = (i + total) % total;
                     lbImg.src = items[cur].src;
+        lbImg.style.opacity = '1';
                     lbCap.innerHTML = renderCaption(items[cur].cap);
                     lbPill.textContent = `${cur + 1} / ${total}`;
                     updateThumbs(cur);
