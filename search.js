@@ -49,6 +49,12 @@ const SITE_PAGES = [
             { title: "Final Reflection", content: "Personal reflection on learning journey, growth as a BPED student, insights gained, challenges overcome, and aspirations for becoming a Physical Education teacher." },
             { title: "My Learning Journey", content: "PED 105 Technology for Teaching and Learning, digital portfolio, ICT policies, non-digital and digital tools, flexible learning design, modern educator." }
         ]
+    },
+    {
+        page: "Evaluation", url: "evaluation.html", icon: "📋", sections: [
+            { title: "ePortfolio Evaluation Rubric", content: "Peer evaluation rubric, classmate evaluators, Hiezel Vios, Rudge Cagbabanua, scores, Outstanding, Very Satisfactory, completeness, organization, creativity, technology multimedia, reflections, accessibility, grammar." },
+            { title: "Reflection on Feedback", content: "Received helpful feedback, organized creative meaningful content, strengths completeness visual presentation multimedia, improve clarity professionalism, teamwork growth confidence motivated." }
+        ]
     }
 ];
 
