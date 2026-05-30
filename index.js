@@ -222,4 +222,92 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // ════════════════════════════════════════
+    // 9. Auto-inject mobile drawer (works on ALL pages)
+    // ════════════════════════════════════════
+    (function injectDrawer() {
+        if (document.getElementById('mobileDrawer')) {
+            // Drawer already in page HTML — just re-wire hamburger if needed
+            var existDrawer  = document.getElementById('mobileDrawer');
+            var existOverlay = document.getElementById('drawerOverlay');
+            var existClose   = document.getElementById('drawerClose');
+            function openE()  { existDrawer.classList.add('open'); existOverlay && existOverlay.classList.add('open'); hamburgerBtn && hamburgerBtn.classList.add('open'); hamburgerBtn && hamburgerBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+            function closeE() { existDrawer.classList.remove('open'); existOverlay && existOverlay.classList.remove('open'); hamburgerBtn && hamburgerBtn.classList.remove('open'); hamburgerBtn && hamburgerBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+            if (hamburgerBtn) hamburgerBtn.addEventListener('click', function(){ existDrawer.classList.contains('open') ? closeE() : openE(); });
+            if (existClose)   existClose.addEventListener('click', closeE);
+            if (existOverlay) existOverlay.addEventListener('click', closeE);
+            existDrawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeE); });
+            return;
+        }
+
+        var curPage = decodeURIComponent(location.pathname.split('/').pop() || 'index.html');
+
+        var NAV = [
+            { href: 'index.html',            icon: '🏠', label: 'Home',                  section: 'Main Pages' },
+            { href: 'About_Me.html',         icon: '👤', label: 'About Me',              section: '' },
+            { href: 'ict_policies.html',     icon: '🔒', label: 'ICT Policies & Safety', section: '' },
+            { href: 'non_digital_tool.html', icon: '📌', label: 'Non-Digital Tool',       section: '' },
+            { href: 'digital_Tool.html',     icon: '💻', label: 'Digital Tool',           section: '' },
+            { href: 'collaborative_task.html',icon:'🤝', label: 'Collaborative Task',     section: 'More' },
+            { href: 'flexible_learning.html', icon:'🔄', label: 'Flexible Learning',      section: '' },
+            { href: 'final_reflection.html',  icon:'🌟', label: 'Final Reflection',       section: '' },
+            { href: 'evaluation.html',        icon:'📋', label: 'Evaluation',             section: '' }
+        ];
+
+        var linksHTML = '';
+        var lastSection = '';
+        NAV.forEach(function (item) {
+            if (item.section && item.section !== lastSection) {
+                linksHTML += '<span class="drawer-section-label">' + item.section + '</span>';
+                lastSection = item.section;
+            }
+            var active = (item.href === curPage) ? ' active' : '';
+            linksHTML += '<a href="' + item.href + '" class="' + active.trim() + '">' +
+                '<span class="drawer-nav-icon">' + item.icon + '</span>' +
+                item.label + '</a>';
+        });
+
+        var tmp = document.createElement('div');
+        tmp.innerHTML =
+            '<div class="drawer-overlay" id="drawerOverlay"></div>' +
+            '<nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">' +
+            '<div class="drawer-header">' +
+            '<span class="drawer-logo">Digital Teaching</span>' +
+            '<button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>' +
+            '</div>' +
+            '<div class="drawer-nav" id="drawerNav">' + linksHTML + '</div>' +
+            '<div class="drawer-footer">© 2026 Jessa Paradiang</div>' +
+            '</nav>';
+
+        while (tmp.firstChild) document.body.appendChild(tmp.firstChild);
+
+        var newOverlay = document.getElementById('drawerOverlay');
+        var newDrawer  = document.getElementById('mobileDrawer');
+        var newClose   = document.getElementById('drawerClose');
+
+        function openD() {
+            newDrawer.classList.add('open');
+            newOverlay && newOverlay.classList.add('open');
+            hamburgerBtn && hamburgerBtn.classList.add('open');
+            hamburgerBtn && hamburgerBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeD() {
+            newDrawer.classList.remove('open');
+            newOverlay && newOverlay.classList.remove('open');
+            hamburgerBtn && hamburgerBtn.classList.remove('open');
+            hamburgerBtn && hamburgerBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', function () {
+                newDrawer.classList.contains('open') ? closeD() : openD();
+            });
+        }
+        if (newClose)   newClose.addEventListener('click', closeD);
+        if (newOverlay) newOverlay.addEventListener('click', closeD);
+        newDrawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeD); });
+    })();
+
 });
