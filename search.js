@@ -52,7 +52,7 @@ const SITE_PAGES = [
     },
     {
         page: "Evaluation", url: "evaluation.html", icon: "📋", sections: [
-            { title: "ePortfolio Evaluation Rubric", content: "Peer evaluation rubric, classmate evaluators, Hiezel Vios, Rudge Cagbabanua, scores, Outstanding, Very Satisfactory, completeness, organization, creativity, technology multimedia, reflections, accessibility, grammar." },
+            { title: "PEER EVALUATION TASK FOR MY EPORTFOLIO", content: "Peer evaluation rubric, classmate evaluators, Hiezel Vios, Rudge Cagbabanua, scores, Outstanding, Very Satisfactory, completeness, organization, creativity, technology multimedia, reflections, accessibility, grammar." },
             { title: "Reflection on Feedback", content: "Received helpful feedback, organized creative meaningful content, strengths completeness visual presentation multimedia, improve clarity professionalism, teamwork growth confidence motivated." }
         ]
     }
