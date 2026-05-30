@@ -654,12 +654,10 @@
             max-height: 58vh;
             border-radius: 15px;
             object-fit: contain;
-            transition: opacity .18s ease;
+            
         }
 
-        .nd-lb-main.fading {
-            opacity: 0;
-        }
+        
 
         .nd-lb-arrow {
             position: absolute;
@@ -1271,11 +1269,11 @@
 
             function show(i) {
                 cur = (i + total) % total;
-                lbImg.classList.add('fading');
+                lbImg.style.opacity='0';
                 setTimeout(() => {
                     lbImg.src = items[cur].src;
-                    lbImg.onload = () => lbImg.classList.remove('fading');
-                }, 160);
+                    lbImg.style.opacity='1';
+                }, 180);
                 lbCap.innerHTML = renderCap(items[cur].cap);
                 lbPill.textContent = `${cur + 1} / ${total}`;
                 syncThumbs(cur);
@@ -1284,6 +1282,7 @@
             function open(i) {
                 cur = (i + total) % total;
                 lbImg.src = items[cur].src;
+        lbImg.style.opacity = '1';
                 lbCap.innerHTML = renderCap(items[cur].cap);
                 lbPill.textContent = `${cur + 1} / ${total}`;
                 syncThumbs(cur);
